@@ -1,111 +1,86 @@
 \cleardoublepage % memastikan bab baru dimulai di halaman ganjil (kanan)
 \chapter{PENDAHULUAN}
 \label{chap:pendahuluan}
+
 % --- Latar Belakang ---
 \section{Latar Belakang}
-Subbab ini menjelaskan dasar pemikiran, motivasi, kebutuhan, alasan, atau urgensi pemilihan masalah tugas akhir. Subbab ini berisi penjelasan ringkas tentang kondisi atau situasi yang ada saat ini terkait dengan topik yang dibahas. Tujuan utamanya adalah untuk memberikan informasi secukupnya kepada pembaca agar memahami topik yang akan dibahas. Dalam subbab ini, jelaskan hal-hal berikut ini:
-\begin{enumerate}
-\item	Kondisi atau situasi topik yang dibahas beserta permasalahannya, misalnya tentang pengelolaan informasi di fasilitas kesehatan daerah pedesaan saat ini dan masalah yang dihadapi, berdasarkan hasil survei atau wawancara dengan pihak terkait.
-\item	Urgensi atau pentingnya penyelesaian masalah tersebut, misalnya dampak negatif yang ditimbulkan jika masalah tersebut tidak diselesaikan.
-\item	Berbagai solusi yang telah diterapkan maupun solusi yang memungkinkan untuk diterapkan untuk menyelesaikan masalah tersebut, berdasarkan hasil studi literatur, wawancara dengan pihak terkait, atau kunjungan lapangan.
-\item   Kelemahan atau kekurangan dari solusi yang telah diterapkan atau yang memungkinkan untuk diterapkan tersebut, yang menjadi dasar pemikiran dalam merumuskan masalah tugas akhir.
-\end{enumerate}
-Latar belakang dapat ditulis dalam 2-3 halaman. Penulisan latar belakang masalah yang baik akan mengantarkan pembaca kepada pemahaman yang jelas tentang topik yang akan dibahas, 
-sehingga pembaca dapat mengikuti pembahasan pada subbab-subbab berikutnya dengan baik. Oleh karena itu, 
-penulis diharapkan melakukan investigasi yang mendalam untuk mengumpulkan fakta-fakta yang relevan dengan topik yang dibahas, 
-baik melalui studi literatur, wawancara dengan pihak terkait, maupun kunjungan lapangan. Hasil studi ini dijelaskan secara \emph{ringkas} di dalam subbab ini.
-Penjelasan hasil studi literatur yang komprehensif dapat dijabarkan di Bab II Studi Literatur secara sistematis.
+Hipertensi atau tekanan darah tinggi merupakan masalah kesehatan global yang menjadi faktor risiko utama untuk berbagai penyakit kardiovaskular, termasuk stroke dan gagal jantung \autocite{mills2020}. Menurut data Organisasi Kesehatan Dunia, diperkirakan 1,28 miliar orang dewasa di seluruh dunia menderita hipertensi \autocite{organization2023}. Di Indonesia, data Kementerian Kesehatan RI juga mencatat prevalensi yang signifikan \autocite{ri2018}. Meskipun manajemen hipertensi telah menjadi prioritas, penanganan yang umum terjadi saat ini sering kali bersifat reaktif \autocite{whelton2018}. Intervensi medis baru dilakukan setelah pasien mengalami gejala atau setelah Tekanan Darah (TD) terdeteksi sangat tinggi, yang berpotensi berujung pada komplikasi akut seperti krisis hipertensi \autocite{kurtz2021}.
 
-Dalam menulis latar belakang, hindari penulisan yang bersifat terlalu umum atau terlalu luas cakupannya sehingga sulit untuk dihubungkan dengan topik yang dibahas dalam tugas akhir,
-seperti:
-\begin{enumerate}
-    \item "Pentingnya teknologi informasi dalam kehidupan manusia."
-    \item "Perkembangan pesat teknologi \emph{artificial intelligence} di era digital."
-    \item "Tantangan dalam pengelolaan data besar (\emph{big data}) di berbagai sektor industri."
-    \item "Peran teknologi informasi dalam meningkatkan kualitas layanan kesehatan."
-\end{enumerate}
-Penulisan yang terlalu umum atau luas cakupannya akan menyulitkan penulis dalam merumuskan masalah, tujuan, metodologi, dan evaluasi tugas akhir.
+Pendekatan berbasis Machine Learning (ML) menawarkan alternatif yang menjanjikan dalam memprediksi risiko hipertensi. Algoritma ML terkini memiliki kemampuan superior dalam memodelkan hubungan non-linier yang kompleks antara berbagai variabel risiko \autocite{tarimana2024}. Studi terbaru menunjukkan bahwa model ML mampu mencapai akurasi klasifikasi risiko yang jauh lebih tinggi dibandingkan regresi logistik tradisional. Namun, penerapan model-model ini di ranah klinis menghadapi kendala besar yaitu fenomena black box yang membuat model menghasilkan prediksi tanpa menyertakan alasan yang dapat dipahami manusia.
 
-Jika ada referensi yang digunakan dalam penulisan latar belakang, cantumkan referensi tersebut dengan benar menggunakan \texttt{biblatex} sesuai dengan contoh penulisan kutipan dan daftar pustaka yang telah disediakan dalam template ini.
-Sebagai contoh, pada paragraf berikut ini terdapat kutipan dari dua referensi yang berbeda \autocite{laudon2020, pressman2019}. 
-Ada dua format penulisan sitasi yang dapat digunakan, yaitu format naratif dan format parentetik.
-Contoh penulisan kutipan dengan format naratif adalah sebagai berikut:
-\begin{displayquote}
-Menurut \textcite{laudon2020}, sistem informasi adalah kombinasi dari teknologi informasi dan aktivitas orang yang menggunakan teknologi tersebut untuk mendukung operasi dan manajemen organisasi.
-\end{displayquote}
-Contoh penulisan kutipan dengan format parentetik adalah sebagai berikut:
-\begin{displayquote}
-    Sistem informasi merupakan kombinasi dari teknologi informasi dan aktivitas orang yang menggunakan teknologi tersebut untuk mendukung operasi dan manajemen organisasi \autocite{laudon2020}.
-\end{displayquote}
+Dalam konteks medis, hasil prediksi saja tidak cukup. Tenaga medis dan pasien membutuhkan interpretabilitas untuk memahami alasan di balik sebuah prediksi agar dapat mempercayai dan menindaklanjuti hasil tersebut. Kompleksitas algoritma prediksi yang bersifat black box sering kali menjadi penghambat adopsi teknologi ini dalam praktik klinis sehari-hari karena kurangnya transparansi dan kepercayaan dari pengguna \autocite{adadi2018}.
+
+Sebagai solusi atas kendala tersebut, paradigma Explainable Artificial Intelligence atau XAI diterapkan untuk membuka mekanisme internal model sehingga alur pengambilan keputusan dapat ditelusuri kembali secara logis \autocite{adadi2018}. Transparansi ini merupakan elemen fundamental dalam informatika medis yang bertujuan menjamin akuntabilitas keputusan serta memastikan keselamatan pasien tetap menjadi prioritas utama \autocite{holzinger2019}.
+
+Meskipun metode XAI mampu memberikan transparansi teknis, luaran yang dihasilkan umumnya masih berupa data numerik atau visualisasi fitur yang kompleks bagi pengguna non-teknis. Guna menjembatani kesenjangan pemahaman tersebut, teknologi Large Language Model (LLM) dimanfaatkan dalam penelitian ini untuk mentransformasi hasil interpretasi model menjadi narasi bahasa alami yang personal \autocite{thirunavukarasu2023}. Akan tetapi, tantangan utama dalam penerapan model bahasa generik pada domain sensitif adalah kecenderungan model untuk menghasilkan fakta atau halusinasi tidak berdasar \autocite{ji2023}. Sebagai strategi mitigasi yang efektif, arsitektur Retrieval-Augmented Generation (RAG) diterapkan untuk memaksa model melakukan validasi silang terhadap basis pengetahuan eksternal yang terpercaya sebelum menyusun jawaban akhir \autocite{lewis2020}.
+
+Oleh karena itu, penelitian ini mengusulkan pendekatan baru dengan mengintegrasikan Large Language Model (LLM) berbasis arsitektur Retrieval-Augmented Generation (RAG) ke dalam sistem prediksi hipertensi. LLM akan berfungsi untuk menjembatani penerjemahan luaran yang matematis dari XAI menjadi narasi bahasa alami yang personal dan mudah dipahami. Penggunaan RAG secara spesifik bertujuan untuk memitigasi risiko halusinasi pada LLM dengan membatasi respons model pada referensi pedoman medis yang terverifikasi. Berbeda dari penelitian sebelumnya yang umumnya hanya berfokus pada peningkatan performa prediktif atau penyajian interpretasi teknis, penelitian ini mengusulkan pendekatan terintegrasi yang mengombinasikan XAI dan LLM berbasis RAG untuk menghasilkan penjelasan klinis yang tervalidasi secara kontekstual, khususnya dalam konteks prediksi risiko hipertensi.
+
 % --- Rumusan Masalah ---
 \section{Rumusan Masalah}
-Rumusan Masalah berisi masalah utama yang dibahas dalam tugas akhir. Rumusan masalah yang baik memiliki struktur sebagai berikut:
+Berdasarkan latar belakang yang telah diuraikan, maka rumusan masalah dalam penelitian ini adalah:
 \begin{enumerate}
-\item	Pokok persoalan dari kondisi atau situasi yang ada saat ini. Dengan kata lain, jelaskan kelemahan atau kekurangan dari kondisi, situasi, atau solusi yang dijelaskan pada latar belakang. Ini merupakan pokok rumusan masalah.
-\item	Elaborasi lebih lanjut urgensi penyelesaian masalah tersebut (mengapa penting untuk diselesaikan dan akibat yang dapat terjadi jika tidak diselesaikan).
-\item	Usulan singkat terkait dengan solusi yang ditawarkan untuk menyelesaikan persoalan.
-Penting untuk diperhatikan bahwa persoalan yang dideskripsikan pada subbab ini akan dipertanggungjawabkan di bab Evaluasi (apakah terselesaikan atau tidak).
+\item Bagaimana membangun model Machine Learning untuk prediksi risiko hipertensi yang mampu mendapatkan performa klasifikasi yang optimal berdasarkan dataset tabular dengan variabel risiko yang beragam?
+\item Bagaimana menerapkan metode Explainable Artificial Intelligence (XAI) untuk membuka mekanisme black box model terpilih guna menghasilkan gambaran fitur yang mempengaruhi prediksi dengan akurat?
+\item Bagaimana menerapkan arsitektur Retrieval-Augmented Generation (RAG) pada Large Language Model (LLM) untuk mentransformasi luaran teknis model menjadi penjelasan naratif yang personal dan tervalidasi oleh pedoman medis?
+\item Bagaimana mengukur efektivitas keseluruhan sistem yang diusulkan jika dievaluasi berdasarkan gabungan metrik performa prediksi ML, kualitas interpretabilitas XAI, tingkat faktualitas LLM, dan relevansi narasi yang dihasilkan?
 \end{enumerate}
-Hindari penulisan rumusan masalah yang terlalu umum atau terlalu luas cakupannya sehingga sulit untuk diselesaikan dalam jangka waktu pelaksanaan tugas akhir, 
-seperti:
-\begin{enumerate}
-    \item "Bagaimana cara meningkatkan kualitas layanan kesehatan di Indonesia?"
-    \item "Bagaimana cara mengoptimalkan penggunaan energi di perkotaan?"
-    \item "Bagaimana cara mengurangi kemacetan lalu lintas di kota besar?"
-    \item "Bagaimana cara membangun sistem irigasi sawah menggunakan \emph{AI}?"
-\end{enumerate}
-Rumusan masalah yang baik dan spesifik akan memudahkan penulis dalam menentukan tujuan, metodologi, dan evaluasi tugas akhir.
-
-Selain itu, hindari menuliskan pertanyaan yang merupakan sebuah keniscayaan yang harus dijawab atau dikerjakan 
-dalam pelaksanaan tugas akhir, seperti:
-\begin{enumerate}
-    \item "Bagaimana cara melakukan analisis kebutuhan sistem informasi rumah sakit?"
-    \item "Bagaimana cara merancang basis data untuk aplikasi X?"
-    \item "Bagaimana cara mengimplementasikan \textit{large language model} untuk deteksi penyakit Y?"
-    \item "Bagaimana cara menguji sistem penyiraman tanaman berbasis IoT yang akan dibuat?"
-\end{enumerate}
-Kegiatan analisis, perancangan, implementasi, dan pengujian merupakan tahapan yang harus dilakukan dalam pelaksanaan tugas akhir,
-sehingga pertanyaan-pertanyaan tersebut tidak perlu dimasukkan ke dalam rumusan masalah.
 
 % --- Tujuan ---
 \section{Tujuan}
-Tuliskan \textbf{tujuan utama} dan/atau tujuan detail yang akan dicapai dalam pelaksanaan tugas akhir. 
-Fokuskan isi subbab ini pada hasil akhir yang ingin diperoleh setelah tugas akhir diselesaikan 
-terkait dengan penyelesaian persoalan pada rumusan masalah. 
-Penting untuk diperhatikan bahwa tujuan yang dideskripsikan pada subbab ini akan dipertanggungjawabkan 
-di akhir pelaksanaan tugas akhir. Oleh karena itu, tuliskan juga \emph{kriteria keberhasilan} tugas akhir ini.
+Tujuan utama pelaksanaan Tugas Akhir ini adalah:
+\begin{enumerate}
+\item Membangun dan mengoptimasi model klasifikasi risiko hipertensi menggunakan algoritma ML dengan target metrik evaluasi melampaui 70\%.
+\item Menerapkan metode Explainable Artificial Intelligence (XAI) untuk menghasilkan atribusi fitur yang transparan dan dapat diinterpretasikan secara klinis.
+\item Mengembangkan modul narasi berbasis Large Language Model (LLM) dengan arsitektur RAG yang memanfaatkan hasil XAI untuk memberikan penjelasan personal yang tervalidasi.
+\item Mengevaluasi efektivitas kinerja sistem secara komprehensif yang mencakup metrik akurasi model prediksi serta tingkat faktualitas dan koherensi narasi penjelasan yang dihasilkan dibandingkan dengan referensi medis.
+\end{enumerate}
 
 % --- Batasan Masalah ---
 \section{Batasan Masalah}
-Tuliskan batasan-batasan yang diambil dalam pelaksanaan tugas akhir. Batasan ini dapat dihindari (bersifat opsional, tidak perlu ada) jika topik atau judul tugas akhir dibuat cukup spesifik.
+Penelitian ini menetapkan batasan-batasan spesifik untuk menjaga fokus pembahasan dan kelayakan pengerjaan dalam kerangka waktu yang tersedia. Batasan masalah dalam penelitian ini adalah sebagai berikut:
+\begin{enumerate}
+\item Penelitian ini menggunakan data sekunder terstruktur dalam bentuk tabular yang diperoleh dari repositori publik terverifikasi atau himpunan data klinis anonim. Variabel yang digunakan terbatas pada fitur demografis, riwayat medis, dan tanda vital klinis yang relevan dengan faktor risiko hipertensi, tanpa melibatkan pemrosesan data citra medis atau sinyal fisiologis mentah.
+\item Model prediksi dikembangkan menggunakan pendekatan Supervised Machine Learning dengan fokus pada kasus klasifikasi biner, yaitu membedakan antara kelas risiko hipertensi dan non-hipertensi. Evaluasi model difokuskan pada metrik performa teknis seperti akurasi, presisi, recall, dan F1-score.
+\item Implementasi XAI dibatasi pada metode post-hoc model-agnostik, khususnya Shapley Additive Explanations (SHAP) atau Local Interpretable Model-agnostic Explanations (LIME), untuk menghasilkan nilai atribusi fitur. Salah satu dari metode ini dipilih untuk menjelaskan kontribusi setiap variabel terhadap prediksi akhir model tanpa mengubah struktur internal model prediksi itu sendiri.
+\item Penelitian ini memanfaatkan LLM yang telah dilatih sebelumnya melalui antarmuka pemrograman aplikasi (API) atau model lokal yang sudah terkuantisasi. Penelitian tidak mencakup proses fine-tuning atau pelatihan ulang model bahasa secara keseluruhan, melainkan berfokus pada teknik prompt engineering dan integrasi konteks eksternal.
+\item Sistem RAG menggunakan basis pengetahuan yang bersumber dari dokumen pedoman klinis resmi, seperti panduan dari Kementerian Kesehatan Republik Indonesia, World Health Organization (WHO), atau asosiasi kardiologi internasional yang relevan. Sistem tidak melakukan pencarian informasi secara langsung ke internet terbuka untuk menjamin validitas referensi.
+\item Hasil akhir dari pengembangan sistem berupa purwarupa perangkat lunak berbasis web. Sistem berfungsi sebagai alat pendukung keputusan klinis (Clinical Decision Support System) yang memberikan opini kedua, bukan sebagai pengganti diagnosis medis resmi yang dilakukan oleh dokter atau tenaga kesehatan profesional.
+\end{enumerate}
 
 % --- Metodologi Pengerjaan TA ---
 \section{Metodologi}
-Tuliskan semua tahapan yang akan dilalui selama pelaksanaan tugas akhir. 
-Tahapan ini spesifik untuk menyelesaikan persoalan tugas akhir. 
-Berikut adalah contoh metodologi pengerjaan tugas akhir yang dapat diikuti, yaitu meliputi tahapan, langkah-langkah, 
-atau tata cara melakukan:
+Penelitian ini dilaksanakan dengan mengadopsi kerangka kerja standar CRISP-DM (Cross-Industry Standard Process for Data Mining). Kerangka kerja ini dipilih karena menyediakan struktur yang komprehensif dan iteratif, memastikan keselarasan antara tujuan klinis dengan teknis pengembangan model. Tahapan pelaksanaan penelitian dibagi menjadi enam tahap utama sebagai berikut:
 \begin{enumerate}
-\item	Investigasi pengumpulan fakta di latar belakang untuk merumuskan masalah.
-\item	Pencarian, pengelompokan, dan penapisan literatur atau sumber informasi untuk mengumpulkan informasi yang relevan tentang topik yang diangkat, termasuk teori (konsep atau teori apa saja yang perlu dicari), hal-hal yang telah dicapai oleh orang lain (cara mencari dan kata kuncinya), dan berbagai informasi pendukung, untuk mencari solusi terhadap masalah yang dibahas. Gunakan metodologi yang tepat dalam menggali informasi dan dokumentasikan prosesnya (termasuk rekaman wawancara atau survei) di dalam Lampiran, termasuk tautan ke video atau foto. Hasil penggalian informasi ini akan dijelaskan secara sistematis di Bab II Studi Literatur.
-\item   Analisis kebutuhan pengguna dan sistem berdasarkan hasil investigasi dan studi literatur. Jelaskan metode yang digunakan untuk melakukan analisis kebutuhan, misalnya wawancara, survei, observasi, atau studi kasus. Hasil analisis kebutuhan ini akan dijelaskan secara rinci di Bab III Analisis.
-\item   Perancangan solusi berdasarkan hasil analisis kebutuhan. Jelaskan metode yang digunakan untuk melakukan perancangan, misalnya menggunakan diagram UML, ERD, atau prototyping. Hasil perancangan ini akan dijelaskan secara rinci di Bab IV Perancangan.
-\item   Implementasi solusi berdasarkan hasil perancangan. Jelaskan teknologi, bahasa pemrograman, atau alat yang digunakan untuk mengimplementasikan solusi. Hasil implementasi ini akan dijelaskan secara rinci di Bab V Implementasi.
-\item   Evaluasi terhadap solusi yang telah diimplementasikan. Jelaskan metode pengujian, metrik evaluasi, atau studi kasus yang digunakan untuk menilai keberhasilan solusi. Hasil evaluasi ini akan dijelaskan secara rinci di Bab VI Evaluasi.
-\item   Penarikan kesimpulan dan saran berdasarkan hasil pelaksanaan tugas akhir. Hasil kesimpulan dan saran ini akan dijelaskan secara rinci di Bab VII Kesimpulan dan Saran. 
-\vfill % memaksa konten di atas untuk berada di bagian atas halaman dan menyisakan ruang kosong di bawah konten ini akibat berakhirnya section ini
+\item \textbf{Business Understanding}\\
+Tahap ini merupakan tahap fondasi yang bertujuan untuk mendefinisikan masalah penelitian secara presisi serta membangun landasan teoretis yang kuat. Pertama-tama, investigasi awal dilakukan secara mendalam untuk mengumpulkan fakta empiris yang mendasari latar belakang masalah. Kegiatan ini mencakup penelusuran data statistik kesehatan global dari World Health Organization dan data nasional dari Kementerian Kesehatan Republik Indonesia guna memvalidasi urgensi hipertensi sebagai komorbiditas utama. Selain itu, dilakukan analisis kesenjangan teknologi untuk mengidentifikasi hambatan adopsi kecerdasan artifisial di ranah klinis, khususnya terkait isu transparansi model dan risiko halusinasi, yang kemudian menjadi dasar perumusan solusi. Guna mendapatkan solusi terkini, strategi pencarian literatur dilakukan secara sistematis pada basis data bereputasi seperti IEEE Xplore, PubMed, dan ScienceDirect. Pencarian informasi difokuskan pada pengumpulan teori dan metode state-of-the-art dengan menggunakan kata kunci spesifik pada komponen-komponen utama penelitian, yaitu hipertensi, ML, XAI, LLM, dan RAG. Literatur yang terkumpul kemudian melalui proses sintesis, yang hasilnya didokumentasikan secara rinci dalam Bab II Studi Literatur.
+
+\item \textbf{Data Understanding}\\
+Setelah tujuan penelitian ditetapkan, tahap selanjutnya berfokus pada akuisisi dan eksplorasi dataset. Penelitian ini menggunakan dataset sekunder yang diperoleh dari repositori publik terverifikasi. Setelah dataset sudah diakuisisi, dilakuakn eksplorasi awal dan penyesuaian dataset agar dapat digunakan pada tahap pelatihan model. Apabila dataset yang tersedia belum mencukupi kebutuhan desain, maka dilakukan penyesuaian atau pengolahan tambahan.
+
+\item \textbf{Data Preparation}\\
+Tahap persiapan data bertujuan untuk mentransformasi data mentah menjadi format yang siap untuk proses pemodelan. Kegiatan teknis yang dilakukan meliputi pembersihan data (data cleaning) untuk menangani anomali yang ditemukan pada tahap sebelumnya, serta pengkodean fitur kategorikal agar mengubah data non-numerik menjadi format numerik yang dapat dipahami dan digunakan oleh algoritma machine learning. Jika ditemukan ketidakseimbangan kelas (class imbalance) pada label target, teknik penyeimbangan data akan diterapkan. Tahap ini diakhiri dengan pembagian dataset menjadi himpunan latih (training set) dan himpunan uji (test set) untuk digunakan model.
+
+\item \textbf{Modelling}\\
+Tahap ini merupakan inti dari pengembangan teknis yang terdiri dari tiga komponen utama yang saling terintegrasi. Pertama, dilakukan pelatihan menggunakan beberapa algoritma machine learning. Setelahnya, algoritma machine learning dibangun dan dilatih menggunakan dataset yang telah dipersiapkan. Performa setiap model dievaluasi menggunakan metrik ROC-AUC serta sejumlah metrik evaluasi lainnya. Model dengan hasil kinerja paling optimal kemudian dipilih untuk tahap interpretasi lebih lanjut. Kedua, metode XAI diimplementasikan pada model tersebut untuk menghasilkan nilai atribusi fitur yang menjelaskan alasan di balik setiap prediksi. Ketiga, pipeline Retrieval-Augmented Generation dikembangkan untuk menghubungkan luaran SHAP dengan Large Language Model. Sistem ini dikonfigurasi secara khusus agar merujuk pada basis pengetahuan pedoman medis sebelum menyusun narasi penjelasan, sehingga luaran yang dihasilkan tetap berada dalam koridor medis yang valid.
+
+\item \textbf{Evaluation}\\
+Tahap evaluasi dilakukan untuk mengukur efektivitas sistem secara menyeluruh sebelum tahap penyebaran. Evaluasi kuantitatif dilakukan terhadap model prediksi menggunakan metrik standar klasifikasi seperti akurasi, presisi, recall, F1-score, dan metrik lainnya. Sementara itu, evaluasi kualitatif difokuskan pada hasil interpretasi yang diperoleh dari metode XAI dengan melakukan validasi domain expert guna menilai tingkat kesesuaiannya dengan pengetahuan serta praktik di bidang terkait. Berdasarkan proses evaluasi tersebut, ditetapkan metode interpretasi yang paling relevan dan layak untuk diimplementasikan dalam sistem. Setelah itu penilaian kualitas narasi yang dihasilkan oleh Large Language Model. Aspek yang dinilai mencakup faktualitas medis, koherensi bahasa, dan relevansi terhadap konteks klinis pasien, dengan cara membandingkan luaran sistem terhadap referensi standar untuk memastikan tidak terjadi halusinasi informasi.
+
+\item \textbf{Deployment}\\
+Tahap terakhir dalam penelitian ini adalah pengembangan purwarupa perangkat lunak (software prototype) berbasis web. Model yang telah dilatih dan divalidasi diintegrasikan ke dalam antarmuka aplikasi yang ramah pengguna.
 \end{enumerate}
 
 % --- Sistematika Penulisan ---
 \section{Sistematika Penulisan}
-Tuliskan gambaran umum isi dari setiap bab yang ada dalam laporan tugas akhir. Sistematika penulisan ini memberikan panduan bagi pembaca tentang struktur dan alur pembahasan dalam laporan tugas akhir. Berikut adalah contoh sistematika penulisan yang dapat diikuti:
+Sistematika penulisan laporan tugas akhir ini memberikan panduan bagi pembaca tentang struktur dan alur pembahasan. Berikut adalah sistematika penulisannya:
 \begin{enumerate}
-\item	Bab I Pendahuluan: Berisi latar belakang, rumusan masalah, tujuan, batasan masalah, metodologi, dan sistematika penulisan laporan tugas akhir       .
-\item	Bab II Studi Literatur: Berisi kajian pustaka yang relevan dengan topik tugas akhir, termasuk teori-teori, konsep-konsep, dan hasil-hasil penelitian sebelumnya yang                mendukung pelaksanaan tugas akhir.
-\item	Bab III Analisis: Berisi penjelasan tentang analisis masalah dan kebutuhan pengguna serta berbagai alternatif solusinya.
+\item   Bab I Pendahuluan: Berisi latar belakang, rumusan masalah, tujuan, batasan masalah, metodologi, dan sistematika penulisan laporan tugas akhir.
+\item   Bab II Studi Literatur: Berisi kajian pustaka yang relevan dengan topik tugas akhir, termasuk teori-teori, konsep-konsep, dan hasil-hasil penelitian sebelumnya yang mendukung pelaksanaan tugas akhir.
+\item   Bab III Analisis: Berisi penjelasan tentang analisis masalah dan kebutuhan pengguna serta berbagai alternatif solusinya.
 \item   Bab IV Perancangan: Berisi penjelasan tentang perancangan solusi yang diusulkan, misalnya arsitektur sistem, desain basis data, antarmuka pengguna, dan sebagainya.
-\item	Bab V Implementasi: Berisi penjelasan tentang proses implementasi solusi yang diusulkan, termasuk langkah-langkah yang diambil, teknologi yang digunakan, dan hasil yang diperoleh.
-\item	Bab VI Evaluasi: Berisi analisis dan evaluasi terhadap solusi yang diimplementasikan, termasuk metode pengujian, hal-hal yang disiapkan sebelum pengujian, hasil pengujian, dan penilaian kinerja.                  
+\item   Bab V Implementasi: Berisi penjelasan tentang proses implementasi solusi yang diusulkan, termasuk langkah-langkah yang diambil, teknologi yang digunakan, dan hasil yang diperoleh.
+\item   Bab VI Evaluasi: Berisi analisis dan evaluasi terhadap solusi yang diimplementasikan, termasuk metode pengujian, hal-hal yang disiapkan sebelum pengujian, hasil pengujian, dan penilaian kinerja.
 \item   Bab VII Kesimpulan dan Saran: Berisi kesimpulan dari hasil pelaksanaan tugas akhir dan saran untuk pengembangan lebih lanjut.
 \item   Daftar Pustaka: Berisi daftar referensi yang digunakan dalam penyusunan laporan tugas akhir.
 \item   Lampiran: Berisi dokumen-dokumen pendukung seperti kode program, data lengkap hasil pengujian, rekaman wawancara, dan lain-lain. 
