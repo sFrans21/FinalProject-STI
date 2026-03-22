@@ -1,227 +1,345 @@
 \cleardoublepage % memastikan bab baru dimulai di halaman ganjil (kanan)
 \chapter{STUDI LITERATUR}
 \label{chap:studi-literatur}
-\section{Tentang Studi Literatur}
-Studi literatur biasanya berisi tentang tinjauan pustaka, landasan teori, dan penelitian-penelitian terdahulu yang relevan dengan topik tugas akhir yang dikerjakan.
-Dalam subbab ini, penulis diharapkan dapat menjelaskan:
+
+% --- II.1 Hipertensi ---
+\section{Hipertensi}
+Hipertensi secara global didefinisikan sebagai suatu kondisi hemodinamik kronis yang ditandai dengan meningkatnya tekanan darah di arteri secara persisten. Menurut konsensus medis internasional terbaru, hipertensi bukan sekadar angka tekanan darah yang tinggi, melainkan sindrom kardiovaskular progresif yang memicu perubahan struktural dan fungsional pada pembuluh darah serta organ vital \autocite{Reges2020Association}. Dalam konteks fisiologis, kondisi ini terjadi ketika tekanan darah sistolik (TDS) berada pada nilai 140 mmHg atau lebih, dan/atau tekanan darah diastolik (TDD) berada pada nilai 90 mmHg atau lebih, setelah dilakukan pengukuran berulang di klinik \autocite{Reges2020Association}.
+
+Penyakit ini sering disebut sebagai \emph{the silent killer} karena sebagian besar penderita tidak menunjukkan gejala klinis yang spesifik hingga terjadi kerusakan organ target atau \emph{Target Organ Damage} (TOD) seperti hipertrofi ventrikel kiri, gagal ginjal kronis, atau retinopati \autocite{Mills2020Global}. Prevalensi hipertensi terus meningkat secara global, didorong oleh penuaan populasi dan pergeseran gaya hidup, di mana data terbaru menunjukkan bahwa lebih dari 1,28 miliar orang dewasa berusia 30--79 tahun di seluruh dunia hidup dengan hipertensi, dengan dua pertiga di antaranya tinggal di negara berpenghasilan rendah dan menengah \autocite{WHO2023}.
+
+Di Indonesia, hipertensi masih menjadi tantangan kesehatan utama dengan tingkat pengendalian yang rendah. Studi epidemiologi terbaru menunjukkan bahwa prevalensi hipertensi di Indonesia tidak hanya didominasi oleh lansia, tetapi mulai merambah ke populasi usia produktif akibat transisi nutrisi dan penurunan aktivitas fisik \autocite{manongga2024gambaran}. Patofisiologi hipertensi melibatkan interaksi kompleks antara curah jantung dan resistensi vaskular perifer, yang diatur oleh sistem saraf simpatis, sistem renin-angiotensin-aldosteron (RAAS), dan keseimbangan cairan tubuh. Ketidakseimbangan pada salah satu mekanisme ini dapat memicu vasokonstriksi berkepanjangan yang berujung pada elevasi tekanan darah sistemik.
+
+\subsection{Klasifikasi Hipertensi}
+Klasifikasi tekanan darah merupakan pedoman klinis fundamental yang digunakan untuk menentukan stratifikasi risiko dan strategi intervensi medis. Meskipun terdapat beberapa pedoman internasional, klasifikasi yang paling banyak diadopsi dalam literatur terkini merujuk pada pedoman International Society of Hypertension (ISH) 2020 dan European Society of Hypertension (ESH) 2023 yang berupaya menyederhanakan kategorisasi untuk kemudahan praktik klinis.
+
+Perbedaan mendasar dalam klasifikasi modern dibandingkan pedoman lama, seperti JNC 7, adalah penekanan pada kategori "Normal-Tinggi" atau pre-hipertensi sebagai sinyal peringatan dini. Klasifikasi ini penting dalam pengembangan model prediksi berbasis kecerdasan buatan karena memungkinkan algoritma untuk mendeteksi pergeseran pola data pasien dari fase normal menuju fase patologis sebelum diagnosis klinis tegak. Berdasarkan panduan European Society of Cardiology (ESC) dan European Society of Hypertension (ESH) pada tahun 2018, klasifikasi hipertensi dibagi menjadi beberapa kategori sebagai berikut:
+
+\begin{enumerate}[label=\arabic*., leftmargin=*]
+    \item \textbf{Normal}\\
+    Tekanan darah sistolik $<130$ mmHg dan diastolik $<85$ mmHg dianggap sebagai kondisi ideal dengan risiko kejadian kardiovaskular terendah.
+    
+    \item \textbf{High-Normal}\\
+    Rentang sistolik 130--139 mmHg dan/atau diastolik 85--89 mmHg. Kategori ini memerlukan pemantauan ketat karena individu dalam kelompok ini memiliki probabilitas tinggi untuk berkembang menjadi hipertensi menetap jika tidak dilakukan modifikasi gaya hidup.
+    
+    \item \textbf{Hipertensi Derajat 1}\\
+    Ditandai dengan sistolik 140--159 mmHg dan/atau diastolik 90--99 mmHg. Pada tahap ini, intervensi farmakologis sering kali mulai dipertimbangkan bersamaan dengan perubahan gaya hidup, tergantung pada profil risiko kardiovaskular total pasien.
+    
+    \item \textbf{Hipertensi Derajat 2}\\
+    Tekanan sistolik $\ge 160$ mmHg dan/atau diastolik $\ge 100$ mmHg. Kondisi ini memerlukan penanganan segera untuk mencegah kejadian akut seperti stroke atau serangan jantung.
+\end{enumerate}
+
+Selain klasifikasi berbasis derajat, hipertensi juga diklasifikasikan berdasarkan etiologinya menjadi hipertensi primer (esensial) dan hipertensi sekunder. Hipertensi primer mencakup 90-95\% dari seluruh kasus dan tidak memiliki penyebab tunggal yang dapat diidentifikasi, melainkan hasil dari interaksi multifaktorial genetik dan lingkungan. Sementara itu, hipertensi sekunder disebabkan oleh kondisi medis yang mendasarinya, seperti penyakit parenkim ginjal, gangguan endokrin, atau penggunaan obat-obatan tertentu.
+
+\subsection{Faktor Risiko}
+Faktor risiko hipertensi dibagi menjadi dua klaster utama, yaitu faktor risiko yang tidak dapat dimodifikasi (\emph{non-modifiable risk factors}) dan faktor risiko yang dapat dimodifikasi (\emph{modifiable risk factors}). Identifikasi faktor-faktor ini krusial karena interaksi antar variabel tersebutlah yang akan dianalisis oleh model komputasi untuk menghasilkan prediksi yang akurat.
+
+\subsubsection{Faktor Risiko Tidak Dapat Dimodifikasi}
 \begin{enumerate}
-  \item Landasan teori yang diperoleh dari literatur yang akan digunakan untuk menyelesaikan persoalan TA;
-  \item Pengetahuan tentang kasus yang akan dikaji; dan
-  \item Penelitian atau solusi terkait untuk mengetahui posisi persoalan dan berbagai solusi yang memungkinkan untuk diterapkan berdasarkan hasil studi literatur ini.
-\end{enumerate}
-Jadi, studi literatur ini bukan sekadar rangkuman dari berbagai sumber referensi, tetapi harus diolah dan disajikan secara sistematis sehingga dapat memberikan gambaran yang jelas tentang landasan teori dan penelitian-penelitian terdahulu yang relevan dengan topik tugas akhir.
-
-Penulisan studi literatur yang baik dimulai dari penjelasan tentang kasus yang akan dikaji, kemudian diikuti dengan penjelasan tentang teori-teori yang relevan, dan diakhiri dengan tinjauan terhadap penelitian-penelitian terdahulu yang berkaitan dengan topik tugas akhir.
-Misalnya, jika topik tugas akhir adalah tentang masalah klasifikasi biji kopi berdasarkan citra kopi, 
-penulis dapat memulai dengan menjelaskan terlebih dahulu tentang karakteristik biji kopi, masalah dalam melakukan klasifikasi biji kopi, 
-kemudian menjelaskan tentang berbagai metode berbasis komputer yang dapat digunakan untuk mengklasifikasikan biji kopi berdasarkan citranya, 
-metode terbaik yang memungkinkan untuk diterapkan, teori-teori dasar tentang metode tersebut, dan diakhiri dengan tinjauan terhadap penelitian-penelitian terdahulu yang menggunakan metode untuk klasifikasi citra.
-
-Dalam studi literatur, biasanya banyak penjelasan tentang teori-teori yang disertai dengan rumus atau persamaan matematika, gambar, tabel, algoritma, pseudocode, atau kode program.
-Oleh karena itu, pada subbab berikut akan dijelaskan beberapa hal teknis terkait format penulisan dokumen tugas akhir.
-
-\section{Format Penulisan Gambar, Tabel, Rumus, dan Kode Program}
-Berikut adalah beberapa contoh penulisan gambar, tabel, rumus, dan kode program yang sesuai dengan format penulisan tugas akhir.
-\subsection{Penulisan Gambar}
-Contoh gambar dapat dilihat pada Gambar \ref{fig:jaringan} dan Gambar \ref{fig:jaringan2}.
-Secara vertikal, gambar biasanya diletakkan di bagian atas halaman (\textit{top}) atau di bagian bawah halaman (\textit{bottom}).
-Gambar tidak harus diletakkan tepat di tempat gambar tersebut disebutkan pertama kali dalam teks,
-tetapi dapat diletakkan di halaman berikutnya jika tidak muat di halaman yang sama. Pada contoh ini, kedua gambar diletakkan di bagian atas halaman 
-menggunakan opsi \texttt{[t]} pada lingkungan \texttt{figure}, namun pada halaman yang berbeda, meskipun disebutkan di halaman yang sama akibat ruang yang terbatas. 
-
-Penyebutan judul gambar dalam teks menggunakan perintah \texttt{ref}, misalnya Gambar \texttt{\\ref\{fig:jaringan\}}.
-Gunakan huruf kapital pada kata "Gambar" saat menyebutkan gambar dalam teks.
-
-\begin{figure}[t] % pilihan opsi yang disarankan: t = top, b = bottom, h = here
-  \caption{Contoh peletakan gambar di bagian atas halaman} 
-	\label{fig:jaringan}
-    	\includegraphics[width=0.7\textwidth]{images/gambar1.png}
-\end{figure}
-
-Gambar, grafik, atau ilustrasi harus memiliki keterangan atau judul (\textit{caption}) yang menjelaskan isi gambar tersebut. 
-Secara horisontal, gambar dan judulnya diposisikan di tengah. Nomor gambar tidak diakhiri tanda baca.
-Judul gambar diletakkan di bawah gambar dan ditulis dengan huruf kecil kecuali huruf pertama pada kalimat judul. 
-Kalimat judul yang panjang dapat ditulis dalam beberapa baris seperti pada Gambar \ref{fig:jaringan2}.
-
-Ukuran gambar yang ditampilkan dapat diatur dengan mengubah nilai \textit{width} dalam sintaks \textit{includegraphics}. 
-Gambar \ref{fig:jaringan} memiliki lebar 70\% dari lebar teks, sedangkan Gambar \ref{fig:jaringan2} memiliki lebar 90\% dari lebar teks.
- 
-
-\begin{figure}[t] 
-  \caption{Contoh peletakan gambar dengan judul yang panjang sehingga ditulis dalam beberapa baris} 
-	\label{fig:jaringan2}
-    	\includegraphics[width=0.9\textwidth]{images/gambar1.png}
-\end{figure}
-
-Pastikan gambar yang digunakan memiliki resolusi yang cukup tinggi agar tidak pecah atau buram saat dicetak. 
-Gambar umumnya tidak tajam dan tulisan tidak jelas atau kabur jika gambar tersebut:
-\begin{enumerate}[a.]
-  \item diperoleh dari hasil cropping pada suatu halaman buku atau situs web;
-  \item hasil pembesaran gambar yang gambar aslinya sebenarnya berukuran kecil; atau
-  \item disimpan dalam resolusi kecil
-\end{enumerate}
-Ketidakjelasan gambar ini dapat dilihat pada garis-garis diagram yang tidak tegas dan tulisan-tulisan dalam gambar yang tampak kabur dan kurang jelas terbaca.
-
-Untuk mendapatkan gambar yang tidak kabur (\textit{blur}), langkah-langkah berikut dapat digunakan:
-\begin{enumerate}[(a)]
-\item Hindari \textit{screenshot}. Gambar yang didapat di suatu pustaka atau referensi sebaiknya digambar ulang (tidak perlu sama persis), misalnya menggunakan PowerPoint, Canva, Figma, draw.io, atau yang lainnya.
-\item Jika diagram atau ilustrasi digambar menggunakan draw.io, saat gambar disimpan ke format PNG atau JPG (\textit{export as}), lakukan \textit{zoom} ke minimal 300\% (\textit{the default value is} 100\%). 
-\item Jika diagram digambar dengan menggunakan \texttt{PowerPoint} atau aplikasi yang mengolah gambar vektor lainnya, gambar dapat langsung disimpan asalkan resolusinya tinggi.
+    \item \textbf{Usia}\\
+    Penuaan adalah determinan paling kuat terhadap peningkatan tekanan darah. Seiring bertambahnya usia, terjadi kekakuan arteri (\emph{arterial stiffness}) akibat hilangnya serat elastin dan penumpukan kolagen pada dinding pembuluh darah, yang secara langsung meningkatkan tekanan sistolik.
+    
+    \item \textbf{Jenis Kelamin}\\
+    Studi menunjukkan bahwa pria memiliki prevalensi hipertensi yang lebih tinggi dibandingkan wanita pada usia muda hingga paruh baya. Namun, setelah masa menopause, risiko pada wanita meningkat tajam dan sering kali melampaui pria akibat penurunan efek protektif hormon estrogen terhadap vaskular.
+    
+    \item \textbf{Genetik dan Riwayat Keluarga}\\
+    Variasi genetik berkontribusi sekitar 30--60\% terhadap variabilitas tekanan darah populasi. Individu dengan riwayat keluarga hipertensi memiliki risiko dua kali lipat lebih besar untuk mengembangkan kondisi serupa, yang dimediasi oleh pewarisan polimorfisme gen yang mengatur sistem RAAS.
 \end{enumerate}
 
-\subsection{Penulisan Tabel}
-Format penulisan tabel hampir sama dengan format penulisan gambar. Bedanya adalah judul tabel diletakkan di atas tabel, bukan di bawah tabel seperti pada gambar.
-Ada tabel yang bisa dimuat dalam satu halaman (tabel pendek) dan ada tabel panjang yang yang tidak muat dalam satu halaman. Kedua jenis tabel tersebut disusun dengan cara yang berbeda.
-Jika tabel sangat panjang, gunakan paket \textit{longtable} untuk membuat tabel yang dapat terpotong ke halaman berikutnya.
-Namun, jika tabel dapat dimuat dalam satu halaman, gunakan lingkungan \textit{table} biasa, tidak menggunakan \textit{longtable}.
-Usahakan tabel dapat ditulis dalam satu halaman, tidak terpotong ke halaman berikutnya, jika memungkinkan.
+\subsubsection{Faktor Risiko Dapat Dimodifikasi}
+\begin{enumerate}
+    \item \textbf{Obesitas dan Indeks Massa Tubuh (IMT)}\\
+    Terdapat korelasi linier yang kuat antara berat badan dan tekanan darah. Jaringan adiposa yang berlebih, terutama lemak viseral, memproduksi sitokin pro-inflamasi dan mengaktivasi sistem saraf simpatis yang memicu retensi natrium ginjal dan hipertensi.
+    
+    \item \textbf{Asupan Garam (Natrium)}\\
+    Konsumsi natrium yang berlebihan adalah penyebab utama hipertensi sensitif-garam. Mekanisme ini melibatkan peningkatan volume cairan ekstraseluler dan disfungsi endotel. Penelitian terbaru menegaskan bahwa pengurangan asupan garam harian secara signifikan menurunkan tekanan darah pada populasi hipertensi maupun normotensi.
+    
+    \item \textbf{Kurangnya Aktivitas Fisik}\\
+    Gaya hidup sedentari melemahkan kebugaran kardiorespirasi dan resistensi insulin. Latihan fisik teratur terbukti dapat menurunkan resistensi vaskular sistemik melalui perbaikan fungsi endotel dan penurunan aktivitas simpatis.
+    
+    \item \textbf{Merokok}\\
+    Zat kimia dalam rokok, terutama nikotin, memicu pelepasan katekolamin yang menyebabkan vasokonstriksi akut dan peningkatan denyut jantung. Paparan kronis merusak lapisan endotel pembuluh darah dan mempercepat proses aterosklerosis yang memperburuk hipertensi.
+    
+    \item \textbf{Dislipidemia}\\
+    Kadar kolesterol abnormal, khususnya peningkatan LDL dan trigliserida, berkontribusi pada pembentukan plak aterosklerosis. Plak ini mempersempit lumen pembuluh darah dan meningkatkan rigiditas dinding arteri, yang secara mekanis meningkatkan tekanan darah.
+    
+    \item \textbf{Faktor Psikososial dan Stres}\\
+    Stres kronis memicu respons neurohormonal jangka panjang melalui aksis hipotalamus-hipofisis-adrenal, yang menghasilkan kortisol berlebih. Kondisi ini berhubungan erat dengan peningkatan tekanan darah yang menetap dan risiko kejadian kardiovaskular.
+\end{enumerate}
 
-\subsubsection{Penulisan Tabel Pendek}
-Contoh tabel pendek dapat dilihat pada Tabel \ref{tab:tabel1}, \ref{tab:tabel2}, dan \ref{tab:tabel3}. 
-Pada kedua table ini, tabel dan judulnya diposisikan di tengah secara horisontal dan 
-judul tabel diletakkan di atas tabel. Secara vertikal, tabel sebaiknya diletakkan di bagian atas atau bawah halaman.
+% --- II.2 Machine Learning ---
+\section{Machine Learning}
+Klasifikasi pada data medis merupakan tugas pembelajaran mesin terawasi atau Supervised Machine Learning yang bertujuan memetakan variabel input ke dalam label kategori diskrit. Dalam konteks prediksi hipertensi, model dilatih untuk memisahkan data pasien ke dalam kelas risiko positif atau negatif berdasarkan pola historis yang terdapat pada dataset pelatihan \autocite{Sarkar2020Machine}. Akurasi dan keandalan model klasifikasi sangat bergantung pada pemilihan algoritma yang mampu menangani karakteristik data tabular yang sering kali memiliki distribusi tidak seimbang.
 
-Penyebutan judul tabel dalam teks menggunakan perintah \texttt{ref}, misalnya Tabel \ref{tab:tabel1}.
-Gunakan huruf kapital pada kata "Tabel" saat menyebutkan tabel dalam teks.
+\subsection{Gradient Boosting}
+Gradient Boosting adalah teknik machine learning berbasis \emph{ensemble} yang dikembangkan untuk meningkatkan akurasi prediksi dengan cara menggabungkan sejumlah model prediksi sederhana (\emph{weak learners}) umumnya berupa \emph{decision trees} menjadi satu model prediksi yang kuat dan komprehensif. Prinsip dasar dari algoritma ini adalah pembentukan model secara bertahap (\emph{stage-wise}), di mana setiap model baru yang ditambahkan bertujuan untuk memperbaiki kesalahan (\emph{residual errors}) yang dihasilkan oleh gabungan model-model sebelumnya \autocite{Guo2024Gradient}.
 
-Tabel \ref{tab:tabel1} menggunakan paket \textit{tabularx} untuk mengatur lebar kolom secara fleksibel. 
-Selain itu, tabel ini juga menggunakan \textit{threeparttable} untuk menambahkan catatan kaki pada tabel 
-dan opsi \texttt{X} agar lebar kolom fleksibel menyesuaikan lebar tabel.
-Catatan kaki pada tabel ini menggunakan perintah \texttt{tablenotes} yang disediakan oleh paket \textit{threeparttable}.
-Catatan kaki pada tabel ini menggunakan perintah \texttt{\textbackslash footnotemark} dan \texttt{\textbackslash footnotetext} untuk menambahkan catatan kaki pada tabel.
+Dalam konteks pengembangan sistem prediksi risiko penyakit seperti hipertensi, Gradient Boosting memiliki keunggulan signifikan dibandingkan metode statistik konvensional. Algoritma ini mampu menangani hubungan non-linear yang kompleks antar variabel klinis pasien, seperti interaksi antara indeks massa tubuh (BMI), tekanan darah sistolik, dan riwayat genetik, yang seringkali sulit dimodelkan oleh Logistic Regression \autocite{Muftisany2024Perbandingan}. Proses matematis Gradient Boosting melibatkan optimasi fungsi kerugian (\emph{loss function}) yang dapat disesuaikan, memungkinkannya untuk meminimalkan bias prediksi secara iteratif pada data rekam medis yang seringkali memiliki tingkat \emph{noise} atau variabilitas tinggi.
 
-Tabel \ref{tab:tabel2} menggunakan format standar \texttt{| l | c | r |}. 
-Tabel \ref{tab:tabel3} menggunakan lebar kolom tetap (\textit{fixed width}) menggunakan \texttt{p\{width\}}.
+Penerapan Gradient Boosting dalam studi epidemiologi modern menunjukkan performa yang konsisten dalam klasifikasi risiko kesehatan. Sebuah studi terbaru pada populasi pasien di Indonesia menunjukkan bahwa model berbasis \emph{boosting} mampu mencapai akurasi diagnostik dan nilai \emph{Area Under Curve} (AUC) yang lebih tinggi dibandingkan algoritma tunggal lainnya dalam mendeteksi hipertensi dini \autocite{Wibawa2025Prediction}. Selain akurasi, arsitektur Gradient Boosting juga sangat kompatibel dengan metode Explainable Artificial Intelligence (XAI) seperti SHAP (SHapley Additive exPlanations). Hal ini memungkinkan sistem untuk tidak hanya memprediksi probabilitas hipertensi, tetapi juga memberikan transparansi mengenai fitur klinis mana yang paling berkontribusi terhadap diagnosis tersebut, yang merupakan elemen krusial untuk kepercayaan klinis \autocite{Li2025XGBoost}.
 
-\begin{table} 
-  \centering
-    \begin{threeparttable}[t] % threeparttable agar bisa menambahkan catatan kaki pada tabel
-    \caption{Contoh tabel yang menggunakan \texttt{tabularx} untuk mengatur lebar kolom secara fleksibel. 
-    Selain itu, tabel ini juga menggunakan \texttt{threeparttable} untuk menambahkan catatan kaki pada tabel 
-    dan opsi \texttt{X} agar lebar kolom fleksibel menyesuaikan lebar tabel.}
-    \label{tab:tabel1}
-    \begin{tabularx}{0.6\textwidth}{| c | X| l | r @{}|} % @{} removes extra space at edges, X makes the column flexible width
-	    \hline
-	    No & Nama 	& Satuan 		& Harga \\
-	    \hline
-	    1 & Buku 	& Exemplar	& 25000 \\
-	    2 & Komputer	& Unit		& 2500000 \\
-	    3 & Pensil	& Buah		& 118900 \\
-	    \hline
-	  \end{tabularx} 
-    \begin{tablenotes}
-      \footnotesize
-      \item \footnotemark[1]Tabel harga berdasarkan data tahun 2023.
-      \item \footnotemark[2]Sumber: \url{https://www.example.com}
-    \end{tablenotes}
-  \end{threeparttable}
-\end{table}
+Secara umum, jika diberikan fungsi tujuan untuk meminimalkan kesalahan prediksi pada data latih $S=\{(x_i,y_i)\}_{i=1}^n$, Gradient Boosting akan memperbarui model $\mathcal{F}(x)$ pada setiap iterasi ke-$m$ dengan menambahkan estimator baru $h_m(x)$ sebagai berikut:
 
-
-
-
-\begin{table}[t] % pilihan opsi yang disarankan: t = top, b = bottom, h = here
-  \caption{Tabel yang menggunakan format standar \texttt{| l | c | r |}}
-  \label{tab:tabel2}
-	\begin{tabular}{ | l | c | r | }
-	\hline
-	Nama 	& Satuan 		& Harga \\
-	\hline
-	Buku 	& Exemplar	& 25000 \\
-	Komputer	& Unit		& 2500000 \\
-	Pensil	& Buah		& 118900 \\
-	\hline
-	\end{tabular}
-\end{table}
-
-
-\begin{table}[t] % pilihan opsi yang disarankan: t = top, b = bottom, h = here
-  \centering
-  \caption{Tabel yang lebar kolomnya dibuat tetap}
-  \label{tbl:tabel3}
-	\begin{tabular}{  p{0.2\textwidth} | p{0.2\textwidth} | p{0.2\textwidth}  }
-	\hline
-	\textbf{Nama} 	& \textbf{Satuan} 		& \textbf{Harga} \\
-	\hline
-	Buku 	& Exemplar	& 25000 \\
-	\emph{Komputer}	& Unit		& 2500000 \\
-	Pensil	& Buah		& 118900 \\
-	\hline
-	\end{tabular}
-\end{table}
-
-% -- Example of importing table from external file --
-\subsubsection{Mengimpor Tabel dari Berkas Eksternal}
-
-Untuk kerapian penulisan, tabel tidak harus ditulis di dokumen utama. Sebagai contoh, Tabel \ref{tab:tabel4} diimpor dari berkas eksternal \texttt{table/tabel1.tex} menggunakan perintah \texttt{input}. 
-Dengan demikian, jika tabel tersebut perlu diubah, cukup mengubah pada berkas eksternal tersebut tanpa perlu mengubah pada berkas dokumen utama ini.
-
-\input tables/tabel1.tex
-
-
-% -- Example of long table --
-\subsubsection{Tabel yang Sangat Panjang}
-Jika tabel terlalu panjang sehingga tidak muat dalam satu halaman, gunakan paket 
-\textit{longtable} untuk membuat tabel yang dapat terpotong ke halaman berikutnya, 
-seperti pada Tabel \ref{tab:long}. 
-
-\input tables/longtable1.tex
-
-\subsection{Penulisan Rumus atau Persamaan Matematika Menggunakan {\LaTeX} dan Penomorannya}
-Contoh rumus matematika dapat ditulis seperti pada Persamaan \ref{eq:contoh1} di bawah ini. 
-Penomoran persamaan diletakkan di sebelah kanan, dan rumus ditulis dalam mode \textit{display math}.
 \begin{equation}
-E = mc^2
-\label{eq:contoh1}
+    \mathcal{F}_m(x) = \mathcal{F}_{m-1}(x) + \nu \cdot h_m(x)
 \end{equation}
 
-Contoh lain penulisan rumus matematika yang lebih kompleks dapat ditulis seperti pada Persamaan \ref{eq:rumus2}.
+Di mana $\nu$ adalah \emph{learning rate} yang mengontrol kontribusi setiap pohon untuk mencegah \emph{overfitting}, sebuah mekanisme regularisasi yang sangat penting saat bekerja dengan dataset kesehatan yang terbatas atau tidak seimbang \autocite{Zhang2025Machine}.
 
-\begin{align}
-f(x) &= ax^2 + bx + c \\
-f'(x) &= \frac{d}{dx}(ax^2 + bx + c) \notag \\ % tidak menampilkan nomor pada baris ini
-      &= 2ax + b \label{eq:rumus2}
-\end{align}
+\subsection{Extreme Gradient Boosting (XGBoost)}
+Extreme Gradient Boosting atau XGBoost adalah pengembangan tingkat lanjut dari algoritma Gradient Boosting Machine (GBM) yang dirancang untuk memiliki efisiensi komputasi tinggi, skalabilitas, dan kinerja prediksi yang lebih akurat dibandingkan pendahulunya. XGBoost bekerja dengan prinsip \emph{ensemble learning}, di mana algoritma ini menggabungkan hasil dari banyak model prediksi lemah (\emph{weak learners}) biasanya berupa \emph{decision trees} secara berurutan untuk membentuk satu model prediksi yang kuat dan stabil \autocite{Emmanuel2025Advanced}.
 
-Jika rumus terlalu panjang untuk ditulis dalam satu baris, gunakan lingkungan \textit{multline} seperti pada Persamaan \ref{eq:rumus3} di bawah ini.
-\begin{multline} 
-y = a_0 + a_1x + a_2x^2 + a_3x^3 + a_4x^4 + a_5x^5 + a_6x^6 + a_7x^7 \\
-    + a_8x^8 + a_9x^9 + a_{10}x^{10} \label{eq:rumus3}
-\end{multline}
+Dalam konteks pengembangan sistem prediksi risiko kesehatan seperti hipertensi, XGBoost memiliki keunggulan signifikan dibandingkan metode tradisional. Algoritma ini dilengkapi dengan mekanisme \emph{regularization} (L1 dan L2) yang terintegrasi di dalam fungsi objektifnya. Fitur ini berfungsi untuk mengontrol kompleksitas model dan mencegah terjadinya \emph{overfitting}, yaitu kondisi saat model terlalu menghafal data latih namun gagal memprediksi data baru dengan akurat, yang sering menjadi masalah utama dalam analisis data medis yang memiliki \emph{noise} tinggi \autocite{Guo2024Gradient}.
 
-Jika ada penurunan rumus yang terdiri dari beberapa baris, namun tidak memerlukan penomoran pada setiap baris, gunakan lingkungan \textit{align*}, misalnya:
+Secara matematis, jika diberikan sekumpulan data dengan fitur $m$ dan jumlah sampel $n$, XGBoost meminimalkan fungsi objektif yang terdiri dari fungsi \emph{loss} dan penalti regularisasi. Berbeda dengan Gradient Boosting standar yang hanya mengoptimalkan \emph{loss function}, fungsi objektif pada XGBoost ($\mathcal{L}$) dapat didefinisikan sebagai berikut:
 
-\begin{align*} 
-S &= \sum_{i=1}^{n} i^2 \\
-  &= 1^2 + 2^2 + 3^2 + \cdots + n^2 \\
-  &= \frac{n(n + 1)(2n + 1)}{6}
-\intertext{Contoh lainnya adalah rumus untuk mencari nilai rata-rata fungsi $f(x)$ pada interval $[p, q]$:}
-\bar{f} &= \frac{1}{q - p} \int_{p}^{q} f(x) \, dx \\
-        &= \frac{1}{q - p} \int_{p}^{q} (ax^2 + bx + c) \, dx \\
-        &= \frac{1}{q - p} \left[ \frac{a}{3}x^3 + \frac{b}{2}x^2 + cx \right]_p^q \\
-        &= \frac{a(q^3 - p^3)}{3(q - p)} + \frac{b(q^2 - p^2)}{2(q - p)} + c \label{eq:rumus4}
-\end{align*}
+\begin{equation}
+    \mathcal{L}(\phi) = \sum_{i} l(y_i, \hat{y}_i) + \sum_{k} \Omega(f_k)
+\end{equation}
 
+Di mana $l$ adalah fungsi \emph{loss} yang mengukur perbedaan antara prediksi ($\hat{y}_i$) dan nilai aktual ($y_i$), sedangkan $\Omega$ adalah komponen regularisasi yang mengontrol kompleksitas \emph{tree} (pohon keputusan) untuk mencegah \emph{overfitting}. Komponen regularisasi ini dihitung dengan rumus:
 
+\begin{equation}
+    \Omega(f) = \gamma T + \frac{1}{2}\lambda ||w||^2
+\end{equation}
 
-\subsection{Penulisan Kode Program, \textit{Script} atau \textit{Pseudocode}}
-Contoh penulisan kode program, \textit{script}, atau \textit{pseudocode} dapat dilihat seperti pada \textit{listing} \ref{lst:binary_iter}. 
-Gunakan paket \textit{listings} untuk menulis \textit{source code} dalam bahasa pemrograman tertentu. 
-Kode seperti ini disebut dengan istilah \textit{listing}. 
-Kode program, \textit{script}, atau \textit{pseudocode} yang relatif pendek dapat ditulis di dalam
-dokumen utama. Namun, jika kode programnya sangat panjang, sebaiknya ditulis di berkas terpisah dan diletakkan di lampiran.
+Parameter $\gamma$ (gamma) dan $\lambda$ (lambda) dalam persamaan di atas berperan penting dalam proses \emph{pruning} atau pemangkasan pohon keputusan, yang menjadikan XGBoost sangat \emph{robust} terhadap data yang tidak seimbang (\emph{imbalanced data}) yang sering ditemukan dalam dataset pasien hipertensi \autocite{Emmanuel2025Advanced}.
 
-\subsection{Penulisan Algoritma}
-Contoh penulisan algoritma dapat dilihat pada Algoritma \ref{alg:binary-search}. Ada beberapa paket yang dapat digunakan untuk menulis algoritma,
-misalnya \textit{algorithm2e}, \textit{algorithmic}, dan \textit{algpseudocode}. 
-Pada contoh ini digunakan paket \textit{algorithmic} untuk menulis algoritma. Setiap paket memiliki sintaks yang berbeda-beda.
-Oleh karena itu, pelajari dokumentasi paket yang digunakan untuk menulis algoritma.
+Relevansi XGBoost dalam penelitian hipertensi telah dibuktikan dalam berbagai studi terbaru. Penelitian yang dilakukan oleh Zhang et al. \autocite{Zhang2025Machine} menunjukkan bahwa XGBoost mampu memberikan performa stratifikasi risiko hipertensi yang lebih unggul dibandingkan Logistic Regression tradisional, dengan nilai akurasi dan \emph{Area Under Curve} (AUC) yang lebih tinggi secara konsisten. Selain itu, XGBoost juga mendukung integrasi dengan metode Explainable Artificial Intelligence (XAI) seperti SHAP (SHapley Additive exPlanations), yang memungkinkan peneliti untuk tidak hanya mendapatkan hasil prediksi, tetapi juga memahami faktor risiko dominan seperti usia, BMI, atau tekanan darah sistolik, yang berkontribusi terhadap keputusan model tersebut \autocite{Li2025XGBoost}.
 
+% --- II.3 Artificial Intelligence ---
+\section{Artificial Intelligence}
+Artificial Intelligence (AI) atau kecerdasan buatan merujuk pada simulasi proses kecerdasan manusia oleh sistem mesin, terutama sistem komputer. Proses ini mencakup pembelajaran (\emph{learning}) yaitu perolehan informasi dan aturan untuk menggunakan informasi tersebut, penalaran (\emph{reasoning}) yaitu penggunaan aturan untuk mencapai kesimpulan perkiraan atau pasti, dan koreksi diri (\emph{self-correction}) \autocite{Davenport2019Potential}.
 
-\input{listings/binary-search-python.tex}
+Dalam konteks revolusi industri 4.0, teknologi AI telah menjadi pilar utama yang memungkinkan transformasi operasional melalui otomatisasi cerdas dan pengambilan keputusan berbasis data \autocite{Javaid2022Artificial}. Adopsi AI di berbagai sektor, termasuk kesehatan, telah terbukti mampu mengoptimalkan alur kerja, meminimalkan kesalahan manusia, dan meningkatkan efisiensi operasional secara signifikan. Kemampuan sistem untuk mempelajari pola dari data historis memungkinkan organisasi untuk memprediksi tren masa depan dengan akurasi yang lebih tinggi dibandingkan metode konvensional \autocite{Secinaro2021Role}. Secara spesifik, integrasi AI dalam sistem pemrosesan data memungkinkan reduksi \emph{lead time}, peningkatan fleksibilitas sistem, serta optimalisasi alokasi sumber daya yang tersedia \autocite{Haleem2022Understanding}.
 
+\subsection{Explainable Artificial Intelligence (XAI)}
+Penerapan Machine Learning dalam praktik klinis sering terhambat oleh sifat \emph{black box} dari model canggih seperti XGBoost yang sulit diinterpretasikan oleh manusia. Explainable Artificial Intelligence atau XAI hadir sebagai solusi untuk memberikan transparansi terhadap keputusan yang diambil oleh sistem cerdas \autocite{Adadi2018}. Transparansi ini krusial untuk membangun kepercayaan tenaga medis terhadap saran diagnosis yang diberikan oleh algoritma.
 
-\input{algorithms/binary-search-alg.tex}
+\subsubsection{Shapley Additive Explanations (SHAP)}
+Metode SHAP merupakan pendekatan XAI yang mengadopsi konsep teori permainan kooperatif untuk menghitung kontribusi marginal setiap fitur terhadap hasil prediksi. Nilai Shapley menjamin konsistensi matematis dengan memastikan bahwa total kontribusi seluruh fitur sama dengan selisih antara prediksi aktual dan prediksi rata-rata model \autocite{Lundberg2017Unified}. Sifat aditif ini menjadikan SHAP sangat andal untuk audit medis karena memberikan penjelasan yang adil dan konsisten untuk setiap variabel risiko pasien.
 
+\subsubsection{Local Interpretable Model-agnostic Explanations (LIME)}
+Metode alternatif yang sering digunakan adalah Local Interpretable Model-agnostic Explanations atau LIME. LIME bekerja dengan cara melakukan perturbasi atau pengubahan acak di sekitar data \emph{instance} untuk membangun model linear sederhana yang dapat dijelaskan secara lokal. Pendekatan ini berfokus pada pendekatan perilaku model di sekitar satu titik prediksi spesifik tanpa mencoba memahami model global secara keseluruhan.
 
+\subsubsection{Analisis Komparatif SHAP dan LIME}
+Meskipun LIME lebih cepat secara komputasi, metode ini memiliki kelemahan dalam hal stabilitas karena penjelasan yang dihasilkan dapat berubah-ubah pada setiap iterasi eksekusi untuk data yang sama \autocite{Molnar2020Interpretable}. Sebaliknya, SHAP menawarkan landasan teoretis yang lebih kuat melalui properti aksiomatik teori permainan yang menjamin keunikan solusi penjelasan. Oleh karena itu, penelitian ini memilih menggunakan SHAP karena stabilitas dan konsistensi penjelasan merupakan syarat mutlak dalam sistem pendukung keputusan medis yang menyangkut keselamatan pasien.
 
+% --- II.4 Large Language Model (LLM) ---
+\section{Large Language Model (LLM)}
+Large Language Model (LLM) merupakan evolusi mutakhir dalam domain Artificial Intelligence, khususnya dalam pemrosesan bahasa alami. LLM adalah model probabilitas yang dirancang untuk memahami, memproses, dan menghasilkan teks dengan tingkat koherensi yang menyerupai kemampuan manusia \autocite{Zhao2023Survey}.
+
+Arsitektur dasar dari teknologi ini mengandalkan teknik Deep Learning dan model statistik canggih untuk menganalisis korpus data teks dalam skala masif. Melalui pelatihan pada dataset berskala besar, model ini mampu mengidentifikasi pola linguistik yang kompleks, hubungan semantik antar kata, serta nuansa kontekstual yang terkandung dalam bahasa \autocite{Kasneci2023ChatGPT}.
+
+Dalam ranah \emph{Generative AI}, kemampuan LLM tidak terbatas pada pemahaman teks semata, melainkan juga mencakup kemampuan untuk menciptakan konten orisinal yang mengadopsi gaya dan karakteristik data pelatihannya. Salah satu implementasi paling prominen dari teknologi ini adalah ChatGPT, sebuah model generatif yang dioptimalkan untuk dialog interaktif \autocite{OpenAI2023GPT4}.
+
+Model-model ini dilatih menggunakan pendekatan \emph{Unsupervised Learning} atau \emph{Self-Supervised Learning}, yang memungkinkan mereka mempelajari struktur bahasa tanpa memerlukan pelabelan data manual secara ekstensif \autocite{Brown2020Language}. Fundamental teknologi di balik LLM adalah arsitektur Transformer, yang memperkenalkan mekanisme \emph{attention} untuk menangani ketergantungan jarak jauh dalam urutan data. Hal ini memungkinkan model untuk mempertahankan konteks pembicaraan atau dokumen yang panjang, menjadikannya sangat efektif untuk aplikasi seperti penerjemahan otomatis, \emph{chatbot} cerdas, dan pembuatan ringkasan teks otomatis \autocite{Vaswani2017Attention, Naveed2023Comprehensive}.
+
+\subsection{Vector Database}
+Dalam ekosistem pengembangan aplikasi berbasis AI modern, Vector Database memegang peranan vital sebagai infrastruktur penyimpanan data. Berbeda dengan basis data relasional tradisional yang menyimpan data dalam baris dan kolom, Vector Database dirancang khusus untuk menyimpan, mengelola, dan mengindeks data dalam format vektor berdimensi tinggi \autocite{Pan2023Large}. Vektor ini, atau yang sering disebut sebagai \emph{embeddings}, merupakan representasi matematis dari data tidak terstruktur seperti teks, gambar, audio, atau video.
+
+Keunggulan utama dari jenis basis data ini terletak pada kemampuannya melakukan pencarian semantik (\emph{semantic search}) berdasarkan kemiripan vektor, bukan sekadar pencocokan kata kunci \autocite{Wang2024Vector}. Untuk menangani beban kerja komputasi yang berat dan memastikan skalabilitas, arsitektur Vector Database menerapkan beberapa mekanisme optimasi sistem:
+
+\begin{enumerate}
+    \item \textbf{Sharding}\\
+    Teknik partisi horizontal yang mendistribusikan dataset vektor ke berbagai mesin atau \emph{node} dalam sebuah kluster. Distribusi ini seringkali didasarkan pada fungsi \emph{hash} atau rentang kunci tertentu untuk menyeimbangkan beban penyimpanan \autocite{Xu2022Scalable}.
+    
+    \item \textbf{Partitioning}\\
+    Strategi pembagian basis data menjadi segmen-segmen logis yang lebih kecil dan mudah dikelola. Kriteria partisi dapat disesuaikan berdasarkan kategori data, lokasi geografis, atau frekuensi akses data \autocite{Han2023Data}.
+    
+    \item \textbf{Caching}\\
+    Implementasi memori RAM perantara berkecepatan tinggi untuk menyimpan data atau hasil kueri yang sering diakses. Mekanisme ini krusial untuk mengurangi latensi sistem dan meningkatkan \emph{throughput} pengambilan data \autocite{Zhang2021Optimizing}.
+    
+    \item \textbf{Replication}\\
+    Proses duplikasi data vektor ke beberapa \emph{node} atau kluster berbeda. Replikasi menjamin ketersediaan data (\emph{availability}) yang tinggi, durabilitas data terhadap kegagalan perangkat keras, serta peningkatan kinerja pembacaan data secara paralel \autocite{Kleppmann2021Designing}.
+\end{enumerate}
+
+Pencarian dalam Vector Database umumnya menggunakan algoritma \emph{Nearest Neighbor Search} (NNS) atau \emph{Approximate Nearest Neighbor Search} (ANNS) untuk menemukan vektor yang memiliki jarak terdekat (paling mirip) dengan vektor kueri. 
+
+\begin{figure}[ht]
+	\centering
+    \includegraphics[width=0.7\textwidth]{images/vector_viz.png}
+	\caption{Visualisasi Data Vector Database}
+	\label{gambar:vector_db}
+\end{figure}
+
+Mekanisme kerja Vector Database dapat diuraikan melalui tahapan berikut:
+\begin{enumerate}[label=\arabic*.]
+    \item \textbf{Penyimpanan Data dan Embedding}\\
+    Sebelum disimpan, data mentah (objek) dikonversi menjadi format numerik (vektor) melalui proses \emph{embedding}. Setiap vektor merepresentasikan fitur-fitur dari objek tersebut dalam ruang multidimensi \autocite{Reimers2019Sentence}.
+    
+    \item \textbf{Indexing}\\
+    Setelah vektor tersimpan, sistem melakukan pengindeksan untuk memetakan lokasi data. Pengindeksan dapat dilakukan secara manual atau otomatis (\emph{on-the-fly}). Tujuan utama pengindeksan adalah mengorganisir struktur data sedemikian rupa sehingga proses pencarian dapat dilakukan dengan kompleksitas waktu yang minimal \autocite{Johnson2019Billion}.
+    
+    \item \textbf{Query dan Analisis}\\
+    Saat pengguna memasukkan kueri (misalnya dalam bentuk teks), sistem pertama-tama mengubah kueri tersebut menjadi vektor menggunakan model \emph{embedding} yang sama. Selanjutnya, sistem melakukan pencarian komparatif untuk menemukan vektor dalam basis data yang memiliki nilai kemiripan tertinggi dengan vektor kueri \autocite{Wang2021Understanding}.
+\end{enumerate}
+
+\begin{figure}[ht]
+	\centering
+    \includegraphics[width=0.9\textwidth]{images/vector_query.png}
+	\caption{Visualisasi Query Vector Database}
+	\label{gambar:vector_query}
+\end{figure}
+
+Peran Vector Database menjadi sangat strategis dalam implementasi \emph{Generative AI}, khususnya untuk mendukung metode Retrieval-Augmented Generation (RAG). Dengan menyediakan akses cepat ke basis pengetahuan eksternal yang relevan, Vector Database membantu model bahasa menghasilkan respons yang lebih akurat dan terkontekstualisasi, mengurangi risiko halusinasi model \autocite{Lewis2020Retrieval}.
+
+\subsection{Keterbatasan LLM}
+Penerapan LLM di bidang medis menghadapi tantangan serius terkait fenomena halusinasi, yaitu kondisi saat model menghasilkan informasi yang terdengar meyakinkan namun faktanya salah atau dibuat-buat \autocite{Ji2023Survey}. Selain itu, LLM memiliki batasan pengetahuan statis atau \emph{knowledge cutoff} yang membuatnya tidak mengetahui informasi atau pedoman medis terbaru yang rilis setelah tanggal pelatihan model.
+
+\subsection{Mengatasi Keterbatasan LLM}
+Berbagai strategi dikembangkan untuk memitigasi keterbatasan tersebut. Salah satu pendekatan adalah \emph{fine-tuning} yang melatih ulang model dengan dataset spesifik, namun metode ini membutuhkan sumber daya komputasi yang besar dan data berkualitas tinggi. Pendekatan alternatif yang lebih efisien adalah \emph{In-Context Learning} melalui \emph{prompt engineering} yang menyertakan informasi relevan langsung di dalam instruksi input.
+
+% --- II.5 Retrieval-Augmented Generation (RAG) ---
+\section{Retrieval-Augmented Generation (RAG)}
+Retrieval-Augmented Generation (RAG) adalah kerangka kerja arsitektur yang dirancang untuk meningkatkan kapabilitas Large Language Model (LLM) dengan mengintegrasikan sistem temu kembali informasi (\emph{information retrieval}) eksternal. Metode ini mengatasi keterbatasan pengetahuan statis yang dimiliki oleh LLM pasca-pelatihan dengan memungkinkan model mengakses data terkini atau data spesifik domain yang tersimpan dalam basis data eksternal \autocite{Gao2023Retrieval}. Pendekatan ini secara efektif memitigasi isu "halusinasi" pada AI, di mana model menghasilkan informasi yang tampak meyakinkan namun faktualnya salah \autocite{Ji2023Survey}.
+
+Secara operasional, RAG bekerja melalui tiga fase utama yang saling terintegrasi:
+\begin{enumerate}
+    \item \textbf{Retrieval} \\
+    Tahap ini merupakan fondasi dari RAG, di mana sistem mencari dan mengambil informasi yang relevan dari basis pengetahuan eksternal berdasarkan \emph{prompt} atau pertanyaan pengguna. Proses ini seringkali memanfaatkan Vector Database. Kueri pengguna dikonversi menjadi representasi vektor, yang kemudian digunakan untuk memindai basis data guna menemukan dokumen atau potongan informasi (\emph{chunks}) yang memiliki kesamaan semantik tertinggi. Hasil dari proses ini adalah kumpulan konteks yang relevan dengan pertanyaan pengguna \autocite{Karpukhin2020Dense}.
+    
+    \item \textbf{Augmentation} \\
+    Setelah informasi relevan berhasil diambil, tahap selanjutnya adalah memperkaya (\emph{augment}) \emph{prompt} asli pengguna dengan informasi tersebut. Sistem akan menyusun \emph{prompt} baru yang menggabungkan pertanyaan asli pengguna dengan data yang ditemukan dari tahap \emph{retrieval}. Proses ini dapat melibatkan restrukturisasi kalimat atau penambahan instruksi khusus agar LLM dapat memproses konteks tambahan tersebut secara efektif. Tujuannya adalah menyediakan "konteks" yang lengkap bagi model sebelum model mulai menyusun jawaban \autocite{Lewis2020Retrieval}.
+    
+    \item \textbf{Generation} \\
+    Pada tahap akhir ini, \emph{prompt} yang telah diaugmentasi dikirimkan ke LLM. Model kemudian memproses input gabungan tersebut untuk menghasilkan respons teks yang koheren. Karena model memiliki akses ke fakta-fakta spesifik yang disediakan dalam \emph{prompt}, jawaban yang dihasilkan cenderung lebih akurat, faktual, dan relevan dengan konteks pertanyaan, dibandingkan jika model hanya mengandalkan parameter internalnya sendiri \autocite{Shuster2021Retrieval}.
+\end{enumerate}
+
+\subsection{Kapabilitas RAG}
+Salah satu kapabilitas utama RAG adalah kemampuannya dalam memitigasi masalah halusinasi, yaitu kecenderungan LLM untuk menghasilkan respons yang fasih secara bahasa namun tidak tepat secara fakta \autocite{Wu2024Retrieval}. Melalui penyediaan informasi faktual yang relevan dari hasil penelusuran basis data eksternal, RAG dapat memverifikasi dan melandasi respons yang dihasilkan oleh model \autocite{Wu2024Retrieval}.
+
+Selain akurasi, RAG menawarkan mekanisme yang efisien untuk menangani isu pembaruan pengetahuan yang menjadi tantangan besar bagi model bahasa parametrik. Pada model tradisional, memperbarui pengetahuan yang tersimpan dalam memori internal memerlukan proses pelatihan ulang atau \emph{fine-tuning} dengan data baru yang merupakan proses mahal dan lambat. Sebaliknya, RAG mengatasi masalah ini cukup dengan memperbarui basis data pengetahuan eksternal, sehingga model dapat langsung mengakses informasi terkini tanpa perlu modifikasi parameter model yang ekstensif \autocite{Wu2024Retrieval}.
+
+RAG juga memiliki keunggulan dalam menyediakan keahlian domain spesifik yang sering kali tidak dimiliki oleh LLM umum. Pelatihan LLM khusus domain biasanya membutuhkan tenaga kerja yang besar untuk pengumpulan dataset, namun RAG memungkinkan konversi LLM umum menjadi spesialis domain hanya dengan membangun dan memanfaatkan basis data pengetahuan yang relevan dengan bidang tersebut \autocite{Wu2024Retrieval}.
+
+\subsection{Limitasi Teknis RAG}
+Meskipun RAG menawarkan solusi signifikan untuk meningkatkan akurasi LLM, terdapat beberapa limitasi teknis yang perlu diperhatikan dalam implementasinya:
+\begin{enumerate}[label=\arabic*.]
+    \item Ketidaksinkronan antara proses \emph{Retrieval} dan \emph{Generation} dapat terjadi karena keduanya merupakan proses terpisah, yang berpotensi menyebabkan masuknya informasi yang tidak relevan ke dalam konteks \autocite{Gao2023Retrieval}.
+    \item Proses \emph{retrieval} yang dijalankan secara independen untuk setiap kueri terkadang mengabaikan konteks percakapan sebelumnya (\emph{history}), yang dapat mengurangi relevansi jawaban dalam sesi dialog panjang.
+    \item Sifat statis dari hasil \emph{retrieval} dalam satu putaran interaksi berarti jika informasi yang diambil kurang tepat, sistem sulit untuk melakukan koreksi otomatis tanpa intervensi kueri baru \autocite{Gao2023Retrieval}.
+\end{enumerate}
+
+Proses Retrieval-Augmented Generation secara umum dapat digambarkan melalui diagram sebagai berikut:
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/ImplementasiRAG.png}
+    \caption{Rangkaian Proses Implementasi Retrieval-Augmented Generation.}
+    \label{fig:2.3}
+\end{figure}
+
+\subsection{RAG Dalam Domain Medis}
+Penerapan RAG di bidang kesehatan (\emph{Medical RAG}) bertujuan mengatasi keterbatasan LLM dalam menghasilkan informasi medis yang akurat dan konsisten secara faktual \autocite{Amugongo2025Retrieval}. Tinjauan sistematis terbaru menunjukkan bahwa RAG secara signifikan mengurangi risiko halusinasi dengan membatasi respons model hanya pada dokumen klinis atau pedoman medis terpercaya yang tersedia di basis data \autocite{Liu2025Improving}. Mekanisme ini memastikan bahwa saran yang dihasilkan sistem memiliki landasan bukti (\emph{evidence-grounded}) yang dapat diverifikasi demi keselamatan pasien.
+
+Tantangan utama dalam implementasi \emph{Medical RAG} meliputi adanya "kebisingan pencarian" dan kompleksitas terminologi medis yang sangat bervariasi \autocite{Liu2025Improving}. Sistem RAG medis yang efektif sering menggunakan strategi pencarian hibrida, menggabungkan pencarian kata kunci untuk istilah spesifik dan pencarian semantik untuk memahami konteks gejala \autocite{Amugongo2025Retrieval}.
+
+\subsection{Retrieval Augmented Generation Assessment (RAGAS)}
+Evaluasi terhadap model Large Language Model (LLM) yang terintegrasi dalam arsitektur Retrieval-Augmented Generation (RAG) menghadirkan tantangan tersendiri karena metrik tradisional seperti BLEU atau ROUGE tidak lagi memadai untuk mengukur koherensi semantik dan akurasi faktual \autocite{Gao2023Retrieval}. Dalam konteks sistem prediksi risiko hipertensi, kesalahan halusinasi atau ketidaktepatan pengambilan konteks medis dapat berakibat fatal sehingga diperlukan kerangka evaluasi yang lebih ketat \autocite{Liu2024Evaluating}.
+
+Retrieval Augmented Generation Assessment atau RAGAS muncul sebagai kerangka kerja evaluasi standar yang dirancang untuk mengukur kinerja saluran RAG secara referensi-bebas atau \emph{reference-free} dengan memanfaatkan LLM sebagai juri penilai \autocite{Es2023RAGAS}. Pendekatan RAGAS memisahkan proses evaluasi menjadi dua komponen utama yaitu evaluasi terhadap kemampuan pencarian informasi atau \emph{retrieval} dan evaluasi terhadap kualitas teks yang dibangkitkan atau \emph{generation} \autocite{Chen2024Benchmarking}.
+
+Kerangka kerja RAGAS menyediakan berbagai metrik yang dikategorikan berdasarkan fokus evaluasinya yang terbagi menjadi metrik berbasis komponen (\emph{component-wise}) dan metrik ujung-ke-ujung (\emph{end-to-end}).
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/RAGASEvaluation.png}
+    \caption{Taksonomi Metrik Evaluasi dalam \emph{framework} RAGAS.}
+    \label{fig:II.5}
+\end{figure}
+
+Berdasarkan taksonomi di atas, metrik \emph{Faithfulness} dan \emph{Answer Relevancy} digunakan untuk menilai kualitas generasi teks sedangkan \emph{Context Precision} dan \emph{Context Recall} digunakan untuk menilai kualitas pengambilan dokumen \autocite{Es2023RAGAS}.
+\begin{enumerate}
+    \item \textbf{Faithfulness}\\ 
+    Mengukur konsistensi faktual dari jawaban yang dihasilkan terhadap konteks yang diberikan untuk memastikan tidak ada informasi yang dibuat-buat atau halusinasi yang sangat berbahaya dalam domain kesehatan \autocite{Min2023FActScore}.
+    
+    \item \textbf{Answer Relevancy}\\ 
+    Menilai seberapa langsung jawaban tersebut merespons pertanyaan pengguna tanpa memperhitungkan kebenaran faktualnya \autocite{Wang2023Semantic}.
+    
+    \item \textbf{Context Precision}\\ 
+    Mengukur rasio informasi relevan yang berhasil diambil dibandingkan dengan total informasi yang diambil yang menunjukkan efisiensi sistem dalam menyaring \emph{noise} data medis \autocite{Gao2023Retrieval}.
+    
+    \item \textbf{Context Recall}\\ 
+    Mengukur kemampuan sistem untuk mengambil seluruh informasi yang diperlukan dari basis pengetahuan untuk menjawab pertanyaan pengguna \autocite{Liu2024Evaluating}.
+\end{enumerate}
+
+\vspace{1em}
+Selain metrik per komponen, terdapat juga metrik \emph{Answer Semantic Similarity} dan \emph{Answer Correctness} yang memberikan gambaran performa sistem secara keseluruhan \autocite{Es2023RAGAS}. Proses kerja RAGAS dalam melakukan evaluasi melibatkan alur data yang sistematis di mana data input diproses melalui \emph{retriever} dan \emph{generator} sebelum akhirnya dinilai oleh evaluator.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/AlurKerjaRAGAS.png}
+    \caption{Alur Kerja Evaluasi Sistem RAG Menggunakan RAGAS.}
+    \label{fig:II.6}
+\end{figure}
+
+Gambar II.6 memperlihatkan bahwa evaluator bekerja secara iteratif untuk memberikan skor kuantitatif pada setiap tahapan \autocite{SaadFalcon2024ARES}. Penggunaan LLM sebagai evaluator dalam RAGAS terbukti memiliki korelasi yang tinggi dengan penilaian manusia namun dengan efisiensi waktu dan biaya yang jauh lebih rendah dibandingkan evaluasi manual oleh ahli medis \autocite{Chen2024Benchmarking}. Dalam pengembangan sistem prediksi hipertensi ini, skor dari RAGAS akan menjadi indikator utama untuk validasi model sebelum sistem diuji coba secara klinis \autocite{Huang2023Survey}.
+
+Penting untuk dicatat bahwa RAGAS juga memperkenalkan metrik \emph{Context Entity Recall} yang sangat relevan untuk ekstraksi entitas medis seperti nama obat atau kondisi komorbiditas hipertensi \autocite{Es2023RAGAS}. Kehadiran metrik ini memastikan bahwa entitas spesifik yang krusial tidak hilang selama proses pengambilan konteks \autocite{Liu2024Evaluating}. Dengan demikian implementasi RAGAS dalam penelitian ini tidak hanya berfungsi sebagai alat ukur tetapi juga sebagai mekanisme umpan balik untuk melakukan \emph{fine-tuning} pada komponen \emph{retriever} dan \emph{prompt engineering} pada komponen \emph{generator} \autocite{Gao2023Retrieval}.
+
+% --- II.6 Tinjauan Penelitian Sebelumnya ---
+\section{Tinjauan Penelitian Sebelumnya}
+Penelitian mengenai prediksi hipertensi telah mengalami evolusi signifikan dalam setengah dekade terakhir, bergerak dari metode statistik konvensional menuju pendekatan Machine Learning (ML) dan Deep Learning (DL) yang lebih kompleks. Fokus utama dari berbagai studi terkini adalah meningkatkan akurasi prediksi dini untuk mencegah komplikasi kardiovaskular yang lebih serius \autocite{ElSalamony2023Comparative}. Namun, tren terbaru menunjukkan bahwa akurasi tinggi saja tidak lagi cukup dalam implementasi klinis; transparansi model melalui Explainable Artificial Intelligence (XAI) dan kemampuan interaksi natural melalui Large Language Model (LLM) menjadi kebutuhan mendesak untuk meningkatkan kepercayaan tenaga medis dan pasien terhadap sistem \autocite{Clusmann2023Future}.
+
+Sebagian besar penelitian yang dilakukan antara tahun 2019 hingga 2021 masih berfokus pada perbandingan algoritma klasifikasi standar. Sebagai contoh, penggunaan metode \emph{ensemble learning} seperti Random Forest dan Gradient Boosting terbukti secara konsisten mengungguli model tunggal seperti Decision Tree atau Logistic Regression dalam menangani dataset kesehatan yang tidak seimbang \autocite{ElSalamony2023Comparative}. Meskipun performanya tinggi, model-model ini sering kali bersifat \emph{black-box} atau sulit diinterpretasikan, yang menjadi hambatan utama dalam adopsi klinis karena dokter perlu memahami alasan di balik prediksi risiko pasien.
+
+Merespons keterbatasan tersebut, gelombang penelitian selanjutnya mulai mengintegrasikan metode XAI. Penggunaan SHapley Additive exPlanations (SHAP) dan Local Interpretable Model-agnostic Explanations (LIME) telah menjadi standar baru dalam memvisualisasikan kontribusi fitur, seperti pengaruh indeks massa tubuh (BMI) atau kadar glukosa terhadap prediksi hipertensi secara spesifik untuk setiap individu \autocite{Miao2022Risk}. Integrasi ini memungkinkan sistem tidak hanya memberikan label "beresiko" atau "tidak beresiko", tetapi juga memberikan wawasan klinis mengenai variabel mana yang harus diintervensi.
+
+Lebih lanjut, kemunculan arsitektur Transformer dan Large Language Models (LLM) membuka peluang baru dalam pengolahan data kesehatan yang tidak terstruktur, seperti catatan medis elektronik (EHR). Studi terbaru menunjukkan bahwa LLM memiliki potensi besar dalam merangkum riwayat pasien dan memberikan rekomendasi kesehatan yang dipersonalisasi, meskipun tantangan terkait halusinasi model dan privasi data masih menjadi perhatian utama \autocite{Thirunavukarasu2023Large}. Penelitian ini bermaksud mengisi celah tersebut dengan menggabungkan kekuatan prediktif XAI dengan kemampuan naratif LLM.
+
+Untuk memberikan gambaran komprehensif mengenai posisi penelitian ini dibandingkan dengan studi terdahulu, Tabel \ref{tbl:studi_sebelumnya} menyajikan ringkasan kritis dari empat penelitian relevan yang dipublikasikan dalam kurun waktu lima tahun terakhir.
+
+% Pengaturan agar tabel mentok kiri-kanan (Full Width)
+\setlength\LTleft{0pt} 
+\setlength\LTright{0pt}
+
+% Pengaturan agar tabel naik ke atas (Mentok Header / Mengurangi spasi atas)
+\setlength{\LTpre}{0pt} 
+\setlength{\LTpost}{0pt}
+
+\begin{longtable}{@{\extracolsep{\fill}} p{0.5cm} p{3.5cm} p{3.5cm} p{3.5cm} p{3.5cm}}
+\caption{Studi Sebelumnya} \label{tbl:studi_sebelumnya} \\
+\toprule
+\textbf{No} & \textbf{Judul \& Penulis} & \textbf{Metode} & \textbf{Hasil} & \textbf{Keterbatasan} \\
+\midrule
+\endfirsthead
+
+\caption[]{Studi Sebelumnya (lanjutan)} \\
+\toprule
+\textbf{No} & \textbf{Judul \& Penulis} & \textbf{Metode} & \textbf{Hasil} & \textbf{Keterbatasan} \\
+\midrule
+\endhead
+
+\midrule
+\multicolumn{5}{r}{\emph{Bersambung ke halaman berikutnya}} \\
+\endfoot
+
+\bottomrule
+\endlastfoot
+
+1 & Machine Learning for Hypertension Prediction \autocite{ElSalamony2023Comparative} & 
+Menggunakan algoritma Ensemble Learning (gabungan Decision Tree, Random Forest, dan Naïve Bayes) pada dataset klinis standar. & 
+Model Random Forest memberikan akurasi tertinggi mencapai 98,5 persen dibandingkan algoritma tunggal lainnya dalam memprediksi status hipertensi. & 
+Studi ini hanya berfokus pada metrik performa (akurasi) dan tidak membahas aspek interpretabilitas (XAI), sehingga sulit untuk melacak variabel penyebab utama. \\
+\hline
+2 & Interpretable Machine Learning for Early Prediction of Hypertension \autocite{Miao2022Risk} & 
+Menggabungkan model XGBoost dengan metode interpretasi SHAP (SHapley Additive exPlanations) untuk analisis faktor risiko. & 
+Model berhasil mengidentifikasi usia, BMI, dan kadar trigliserida sebagai fitur paling berpengaruh, dengan visualisasi feature importance yang jelas. & 
+Analisis terbatas pada data terstruktur numerik dan belum memanfaatkan data teks atau riwayat medis naratif pasien. \\
+\hline
+3 & Deep Learning Approaches for Blood Pressure Prediction \autocite{Cheng2021Blood} & 
+Menggunakan Long Short-Term Memory (LSTM) dan Recurrent Neural Networks (RNN) untuk data time-series tekanan darah. & 
+LSTM menunjukkan performa superior dalam memprediksi fluktuasi tekanan darah jangka pendek dibandingkan model regresi tradisional. & 
+Kompleksitas komputasi sangat tinggi dan membutuhkan data pemantauan kontinu yang sulit didapatkan dalam pemeriksaan rutin biasa. \\
+\hline
+4 & Large Language Models in Medicine \autocite{Thirunavukarasu2023Large} & 
+Tinjauan sistematis dan eksperimen awal penggunaan model berbasis Transformer (LLM) untuk dukungan keputusan klinis. & 
+LLM mampu menyintesis informasi medis kompleks menjadi saran yang mudah dipahami oleh pasien dan tenaga medis. & 
+Rentan terhadap bias data pelatihan dan "halusinasi" fakta, serta belum diintegrasikan secara penuh dengan model prediksi hipertensi yang numerik. \\
+\hline
+5 & Prediction of Personalised Hypertension Using Machine Learning in Indonesian Population \autocite{Septian2025Prediction} & 
+Mengkomparasi 5 algoritma (termasuk LightGBM dan XGBoost) pada 9,58 juta data SATUSEHAT dengan analisis fitur menggunakan SHAP (SHapley Additive exPlanations) & 
+Model LightGBM mencapai performa terbaik dengan AUC 0,78 (tanpa riwayat pasien) dan 0,85 (dengan riwayat pasien), di mana usia dan lingkar pinggang menjadi fitur prediktor dominan. & 
+Studi bersifat \emph{cross-sectional} sehingga tidak dapat menyimpulkan kausalitas, serta data terbatas pada seting non-rumah sakit yang tidak mencakup variabel klinis mendalam seperti status pengobatan rinci. \\
+\end{longtable}
