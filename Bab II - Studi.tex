@@ -69,12 +69,12 @@ Faktor risiko hipertensi dibagi menjadi dua klaster utama, yaitu faktor risiko y
 
 % --- II.2 Machine Learning ---
 \section{Machine Learning}
-Klasifikasi pada data medis merupakan tugas pembelajaran mesin terawasi atau Supervised Machine Learning yang bertujuan memetakan variabel input ke dalam label kategori diskrit. Dalam konteks prediksi hipertensi, model dilatih untuk memisahkan data pasien ke dalam kelas risiko positif atau negatif berdasarkan pola historis yang terdapat pada dataset pelatihan \autocite{Sarkar2020Machine}. Akurasi dan keandalan model klasifikasi sangat bergantung pada pemilihan algoritma yang mampu menangani karakteristik data tabular yang sering kali memiliki distribusi tidak seimbang.
+Klasifikasi pada data medis merupakan tugas pembelajaran mesin terawasi atau Supervised Machine Learning yang bertujuan memetakan variabel input ke dalam label kategori diskrit. Dalam konteks prediksi hipertensi, model dilatih untuk memisahkan data pasien ke dalam kelas risiko positif atau negatif berdasarkan pola historis yang terdapat pada dataset pelatihan \autocite{Shailaja2018Machine}. Akurasi dan keandalan model klasifikasi sangat bergantung pada pemilihan algoritma yang mampu menangani karakteristik data tabular yang sering kali memiliki distribusi tidak seimbang.
 
 \subsection{Gradient Boosting}
 Gradient Boosting adalah teknik machine learning berbasis \emph{ensemble} yang dikembangkan untuk meningkatkan akurasi prediksi dengan cara menggabungkan sejumlah model prediksi sederhana (\emph{weak learners}) umumnya berupa \emph{decision trees} menjadi satu model prediksi yang kuat dan komprehensif. Prinsip dasar dari algoritma ini adalah pembentukan model secara bertahap (\emph{stage-wise}), di mana setiap model baru yang ditambahkan bertujuan untuk memperbaiki kesalahan (\emph{residual errors}) yang dihasilkan oleh gabungan model-model sebelumnya \autocite{Guo2024Gradient}.
 
-Dalam konteks pengembangan sistem prediksi risiko penyakit seperti hipertensi, Gradient Boosting memiliki keunggulan signifikan dibandingkan metode statistik konvensional. Algoritma ini mampu menangani hubungan non-linear yang kompleks antar variabel klinis pasien, seperti interaksi antara indeks massa tubuh (BMI), tekanan darah sistolik, dan riwayat genetik, yang seringkali sulit dimodelkan oleh Logistic Regression \autocite{Muftisany2024Perbandingan}. Proses matematis Gradient Boosting melibatkan optimasi fungsi kerugian (\emph{loss function}) yang dapat disesuaikan, memungkinkannya untuk meminimalkan bias prediksi secara iteratif pada data rekam medis yang seringkali memiliki tingkat \emph{noise} atau variabilitas tinggi.
+Dalam konteks pengembangan sistem prediksi risiko penyakit seperti hipertensi, Gradient Boosting memiliki keunggulan signifikan dibandingkan metode statistik konvensional. Algoritma ini mampu menangani hubungan non-linear yang kompleks antar variabel klinis pasien, seperti interaksi antara indeks massa tubuh (BMI), tekanan darah sistolik, dan riwayat genetik, yang seringkali sulit dimodelkan oleh Logistic Regression \autocite{Muftisany2025Perbandingan}. Proses matematis Gradient Boosting melibatkan optimasi fungsi kerugian (\emph{loss function}) yang dapat disesuaikan, memungkinkannya untuk meminimalkan bias prediksi secara iteratif pada data rekam medis yang seringkali memiliki tingkat \emph{noise} atau variabilitas tinggi.
 
 Penerapan Gradient Boosting dalam studi epidemiologi modern menunjukkan performa yang konsisten dalam klasifikasi risiko kesehatan. Sebuah studi terbaru pada populasi pasien di Indonesia menunjukkan bahwa model berbasis \emph{boosting} mampu mencapai akurasi diagnostik dan nilai \emph{Area Under Curve} (AUC) yang lebih tinggi dibandingkan algoritma tunggal lainnya dalam mendeteksi hipertensi dini \autocite{Wibawa2025Prediction}. Selain akurasi, arsitektur Gradient Boosting juga sangat kompatibel dengan metode Explainable Artificial Intelligence (XAI) seperti SHAP (SHapley Additive exPlanations). Hal ini memungkinkan sistem untuk tidak hanya memprediksi probabilitas hipertensi, tetapi juga memberikan transparansi mengenai fitur klinis mana yang paling berkontribusi terhadap diagnosis tersebut, yang merupakan elemen krusial untuk kepercayaan klinis \autocite{Li2025XGBoost}.
 
@@ -103,7 +103,7 @@ Di mana $l$ adalah fungsi \emph{loss} yang mengukur perbedaan antara prediksi ($
     \Omega(f) = \gamma T + \frac{1}{2}\lambda ||w||^2
 \end{equation}
 
-Parameter $\gamma$ (gamma) dan $\lambda$ (lambda) dalam persamaan di atas berperan penting dalam proses \emph{pruning} atau pemangkasan pohon keputusan, yang menjadikan XGBoost sangat \emph{robust} terhadap data yang tidak seimbang (\emph{imbalanced data}) yang sering ditemukan dalam dataset pasien hipertensi \autocite{Emmanuel2025Advanced}.
+Parameter $\gamma$ (gamma) dan $\lambda$ (lambda) dalam persamaan di atas berperan penting dalam proses \emph{pruning} atau pemangkasan pohon keputusan, yang menjadikan XGBoost sangat \emph{robust} terhadap data yang tidak seimbang yang sering ditemukan dalam dataset pasien hipertensi \autocite{Emmanuel2025Advanced}.
 
 Relevansi XGBoost dalam penelitian hipertensi telah dibuktikan dalam berbagai studi terbaru. Penelitian yang dilakukan oleh Zhang et al. \autocite{Zhang2025Machine} menunjukkan bahwa XGBoost mampu memberikan performa stratifikasi risiko hipertensi yang lebih unggul dibandingkan Logistic Regression tradisional, dengan nilai akurasi dan \emph{Area Under Curve} (AUC) yang lebih tinggi secara konsisten. Selain itu, XGBoost juga mendukung integrasi dengan metode Explainable Artificial Intelligence (XAI) seperti SHAP (SHapley Additive exPlanations), yang memungkinkan peneliti untuk tidak hanya mendapatkan hasil prediksi, tetapi juga memahami faktor risiko dominan seperti usia, BMI, atau tekanan darah sistolik, yang berkontribusi terhadap keputusan model tersebut \autocite{Li2025XGBoost}.
 
@@ -114,7 +114,7 @@ Artificial Intelligence (AI) atau kecerdasan buatan merujuk pada simulasi proses
 Dalam konteks revolusi industri 4.0, teknologi AI telah menjadi pilar utama yang memungkinkan transformasi operasional melalui otomatisasi cerdas dan pengambilan keputusan berbasis data \autocite{Javaid2022Artificial}. Adopsi AI di berbagai sektor, termasuk kesehatan, telah terbukti mampu mengoptimalkan alur kerja, meminimalkan kesalahan manusia, dan meningkatkan efisiensi operasional secara signifikan. Kemampuan sistem untuk mempelajari pola dari data historis memungkinkan organisasi untuk memprediksi tren masa depan dengan akurasi yang lebih tinggi dibandingkan metode konvensional \autocite{Secinaro2021Role}. Secara spesifik, integrasi AI dalam sistem pemrosesan data memungkinkan reduksi \emph{lead time}, peningkatan fleksibilitas sistem, serta optimalisasi alokasi sumber daya yang tersedia \autocite{Haleem2022Understanding}.
 
 \subsection{Explainable Artificial Intelligence (XAI)}
-Penerapan Machine Learning dalam praktik klinis sering terhambat oleh sifat \emph{black box} dari model canggih seperti XGBoost yang sulit diinterpretasikan oleh manusia. Explainable Artificial Intelligence atau XAI hadir sebagai solusi untuk memberikan transparansi terhadap keputusan yang diambil oleh sistem cerdas \autocite{Adadi2018}. Transparansi ini krusial untuk membangun kepercayaan tenaga medis terhadap saran diagnosis yang diberikan oleh algoritma.
+Penerapan Machine Learning dalam praktik klinis sering terhambat oleh sifat \textit{black box} dari model canggih seperti XGBoost yang sulit diinterpretasikan oleh manusia. Explainable Artificial Intelligence atau XAI hadir sebagai solusi untuk memberikan transparansi terhadap keputusan yang diambil oleh sistem cerdas \autocite{Adadi2018}. Transparansi ini krusial untuk membangun kepercayaan tenaga medis terhadap saran diagnosis yang diberikan oleh algoritma.
 
 \subsubsection{Shapley Additive Explanations (SHAP)}
 Metode SHAP merupakan pendekatan XAI yang mengadopsi konsep teori permainan kooperatif untuk menghitung kontribusi marginal setiap fitur terhadap hasil prediksi. Nilai Shapley menjamin konsistensi matematis dengan memastikan bahwa total kontribusi seluruh fitur sama dengan selisih antara prediksi aktual dan prediksi rata-rata model \autocite{Lundberg2017Unified}. Sifat aditif ini menjadikan SHAP sangat andal untuk audit medis karena memberikan penjelasan yang adil dan konsisten untuk setiap variabel risiko pasien.
@@ -123,7 +123,7 @@ Metode SHAP merupakan pendekatan XAI yang mengadopsi konsep teori permainan koop
 Metode alternatif yang sering digunakan adalah Local Interpretable Model-agnostic Explanations atau LIME. LIME bekerja dengan cara melakukan perturbasi atau pengubahan acak di sekitar data \emph{instance} untuk membangun model linear sederhana yang dapat dijelaskan secara lokal. Pendekatan ini berfokus pada pendekatan perilaku model di sekitar satu titik prediksi spesifik tanpa mencoba memahami model global secara keseluruhan.
 
 \subsubsection{Analisis Komparatif SHAP dan LIME}
-Meskipun LIME lebih cepat secara komputasi, metode ini memiliki kelemahan dalam hal stabilitas karena penjelasan yang dihasilkan dapat berubah-ubah pada setiap iterasi eksekusi untuk data yang sama \autocite{Molnar2020Interpretable}. Sebaliknya, SHAP menawarkan landasan teoretis yang lebih kuat melalui properti aksiomatik teori permainan yang menjamin keunikan solusi penjelasan. Oleh karena itu, penelitian ini memilih menggunakan SHAP karena stabilitas dan konsistensi penjelasan merupakan syarat mutlak dalam sistem pendukung keputusan medis yang menyangkut keselamatan pasien.
+Meskipun LIME lebih cepat secara komputasi, metode ini memiliki kelemahan dalam hal stabilitas karena penjelasan yang dihasilkan dapat berubah-ubah pada setiap iterasi eksekusi untuk data yang sama \autocite{Molnar2025Interpretable}. Sebaliknya, SHAP menawarkan landasan teoretis yang lebih kuat melalui properti aksiomatik teori permainan yang menjamin keunikan solusi penjelasan. Oleh karena itu, penelitian ini memilih menggunakan SHAP karena stabilitas dan konsistensi penjelasan merupakan syarat mutlak dalam sistem pendukung keputusan medis yang menyangkut keselamatan pasien.
 
 % --- II.4 Large Language Model (LLM) ---
 \section{Large Language Model (LLM)}
@@ -142,13 +142,13 @@ Keunggulan utama dari jenis basis data ini terletak pada kemampuannya melakukan 
 
 \begin{enumerate}
     \item \textbf{Sharding}\\
-    Teknik partisi horizontal yang mendistribusikan dataset vektor ke berbagai mesin atau \emph{node} dalam sebuah kluster. Distribusi ini seringkali didasarkan pada fungsi \emph{hash} atau rentang kunci tertentu untuk menyeimbangkan beban penyimpanan \autocite{Xu2022Scalable}.
+    Teknik partisi horizontal yang mendistribusikan dataset vektor ke berbagai mesin atau \emph{node} dalam sebuah kluster. Distribusi ini seringkali didasarkan pada fungsi \emph{hash} atau rentang kunci tertentu untuk menyeimbangkan beban penyimpanan.
     
     \item \textbf{Partitioning}\\
-    Strategi pembagian basis data menjadi segmen-segmen logis yang lebih kecil dan mudah dikelola. Kriteria partisi dapat disesuaikan berdasarkan kategori data, lokasi geografis, atau frekuensi akses data \autocite{Han2023Data}.
+    Strategi pembagian basis data menjadi segmen-segmen logis yang lebih kecil dan mudah dikelola. Kriteria partisi dapat disesuaikan berdasarkan kategori data, lokasi geografis, atau frekuensi akses data.
     
     \item \textbf{Caching}\\
-    Implementasi memori RAM perantara berkecepatan tinggi untuk menyimpan data atau hasil kueri yang sering diakses. Mekanisme ini krusial untuk mengurangi latensi sistem dan meningkatkan \emph{throughput} pengambilan data \autocite{Zhang2021Optimizing}.
+    Implementasi memori RAM perantara berkecepatan tinggi untuk menyimpan data atau hasil kueri yang sering diakses. Mekanisme ini krusial untuk mengurangi latensi sistem dan meningkatkan \emph{throughput} pengambilan data.
     
     \item \textbf{Replication}\\
     Proses duplikasi data vektor ke beberapa \emph{node} atau kluster berbeda. Replikasi menjamin ketersediaan data (\emph{availability}) yang tinggi, durabilitas data terhadap kegagalan perangkat keras, serta peningkatan kinerja pembacaan data secara paralel \autocite{Kleppmann2021Designing}.
@@ -172,7 +172,7 @@ Mekanisme kerja Vector Database dapat diuraikan melalui tahapan berikut:
     Setelah vektor tersimpan, sistem melakukan pengindeksan untuk memetakan lokasi data. Pengindeksan dapat dilakukan secara manual atau otomatis (\emph{on-the-fly}). Tujuan utama pengindeksan adalah mengorganisir struktur data sedemikian rupa sehingga proses pencarian dapat dilakukan dengan kompleksitas waktu yang minimal \autocite{Johnson2019Billion}.
     
     \item \textbf{Query dan Analisis}\\
-    Saat pengguna memasukkan kueri (misalnya dalam bentuk teks), sistem pertama-tama mengubah kueri tersebut menjadi vektor menggunakan model \emph{embedding} yang sama. Selanjutnya, sistem melakukan pencarian komparatif untuk menemukan vektor dalam basis data yang memiliki nilai kemiripan tertinggi dengan vektor kueri \autocite{Wang2021Understanding}.
+    Saat pengguna memasukkan kueri (misalnya dalam bentuk teks), sistem pertama-tama mengubah kueri tersebut menjadi vektor menggunakan model \emph{embedding} yang sama. Selanjutnya, sistem melakukan pencarian komparatif untuk menemukan vektor dalam basis data yang memiliki nilai kemiripan tertinggi dengan vektor kueri.
 \end{enumerate}
 
 \begin{figure}[ht]
@@ -236,7 +236,7 @@ Penerapan RAG di bidang kesehatan (\emph{Medical RAG}) bertujuan mengatasi keter
 Tantangan utama dalam implementasi \emph{Medical RAG} meliputi adanya "kebisingan pencarian" dan kompleksitas terminologi medis yang sangat bervariasi \autocite{Liu2025Improving}. Sistem RAG medis yang efektif sering menggunakan strategi pencarian hibrida, menggabungkan pencarian kata kunci untuk istilah spesifik dan pencarian semantik untuk memahami konteks gejala \autocite{Amugongo2025Retrieval}.
 
 \subsection{Retrieval Augmented Generation Assessment (RAGAS)}
-Evaluasi terhadap model Large Language Model (LLM) yang terintegrasi dalam arsitektur Retrieval-Augmented Generation (RAG) menghadirkan tantangan tersendiri karena metrik tradisional seperti BLEU atau ROUGE tidak lagi memadai untuk mengukur koherensi semantik dan akurasi faktual \autocite{Gao2023Retrieval}. Dalam konteks sistem prediksi risiko hipertensi, kesalahan halusinasi atau ketidaktepatan pengambilan konteks medis dapat berakibat fatal sehingga diperlukan kerangka evaluasi yang lebih ketat \autocite{Liu2024Evaluating}.
+Evaluasi terhadap model Large Language Model (LLM) yang terintegrasi dalam arsitektur Retrieval-Augmented Generation (RAG) menghadirkan tantangan tersendiri karena metrik tradisional seperti BLEU atau ROUGE tidak lagi memadai untuk mengukur koherensi semantik dan akurasi faktual \autocite{Gao2023Retrieval}. Dalam konteks sistem prediksi risiko hipertensi, kesalahan halusinasi atau ketidaktepatan pengambilan konteks medis dapat berakibat fatal sehingga diperlukan kerangka evaluasi yang lebih ketat.
 
 Retrieval Augmented Generation Assessment atau RAGAS muncul sebagai kerangka kerja evaluasi standar yang dirancang untuk mengukur kinerja saluran RAG secara referensi-bebas atau \emph{reference-free} dengan memanfaatkan LLM sebagai juri penilai \autocite{Es2023RAGAS}. Pendekatan RAGAS memisahkan proses evaluasi menjadi dua komponen utama yaitu evaluasi terhadap kemampuan pencarian informasi atau \emph{retrieval} dan evaluasi terhadap kualitas teks yang dibangkitkan atau \emph{generation} \autocite{Chen2024Benchmarking}.
 
@@ -251,17 +251,17 @@ Kerangka kerja RAGAS menyediakan berbagai metrik yang dikategorikan berdasarkan 
 
 Berdasarkan taksonomi di atas, metrik \emph{Faithfulness} dan \emph{Answer Relevancy} digunakan untuk menilai kualitas generasi teks sedangkan \emph{Context Precision} dan \emph{Context Recall} digunakan untuk menilai kualitas pengambilan dokumen \autocite{Es2023RAGAS}.
 \begin{enumerate}
-    \item \textbf{Faithfulness}\\ 
+    \item Faithfulness\\ 
     Mengukur konsistensi faktual dari jawaban yang dihasilkan terhadap konteks yang diberikan untuk memastikan tidak ada informasi yang dibuat-buat atau halusinasi yang sangat berbahaya dalam domain kesehatan \autocite{Min2023FActScore}.
     
-    \item \textbf{Answer Relevancy}\\ 
-    Menilai seberapa langsung jawaban tersebut merespons pertanyaan pengguna tanpa memperhitungkan kebenaran faktualnya \autocite{Wang2023Semantic}.
+    \item Answer Relevancy\\ 
+    Menilai seberapa langsung jawaban tersebut merespons pertanyaan pengguna tanpa memperhitungkan kebenaran faktualnya.
     
-    \item \textbf{Context Precision}\\ 
+    \item Context Precision\\ 
     Mengukur rasio informasi relevan yang berhasil diambil dibandingkan dengan total informasi yang diambil yang menunjukkan efisiensi sistem dalam menyaring \emph{noise} data medis \autocite{Gao2023Retrieval}.
     
-    \item \textbf{Context Recall}\\ 
-    Mengukur kemampuan sistem untuk mengambil seluruh informasi yang diperlukan dari basis pengetahuan untuk menjawab pertanyaan pengguna \autocite{Liu2024Evaluating}.
+    \item Context Recall\\ 
+    Mengukur kemampuan sistem untuk mengambil seluruh informasi yang diperlukan dari basis pengetahuan untuk menjawab pertanyaan pengguna.
 \end{enumerate}
 
 \vspace{1em}
@@ -276,15 +276,15 @@ Selain metrik per komponen, terdapat juga metrik \emph{Answer Semantic Similarit
 
 Gambar II.6 memperlihatkan bahwa evaluator bekerja secara iteratif untuk memberikan skor kuantitatif pada setiap tahapan \autocite{SaadFalcon2024ARES}. Penggunaan LLM sebagai evaluator dalam RAGAS terbukti memiliki korelasi yang tinggi dengan penilaian manusia namun dengan efisiensi waktu dan biaya yang jauh lebih rendah dibandingkan evaluasi manual oleh ahli medis \autocite{Chen2024Benchmarking}. Dalam pengembangan sistem prediksi hipertensi ini, skor dari RAGAS akan menjadi indikator utama untuk validasi model sebelum sistem diuji coba secara klinis \autocite{Huang2023Survey}.
 
-Penting untuk dicatat bahwa RAGAS juga memperkenalkan metrik \emph{Context Entity Recall} yang sangat relevan untuk ekstraksi entitas medis seperti nama obat atau kondisi komorbiditas hipertensi \autocite{Es2023RAGAS}. Kehadiran metrik ini memastikan bahwa entitas spesifik yang krusial tidak hilang selama proses pengambilan konteks \autocite{Liu2024Evaluating}. Dengan demikian implementasi RAGAS dalam penelitian ini tidak hanya berfungsi sebagai alat ukur tetapi juga sebagai mekanisme umpan balik untuk melakukan \emph{fine-tuning} pada komponen \emph{retriever} dan \emph{prompt engineering} pada komponen \emph{generator} \autocite{Gao2023Retrieval}.
+Penting untuk dicatat bahwa RAGAS juga memperkenalkan metrik \emph{Context Entity Recall} yang sangat relevan untuk ekstraksi entitas medis seperti nama obat atau kondisi komorbiditas hipertensi \autocite{Es2023RAGAS}. Kehadiran metrik ini memastikan bahwa entitas spesifik yang krusial tidak hilang selama proses pengambilan konteks. Dengan demikian implementasi RAGAS dalam penelitian ini tidak hanya berfungsi sebagai alat ukur tetapi juga sebagai mekanisme umpan balik untuk melakukan \emph{fine-tuning} pada komponen \emph{retriever} dan \emph{prompt engineering} pada komponen \emph{generator} \autocite{Gao2023Retrieval}.
 
 % --- II.6 Tinjauan Penelitian Sebelumnya ---
 \section{Tinjauan Penelitian Sebelumnya}
-Penelitian mengenai prediksi hipertensi telah mengalami evolusi signifikan dalam setengah dekade terakhir, bergerak dari metode statistik konvensional menuju pendekatan Machine Learning (ML) dan Deep Learning (DL) yang lebih kompleks. Fokus utama dari berbagai studi terkini adalah meningkatkan akurasi prediksi dini untuk mencegah komplikasi kardiovaskular yang lebih serius \autocite{ElSalamony2023Comparative}. Namun, tren terbaru menunjukkan bahwa akurasi tinggi saja tidak lagi cukup dalam implementasi klinis; transparansi model melalui Explainable Artificial Intelligence (XAI) dan kemampuan interaksi natural melalui Large Language Model (LLM) menjadi kebutuhan mendesak untuk meningkatkan kepercayaan tenaga medis dan pasien terhadap sistem \autocite{Clusmann2023Future}.
+Penelitian mengenai prediksi hipertensi telah mengalami evolusi signifikan dalam setengah dekade terakhir, bergerak dari metode statistik konvensional menuju pendekatan Machine Learning (ML) dan Deep Learning (DL) yang lebih kompleks. Fokus utama dari berbagai studi terkini adalah meningkatkan akurasi prediksi dini untuk mencegah komplikasi kardiovaskular yang lebih serius \autocite{Silva2022MLHypertension}. Namun, tren terbaru menunjukkan bahwa akurasi tinggi saja tidak lagi cukup dalam implementasi klinis; transparansi model melalui Explainable Artificial Intelligence (XAI) dan kemampuan interaksi natural melalui Large Language Model (LLM) menjadi kebutuhan mendesak untuk meningkatkan kepercayaan tenaga medis dan pasien terhadap sistem \autocite{Clusmann2023Future}.
 
-Sebagian besar penelitian yang dilakukan antara tahun 2019 hingga 2021 masih berfokus pada perbandingan algoritma klasifikasi standar. Sebagai contoh, penggunaan metode \emph{ensemble learning} seperti Random Forest dan Gradient Boosting terbukti secara konsisten mengungguli model tunggal seperti Decision Tree atau Logistic Regression dalam menangani dataset kesehatan yang tidak seimbang \autocite{ElSalamony2023Comparative}. Meskipun performanya tinggi, model-model ini sering kali bersifat \emph{black-box} atau sulit diinterpretasikan, yang menjadi hambatan utama dalam adopsi klinis karena dokter perlu memahami alasan di balik prediksi risiko pasien.
+Sebagian besar penelitian yang dilakukan antara tahun 2019 hingga 2021 masih berfokus pada perbandingan algoritma klasifikasi standar. Sebagai contoh, penggunaan metode \emph{ensemble learning} seperti Random Forest dan Gradient Boosting terbukti secara konsisten mengungguli model tunggal seperti Decision Tree atau Logistic Regression dalam menangani dataset kesehatan yang tidak seimbang \autocite{Silva2022MLHypertension}. Meskipun performanya tinggi, model-model ini sering kali bersifat \emph{black-box} atau sulit diinterpretasikan, yang menjadi hambatan utama dalam adopsi klinis karena dokter perlu memahami alasan di balik prediksi risiko pasien.
 
-Merespons keterbatasan tersebut, gelombang penelitian selanjutnya mulai mengintegrasikan metode XAI. Penggunaan SHapley Additive exPlanations (SHAP) dan Local Interpretable Model-agnostic Explanations (LIME) telah menjadi standar baru dalam memvisualisasikan kontribusi fitur, seperti pengaruh indeks massa tubuh (BMI) atau kadar glukosa terhadap prediksi hipertensi secara spesifik untuk setiap individu \autocite{Miao2022Risk}. Integrasi ini memungkinkan sistem tidak hanya memberikan label "beresiko" atau "tidak beresiko", tetapi juga memberikan wawasan klinis mengenai variabel mana yang harus diintervensi.
+Merespons keterbatasan tersebut, gelombang penelitian selanjutnya mulai mengintegrasikan metode XAI. Penggunaan SHapley Additive exPlanations (SHAP) dan Local Interpretable Model-agnostic Explanations (LIME) telah menjadi standar baru dalam memvisualisasikan kontribusi fitur, seperti pengaruh indeks massa tubuh (BMI) atau kadar glukosa terhadap prediksi hipertensi secara spesifik untuk setiap individu. Integrasi ini memungkinkan sistem tidak hanya memberikan label "beresiko" atau "tidak beresiko", tetapi juga memberikan wawasan klinis mengenai variabel mana yang harus diintervensi.
 
 Lebih lanjut, kemunculan arsitektur Transformer dan Large Language Models (LLM) membuka peluang baru dalam pengolahan data kesehatan yang tidak terstruktur, seperti catatan medis elektronik (EHR). Studi terbaru menunjukkan bahwa LLM memiliki potensi besar dalam merangkum riwayat pasien dan memberikan rekomendasi kesehatan yang dipersonalisasi, meskipun tantangan terkait halusinasi model dan privasi data masih menjadi perhatian utama \autocite{Thirunavukarasu2023Large}. Penelitian ini bermaksud mengisi celah tersebut dengan menggabungkan kekuatan prediktif XAI dengan kemampuan naratif LLM.
 
@@ -318,17 +318,17 @@ Untuk memberikan gambaran komprehensif mengenai posisi penelitian ini dibandingk
 \bottomrule
 \endlastfoot
 
-1 & Machine Learning for Hypertension Prediction \autocite{ElSalamony2023Comparative} & 
-Menggunakan algoritma Ensemble Learning (gabungan Decision Tree, Random Forest, dan Naïve Bayes) pada dataset klinis standar. & 
-Model Random Forest memberikan akurasi tertinggi mencapai 98,5 persen dibandingkan algoritma tunggal lainnya dalam memprediksi status hipertensi. & 
-Studi ini hanya berfokus pada metrik performa (akurasi) dan tidak membahas aspek interpretabilitas (XAI), sehingga sulit untuk melacak variabel penyebab utama. \\
+1 & Ensemble Learning for Hypertension Prediction Using Explainable Machine Learning Techniques \autocite{ElSalamony2023Comparative} & 
+Menggunakan pendekatan ensemble learning berbasis stacking yang menggabungkan Logistic Regression, Artificial Neural Network (ANN), Random Forest (RF), LightGBM (LGBM), dan XGBoost. Interpretasi model dilakukan menggunakan metode SHAP (SHapley Additive exPlanations) untuk mengidentifikasi faktor risiko hipertensi yang paling berpengaruh. & 
+Model stacking menghasilkan performa terbaik dengan akurasi 96,32\%, precision 95,48\%, recall 97,51\%, F1-score 96,48\%, dan AUC 0,971. Analisis SHAP menunjukkan bahwa berat badan, konsumsi alkohol, riwayat hipertensi, konsumsi garam, usia, diabetes, BMI, dan konsumsi lemak merupakan faktor risiko utama hipertensi. & 
+Jumlah data relatif kecil yaitu sebesar 612 responden dan memiliki ketidakseimbangan kelas yang cukup besar antara kelompok hipertensi dan non-hipertensi. \\
 \hline
-2 & Interpretable Machine Learning for Early Prediction of Hypertension \autocite{Miao2022Risk} & 
-Menggabungkan model XGBoost dengan metode interpretasi SHAP (SHapley Additive exPlanations) untuk analisis faktor risiko. & 
-Model berhasil mengidentifikasi usia, BMI, dan kadar trigliserida sebagai fitur paling berpengaruh, dengan visualisasi feature importance yang jelas. & 
-Analisis terbatas pada data terstruktur numerik dan belum memanfaatkan data teks atau riwayat medis naratif pasien. \\
+2 & XGBoost and SHAP-Based Analysis of Risk Factor for Hypertension Classification in Korean Postmenopausal Women \autocite{Li2025XGBoost}  & 
+Menggunakan algoritma XGBoost, Support Vector Machine (SVM), dan Artificial Neural Network (ANN) untuk klasifikasi hipertensi. Analisis interpretabilitas model dilakukan menggunakan metode SHAP (Shapley Additive exPlanations) guna mengidentifikasi faktor risiko yang paling berpengaruh. & 
+Model XGBoost memberikan performa terbaik dengan nilai AUC sebesar 92,12\%, akurasi 84,73\%, dan MCC 0,71. Analisis SHAP menunjukkan bahwa usia dan lingkar pinggang merupakan faktor risiko paling dominan dalam klasifikasi hipertensi pada wanita pascamenopause. & 
+Penelitian hanya menggunakan data wanita pascamenopause di Korea Selatan sehingga generalisasi ke populasi lain masih terbatas. Selain itu, faktor gaya hidup seperti konsumsi garam, aktivitas fisik, penggunaan obat, dan tingkat stres tidak dimasukkan karena keterbatasan data yang tersedia. \\
 \hline
-3 & Deep Learning Approaches for Blood Pressure Prediction \autocite{Cheng2021Blood} & 
+3 & Deep Learning Approaches for Blood Pressure Prediction \autocite{tazarv2021deep} & 
 Menggunakan Long Short-Term Memory (LSTM) dan Recurrent Neural Networks (RNN) untuk data time-series tekanan darah. & 
 LSTM menunjukkan performa superior dalam memprediksi fluktuasi tekanan darah jangka pendek dibandingkan model regresi tradisional. & 
 Kompleksitas komputasi sangat tinggi dan membutuhkan data pemantauan kontinu yang sulit didapatkan dalam pemeriksaan rutin biasa. \\

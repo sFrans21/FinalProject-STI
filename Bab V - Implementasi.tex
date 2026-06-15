@@ -5,43 +5,301 @@
 \chapter{IMPLEMENTASI}
 \label{chap:hasil-pembahasan}
 
-Bab ini memaparkan hasil pelaksanaan seluruh tahapan pengembangan sistem, yang meliputi pemahaman dan persiapan data, pelatihan dan evaluasi model Machine Learning, analisis teknik \emph{threshold moving}, serta implementasi modul Explainable AI (XAI) berbasis SHAP dan modul narasi medis berbasis Retrieval-Augmented Generation (RAG). Seluruh tahapan dilaksanakan mengacu pada metodologi CRISP-DM sebagaimana diuraikan pada Bab III.
+Bab ini memaparkan hasil pelaksanaan seluruh tahapan pengembangan sistem, yang meliputi pemahaman dan persiapan data, pelatihan dan evaluasi model \textit{machine learning}, analisis teknik \emph{threshold moving}, serta implementasi modul Explainable AI (XAI) berbasis SHAP dan modul narasi medis berbasis Retrieval-Augmented Generation. Seluruh tahapan dilaksanakan mengacu pada metodologi CRISP-DM sebagaimana diuraikan pada Bab III.
 
-\section{Pemahaman Data (\emph{Data Understanding})}
-Tahap pemahaman data merupakan fase awal dalam metodologi CRISP-DM yang bertujuan untuk memperoleh gambaran menyeluruh mengenai karakteristik dataset sebelum proses pemodelan dilakukan. Dataset yang digunakan dalam penelitian ini bersumber dari \emph{Indonesian Family Life Survey} (IFLS), sebuah survei longitudinal berskala nasional yang mencakup aspek kesehatan, sosial, dan ekonomi masyarakat Indonesia.
+\section{\emph{Data Understanding}}
+Tahap pemahaman data merupakan awal dari metode CRISP-DM. Tahap ini bertujuan untuk melihat gambaran umum dataset sebelum pemodelan.
 
-Dataset mentah yang diperoleh dari IFLS terdiri dari beragam variabel kesehatan individual. Melalui proses seleksi dan rekayasa fitur, diperoleh 16 variabel numerik yang relevan secara klinis sebagai fitur input model prediksi. Label target, yaitu \texttt{label\_hypertension}, diturunkan dari pengukuran tekanan darah sistolik dan diastolik responden berdasarkan kriteria klinis yang berlaku, yakni tekanan darah sistolik lebih dari atau sama dengan 140 mmHg atau tekanan darah diastolik lebih dari atau sama dengan 90 mmHg. Kolom tekanan darah kemudian dikeluarkan dari fitur input untuk menghindari kebocoran data (\emph{data leakage}).
+\subsection{Akuisisi Data}
+\subsubsection{Sumber Data}
+Penelitian ini menggunakan data \textit{Indonesian Family Life Survey} gelombang kelima di tahun 2014. Survei nasional ini mencakup data kesehatan, sosial, dan ekonomi lebih dari 36.000 responden di seluruh Indonesia. IFLS tahun 2014 merupakan gelombang kelima atau IFLS-5. Data ini menjadi gelombang terbaru yang terbit hingga saat ini \autocite{strauss2016ifls5}.
 
-\subsection{Profil Dataset}
-Setelah melalui proses pembersihan data, termasuk penghapusan entri dengan nilai usia di atas 100 tahun yang merupakan kode \emph{missing value} (998/999) dalam dataset IFLS, diperoleh dataset bersih sebagaimana dirangkum dalam Tabel \ref{tab:profil-dataset} berikut.
+Peneliti memilih IFLS-5 karena memiliki data observasi yang sangat beragam. Penulis belum menemukan survei nasional terbuka dan gratis lain di Indonesia yang menandingi keberagaman dari IFLS. Data tahun 2014 tersebut tetap relevan untuk kondisi kesehatan masyarakat saat ini. Karakteristik klinis dan penyebaran penyakit hipertensi tidak banyak mengalami perubahan. Riset Kesehatan Dasar (Riskesdas) tahun 2018 memperkuat fakta tersebut. Laporan Kementerian Kesehatan RI \autocite{ri2018} menunjukkan pola hipertensi orang dewasa tetap sama sejak 2014. Jadi, data IFLS-5 tetap sah untuk melatih model \textit{machine learning}. 
+
+
+Peneliti mengunduh data tersebut dari portal resmi \textit{RAND Corporation}. Berkas data yang sudah diunduh kemudian didistribusikan dalam format .dta yaitu Stata yang terkompresi dalam arsip \textit{.zip}. Setelah mengunduh dan mengekstrak berkas-berkas tersebut, direktori data diorganisasi dalam struktur hierarkis di dalam repositori penulis. Setiap subfolder merepresentasikan satu berkas survei, dan berkas yang digunakan dalam penelitian ini dirangkum pada Tabel \ref{tab:ifls_files}.
+
+% Peneliti menggunakan lima berkas data dalam penelitian ini.
+% \begin{enumerate}
+%     \item Berkas \textit{hh14\_trk\_dta} (Tracking) berperan sebagai kunci penggabungan antar tabel melalui variabel \textit{pidlink}.
+%     \item Berkas \textit{hh14\_bus\_dta} (Book US) memuat data klinis responden. Data ini meliputi tekanan darah, berat badan, dan lingkar pinggang.
+%     \item Berkas \textit{hh14\_b3a\_dta} (Book 3A) menyimpan data demografis dan riwayat kesehatan responden. Kolom ini mencakup usia, jenis kelamin, riwayat merokok, dan diagnosis diabetes.
+%     \item Berkas \textit{hh14\_b3b\_dta} (Book 3B) mencatat frekuensi aktivitas fisik responden.
+%     \item Berkas \textit{hh14\_b1\_dta} (Book 1) memuat frekuensi konsumsi makanan asin dan mi instan.
+% \end{enumerate}
+
+\begin{table}[htbp]
+    \centering
+    \caption{Berkas Data IFLS yang Digunakan dalam Penelitian}
+    \label{tab:ifls_files}
+    \begin{tabularx}{\textwidth}{|l|l|X|X|}
+        \hline
+        \textbf{Nama Berkas} & \textbf{Buku} & \textbf{Variabel Utama} & \textbf{Keterangan} \\
+        \hline
+        \texttt{hh14\_trk\_dta} & Tracking & \texttt{pidlink}, \texttt{age}, \texttt{sex} & Identitas unik individu berupa \texttt{pidlink} sebagai kunci penggabungan data serta informasi demografi dasar berupa usia dan jenis kelamin \\
+        \hline
+        \texttt{hh14\_bus\_dta} & Book US & \texttt{bp\_systolic}, \texttt{bp\_diastolic}, \texttt{bmi}, \texttt{waist\_cm} & Data klinis terukur meliputi tekanan darah sistolik dan diastolik dalam mmHg, indeks massa tubuh dalam kg/m\textsuperscript{2}, serta lingkar pinggang dalam cm \\
+        \hline
+        \texttt{hh14\_b3a\_dta} & Book 3A & \texttt{km01a}, \texttt{is\_diabetes}, \texttt{father\_health}, \texttt{mother\_health} & Data perilaku dan riwayat penyakit yang mencakup status merokok, diagnosis diabetes melitus berdasarkan laporan responden, serta riwayat kesehatan ayah dan ibu sebagai proksi faktor risiko genetik yang digunakan karena informasi tersebut tidak tersedia pada IFLS-5. \\
+        \hline
+        \texttt{hh14\_b3b\_dta} & Book 3B & \texttt{ak02}, \texttt{ak05}, \texttt{ak07}, \texttt{ps\_A}--\texttt{ps\_F}, \texttt{freq\_instant\_noodle} & Data gaya hidup yang mencakup frekuensi aktivitas fisik dalam hari per minggu, skor stres psikologis, dan frekuensi konsumsi mie instan \\
+        \hline
+    \end{tabularx}
+\end{table}
+
+\subsubsection{Mengekstraksi Kolom}
+Mengingat setiap berkas .dta IFLS dapat mengandung ratusan hingga ribuan kolom variabel yang sebagian besar tidak relevan dengan penelitian ini, penulis mengambil variabel yang diperlukan dari keseluruhan isi berkas ke dalam memori. Pustaka bernama \textit{pyreadstat} digunakan untuk membaca berkas .dta karena mendukung pembacaan parsial melalui parameter \texttt{usecols}, sehingga hanya kolom yang telah didefinisikan sebelumnya yang dimuat ke dalam memori.
+
+Proses ekstraksi dilakukan secara bertahap untuk setiap berkas secara terpisah. Pertama, berkas \textit{Tracking} yang direpresentasikan oleh \texttt{hh14\_trk\_dta} dimuat sebagai kerangka data dasar karena memuat \texttt{pidlink} sebagai kunci penggabungan beserta variabel demografi dasar usia  dan jenis kelamin . Selanjutnya, data dari berkas-berkas lain digabungkan secara bertahap menggunakan operasi \textit{left join} berbasis \texttt{pidlink}, sehingga seluruh responden dalam kerangka data Tracking tetap dipertahankan meskipun data mereka tidak tersedia di berkas tertentu.
+
+Pendekatan \textit{left join} dipilih secara deliberatif karena karakteristik survei IFLS di mana tidak semua responden mengikuti semua modul wawancara. Penggunaan \textit{inner join} akan membuang terlalu banyak data karena hanya menyimpan responden yang hadir di semua berkas sekaligus, sementara \textit{left join} mempertahankan maksimum cakupan populasi dan membiarkan nilai yang tidak tersedia sebagai \textit{missing values} yaitu NaN, untuk ditangani pada tahap pembersihan data.
+
+\begin{table}[H]
+\centering
+\caption{Deskripsi Variabel}
+\label{tab:deskripsi_variabel}
+\begin{tabular}{|p{3cm}|p{3.5cm}|p{7cm}|}
+\hline
+\textbf{Kode Variabel} & \textbf{Nama Asli} & \textbf{Keterangan} \\ \hline
+
+pidlink & Person ID Link &
+Kunci unik responden yang digunakan untuk menggabungkan data antar modul IFLS. \\ \hline
+
+sex & Jenis Kelamin &
+1 = Laki-laki, 3 = Perempuan. \\ \hline
+
+age & Usia &
+Usia responden pada saat wawancara IFLS-5 tahun 2014. \\ \hline
+
+km01a & Smoking History &
+Menunjukkan apakah responden pernah merokok atau mengunyah tembakau. \\ \hline
+
+km04 & Current Smoker &
+Menunjukkan apakah responden masih merokok saat survei dilakukan. \\ \hline
+
+km08 & Cigarettes/Day &
+Jumlah batang rokok yang dikonsumsi per hari. \\ \hline
+
+\end{tabular}
+\end{table}
+
+
+
+\subsubsection{Substitusi Fitur Dataset}
+
+Data yang diakuisisi dari survei IFLS-5 tidak sepenuhnya menyediakan seluruh faktor risiko hipertensi yang telah diidentifikasi pada kajian literatur di Bab II. Meskipun berbagai faktor risiko klinis telah terbukti memiliki hubungan dengan hipertensi, tidak seluruhnya dapat diukur secara langsung menggunakan data yang tersedia pada survei sosial ekonomi seperti IFLS. Oleh karena itu, diterapkan pendekatan substitusi fitur, yaitu menggunakan variabel alternatif yang tersedia dalam dataset untuk merepresentasikan faktor risiko klinis yang ideal. Pendekatan ini dilakukan agar informasi yang relevan tetap dapat dimanfaatkan dalam proses pemodelan meskipun variabel asli tidak tersedia. Terdapat tiga faktor risiko utama yang memerlukan substitusi fitur dalam penelitian ini.
+
+\begin{enumerate}
+
+\item Dislipidemia dan Profil Lipid
+
+Dislipidemia merupakan salah satu faktor risiko penting yang berkontribusi terhadap peningkatan tekanan darah dan penyakit kardiovaskular. Kondisi ini umumnya ditandai oleh peningkatan kadar \textit{Low-Density Lipoprotein} (LDL) dan trigliserida, serta penurunan kadar \textit{High-Density Lipoprotein} (HDL). Namun demikian, dataset publik IFLS-5 tidak menyediakan hasil pemeriksaan laboratorium yang memuat profil lipid secara lengkap sehingga kondisi dislipidemia tidak dapat diukur secara langsung.
+
+Sebagai alternatif, penelitian ini menggunakan variabel \texttt{bmi} dan \texttt{waist\_cm} sebagai fitur substitusi. Pemilihan kedua variabel tersebut didasarkan pada temuan klinis yang menunjukkan bahwa obesitas umum maupun obesitas sentral memiliki hubungan erat dengan gangguan metabolik, termasuk dislipidemia. Dengan demikian, indeks massa tubuh dan lingkar pinggang digunakan sebagai proksi untuk merepresentasikan risiko dislipidemia dalam proses pemodelan.
+
+\item Variasi Genetik
+
+Bab II menjelaskan bahwa faktor genetik memiliki peran penting dalam meningkatkan kerentanan seseorang terhadap hipertensi. Faktor tersebut umumnya dikaji melalui identifikasi variasi genetik atau polimorfisme gen tertentu yang berkaitan dengan regulasi tekanan darah. Akan tetapi, IFLS-5 bukan merupakan survei genomik sehingga tidak menyediakan informasi mengenai variasi genetik responden.
+
+Untuk mengatasi keterbatasan tersebut, penelitian ini menggunakan riwayat kesehatan orang tua sebagai fitur substitusi. Informasi mengenai kondisi kesehatan ayah dan ibu tersedia dalam bentuk kode kesehatan yang kemudian direkayasa menjadi variabel \texttt{genetic\_risk\_score}. Pendekatan ini didasarkan pada asumsi bahwa keberadaan riwayat penyakit pada orang tua dapat merefleksikan kecenderungan faktor keturunan yang diwariskan kepada responden. Oleh karena itu, riwayat kesehatan orang tua digunakan sebagai proksi faktor risiko genetik.
+
+\item Asupan Natrium
+
+Asupan natrium merupakan faktor risiko hipertensi yang umumnya diukur secara kuantitatif menggunakan estimasi konsumsi garam harian atau pemeriksaan ekskresi natrium melalui urin 24 jam. Namun, IFLS-5 tidak menyediakan data konsumsi natrium dalam satuan miligram per hari maupun hasil pemeriksaan biologis yang memungkinkan estimasi tersebut dilakukan secara akurat.
+
+Sebagai gantinya, penelitian ini memanfaatkan data frekuensi konsumsi makanan yang berkaitan dengan kandungan garam tinggi. Variabel \texttt{freq\_instant\_noodle} digunakan sebagai indikator perilaku konsumsi makanan tinggi natrium karena mi instan merupakan salah satu sumber natrium yang umum dikonsumsi masyarakat Indonesia. Dengan demikian, frekuensi konsumsi mi instan digunakan sebagai fitur substitusi untuk merepresentasikan tingkat paparan natrium responden.
+
+\end{enumerate}
+
+Strategi substitusi fitur yang diterapkan dalam penelitian ini memungkinkan faktor-faktor risiko yang tidak tersedia secara langsung tetap dapat direpresentasikan melalui variabel proksi yang relevan. Meskipun pendekatan ini tidak sepenuhnya menggantikan pengukuran klinis yang ideal, penggunaan fitur substitusi tetap memberikan informasi yang bermakna bagi model \textit{machine learning} dalam mempelajari pola risiko hipertensi pada populasi IFLS-5.
+\subsubsection{Hasil Integrasi Data Mentah}
+Hasil akhir dari proses integrasi menghasilkan sebuah dataset mentah tunggal dengan 36.391 baris responden dan seluruh kolom fitur yang dibutuhkan. Pemeriksaan awal menunjukkan bahwa dataset ini secara teknis belum siap untuk pemodelan karena mengandung beberapa masalah kualitas data yang memerlukan penanganan, antara lain:
+
+
+
+\begin{enumerate}
+\item Nilai yang hilang\\
+Sejumlah kolom yang mengandung NaN baik akibat ketidakhadiran responden pada modul tertentu maupun jawaban `tidak tahu' atau penolakan menjawab.
+
+\item Kode kategoris non-standar\\
+Beberapa variabel menggunakan sistem pengkodean spesifik IFLS yang tidak kompatibel langsung dengan algoritma \textit{machine learning}, seperti kode 1/3 untuk ya/tidak, bukan 1/0, dan kode alfanumerik pada variabel kesehatan orang tua.
+
+\item Kode sentinel\\
+Pada variabel diabetes, kode 8 digunakan untuk `Tidak Tahu' dan kode 9 untuk `Tidak Menjawab/Data Hilang', yang perlu dibedakan dari nilai 1 (Ya) dan 3 (Tidak) yang valid.
+
+\item Representasi teks pada variabel kategoris\\
+Kolom riwayat kesehatan orang tua menggunakan kode huruf kombinasi, contohnya seperti A, B, BCD, BD, yang memerlukan rekayasa fitur untuk mengubahnya menjadi representasi numerik yang bermakna.
+\end{enumerate}
+
+
+% Kapasitas memori perangkat cukup terbatas sehingga peneliti tidak memuat semua kolom sekaligus. 
+% Peneliti hanya mengekstrak kolom yang relevan dengan faktor risiko hipertensi dari setiap berkas. 
+% Proses ekstraksi ini menggunakan pustaka \textit{pyreadstat} pada bahasa pemrograman \textit{Python}. 
+% Peneliti kemudian menggabungkan hasil ekstraksi tersebut berdasarkan \textit{pidlink}.
+
+% Penelitian ini menargetkan 10 faktor risiko. 
+% Tabel V.1 merangkum status ketersediaan setiap faktor risiko pada dataset akhir bernama \textit{master\_dataset\_raw\_final.csv}.
+
+% \begin{table}[htbp]
+%     \centering
+%     \caption{Status ketersediaan faktor risiko pada dataset akhir}
+%     \vspace{0.5em}
+%     \begin{tabular}{clll}
+%         \toprule
+%         \textbf{No.} & \textbf{Faktor Risiko} & \textbf{Status} & \textbf{Variabel} \\
+%         \midrule
+%         1 & Usia & Tersedia & \textit{age} \\
+%         2 & Jenis kelamin & Tersedia & \textit{sex} \\
+%         3 & Riwayat orang tua & Tidak tersedia & \textit{father\_health}, \textit{mother\_health} \\
+%         4 & Indeks massa tubuh & Tidak tersedia & \textit{weight\_kg}, \textit{height\_cm} \\
+%         5 & Makanan asin/mi instan & Tersedia (90\% kosong) & \textit{freq\_instant\_noodle} \\
+%         6 & Aktivitas fisik & Tersedia & \textit{ak02}, \textit{ak05}, \textit{ak07} \\
+%         7 & Merokok & Tersedia & \textit{km01a}, \textit{km04} \\
+%         8 & Lingkar pinggang & Tersedia & \textit{waist\_cm} \\
+%         9 & Diabetes & Tersedia (309 kasus positif) & \textit{is\_diabetes} \\
+%         10 & Stres & Tersedia & \textit{ps\_A} s.d. \textit{ps\_F} \\
+%         \bottomrule
+%     \end{tabular}
+% \end{table}
+
+% Peneliti berhasil memperoleh tujuh dari 10 faktor risiko target pada tahap ini. Dua faktor belum tersedia, yaitu riwayat kesehatan orang tua dan indeks massa tubuh. Peneliti belum mendapatkan kedua faktor ini karena gagal mengekstrak kolom terkait dari \textit{Book US} dan modul BA. 
+% Variabel makanan asin memang tersedia, tetapi 90 persen nilainya kosong sehingga kegunaan variabel ini menjadi terbatas. 
+% Variabel target meliputi tekanan darah sistolik (\textit{bp\_systolic}) dan diastolik (\textit{bp\_diastolic}). 
+% Variabel target ini sudah tersedia. 
+% Namun, peneliti menemukan anomali nilai pada variabel target ini. 
+% Peneliti perlu menangani anomali tersebut pada tahap penyiapan data.
+
+
+% \subsection{Eksplorasi Data Awal}
+
+% Setelah proses akuisisi dan penggabungan data selesai dilakukan, tahap berikutnya adalah eksplorasi data awal untuk memahami karakteristik dataset yang akan digunakan. Tahap ini bertujuan untuk mengidentifikasi struktur data, mengetahui persebaran nilai pada setiap variabel, menemukan pola-pola yang muncul, serta mendeteksi karakteristik data yang berpotensi memengaruhi proses prapemrosesan dan pembangunan model. Eksplorasi dilakukan melalui pemeriksaan isi dataset, analisis statistik deskriptif, serta penyajian data dalam bentuk visualisasi guna memperoleh gambaran awal mengenai kondisi dan kualitas data yang tersedia.
+
+
+
+
+% \subsubsection{Eksplorasi Data Awal}
+
+\section{\emph{Data Preparation}}
+Tahap persiapan data mencakup serangkaian proses transformasi dan pembersihan yang diperlukan sebelum data dapat digunakan untuk melatih model \textit{machine learning}. Pembersihan data merupakan proses paling kritis dalam keseluruhan alur kerja penelitian ini. Kualitas data yang bersih secara langsung memengaruhi keandalan dan validitas model prediktif yang akan dibangun. Proses pembersihan dilaksanakan dalam satu skrip terpusat yang dieksekusi sehingga dapat direplikasi kapan pun dengan hasil yang identik.
+
+\subsection{Penghapusan Baris dengan Nilai Hilang pada Variabel Kritis}
+
+Langkah pertama pada tahap pembersihan data adalah menghapus seluruh baris yang memiliki nilai hilang pada variabel \texttt{bp\_systolic}, \texttt{bp\_diastolic}, dan \texttt{bmi}. Ketiga variabel tersebut dikategorikan sebagai variabel kritis karena memiliki peran penting dalam penelitian. Variabel \texttt{bp\_systolic} dan \texttt{bp\_diastolic} digunakan sebagai dasar pembentukan label target hipertensi, sehingga ketiadaan salah satu atau kedua variabel tersebut menyebabkan status hipertensi responden tidak dapat ditentukan. Sementara itu, variabel \texttt{bmi} merupakan salah satu prediktor utama yang secara klinis memiliki hubungan erat dengan hipertensi. Oleh karena itu, nilai hilang pada variabel ini tidak diimputasi karena berpotensi memperkenalkan bias yang dapat memengaruhi kualitas hasil analisis dan pemodelan.
+
+Strategi penghapusan baris dipilih atas pertimbangan bahwa data tanpa variabel kritis ini sepenuhnya tidak dapat digunakan untuk tujuan penelitian, baik sebagai data latih maupun data uji. Jika penulis ingin melakukan imputasi nilai tekanan darah, misalnya dengan nilai rata-rata, akan tercipta label hipertensi sintetis yang tidak mencerminkan kondisi medis nyata responden dan berpotensi mengganggu seluruh analisis. Proses ini menghasilkan penyisutan populasi dari 36.391 menjadi 32.334 responden, menghasilkan tingkat retensi sebesar 88,9\%.
+
+\subsection{Imputasi Nilai Kosong}
+
+Berbeda dengan variabel kritis, nilai yang hilang pada variabel-variabel yang merepresentasikan perilaku atau kegiatan sehari-hari tidak diinterpretasikan sebagai data yang benar-benar hilang, melainkan sebagai indikasi bahwa responden tidak melakukan kegiatan yang ditanyakan. Oleh karena itu, imputasi nol diterapkan pada variabel-variabel berikut.
+
+\begin{enumerate}
+\item Frekuensi konsumsi mie instan\\
+Pada fitur frekuensi konsumsi mie instan yang mencakup \texttt{freq\_instant\_noodle}, Responden yang tidak memberikan jawaban diasumsikan tidak mengonsumsi mie instan. Nilai NaN diisi dengan 0 (kali per minggu).
+
+\item Aktivitas fisik\\
+Pada fitur aktivitas fisik yang mencakup \texttt{ak02}, \texttt{ak05}, \texttt{ak07}, Responden yang tidak menjawab pertanyaan tentang frekuensi aktivitas fisik diasumsikan tidak berolahraga atau berjalan kaki secara teratur dalam minggu survei. Nilai NaN diisi dengan 0 (hari per minggu).
+\end{enumerate}
+
+Pendekatan ini konsisten dengan panduan imputasi pada data survei perilaku kesehatan, di mana ketidakhadiran jawaban pada pertanyaan tentang kegiatan tertentu lebih mungkin bermakna `tidak melakukan' daripada `lupa menjawab', terutama apabila pertanyaan tersebut bersifat spesifik dan mudah diingat oleh responden.
+
+\subsection{Penanganan Kode Kategoris}
+
+Sistem pengkodean variabel kategoris dalam IFLS tidak secara langsung kompatibel dengan representasi yang dibutuhkan oleh algoritma \textit{machine learning}. Tiga variabel utama memerlukan transformasi pengkodean (\textit{re-encoding}) sebagai berikut.
+
+\begin{enumerate}
+\item Variabel Merokok \\
+Variabel merokok yang direpresentasikan di IFLS dalam \texttt{km01a} menggunakan kode 1 untuk `Ya' (pernah merokok) dan kode 3 untuk `Tidak'. Nilai NaN terlebih dahulu diisi dengan kode 3 (Tidak) berdasarkan asumsi yang sama seperti pada variabel perilaku lainnya. Selanjutnya, penulis mebentuk variabel baru dengan nama \texttt{is\_smoker}, dimana kode 1 diubah menjadi nilai 1 dan seluruh nilai lainnya menjadi 0.
+
+\item Variabel Diabetes \\
+Variabel diabetes yang direpresentasikan di IFLS dalam \texttt{is\_diabetes} memiliki empat kemungkinan nilai: 1 (Ya/pernah didiagnosis), 3 (Tidak), 8 (Tidak tahu), dan 9 (Tidak menjawab atau data hilang). Kode sentinel 8 dan 9 terlebih dahulu diubah menjadi kode 3 (Tidak) menggunakan operasi \textit{replace}, dengan argumen bahwa responden yang tidak mengetahui status diabetesnya atau menolak menjawab tidak memiliki riwayat diagnosis klinis yang terdokumentasi. Variabel biner \texttt{has\_diabetes} kemudian dibentuk dengan nilai 1 apabila kode asli adalah 1 dan 0 untuk kode lainnya.
+
+\item Variabel Jenis Kelamin \\
+Variabel jenis kelamin yang direpresentasikan di IFLS dalam \texttt{sex} menggunakan kode 1 untuk laki-laki dan kode 3 untuk perempuan (bukan kode 2 sebagaimana konvensi umum). Variabel biner \texttt{is\_female} dibentuk dengan nilai 1 untuk kode 3 (perempuan) dan nilai 0 untuk kode lainnya. Transformasi ini juga mengeliminasi ambiguitas kode yang tidak standar sebelum data dimasukkan ke dalam model.
+
+\end{enumerate}
+
+\subsection{Rekayasa Fitur Riwayat Kesehatan Orang Tua}
+
+Variabel \texttt{father\_health} dan \texttt{mother\_health} dari IFLS-4 menyimpan informasi kondisi kesehatan orang tua dalam format kode alfanumerik yang kompleks. Kode-kode ini dapat berupa huruf tunggal maupun kombinasi beberapa huruf, di mana setiap huruf merepresentasikan kondisi tertentu:
+\begin{itemize}
+    \item Kode A: Sehat (masih hidup dan tidak memiliki penyakit yang dilaporkan)
+    \item Kode B: Penyakit jantung atau pembuluh darah
+    \item Kode C: Penyakit paru-paru
+    \item Kode D: Diabetes melitus
+    \item Kode kombinasi (contoh: BCD, BD): Orang tua memiliki lebih dari satu kondisi atau telah meninggal dengan riwayat penyakit tertentu
+\end{itemize}
+
+Untuk mengubah representasi ini menjadi fitur numerik yang dapat digunakan model, dirancang sebuah fungsi rekayasa fitur dengan logika sebagai berikut: apabila nilai adalah NaN atau berisi huruf `A' saja (tanpa huruf lain), maka orang tua yang bersangkutan dikategorikan sebagai tidak berisiko atau bernilai 0. Apabila nilai mengandung huruf selain A atau merupakan kombinasi huruf, maka orang tua dikategorikan sebagai berisiko atau bernilai 1. Logika ini diterapkan secara terpisah pada kolom \texttt{father\_health} menghasilkan \texttt{risk\_father}, dan pada kolom \texttt{mother\_health} menghasilkan \texttt{risk\_mother}.
+
+Kedua kolom biner tersebut kemudian dijumlahkan untuk menghasilkan satu kolom baru bernama \texttt{genetic\_risk\_score} dengan rentang nilai ordinal 0 hingga 2: nilai 0 berarti tidak ada orang tua yang memiliki riwayat penyakit, nilai 1 berarti satu orang tua berisiko, dan nilai 2 berarti kedua orang tua berisiko. Representasi ordinal ini dipilih untuk mempertahankan informasi tentang derajat risiko genetik sekaligus menyederhanakan dua variabel menjadi satu, sehingga mengurangi dimensi fitur tanpa kehilangan informasi substantif.
+ 
+\subsection{Pembentukan Label Target Hipertensi}
+ 
+Label target biner untuk klasifikasi hipertensi dibentuk berdasarkan kriteria diagnostik yang ditetapkan oleh Joint National Committee ke-7 dan World Health Organization. Menurut panduan ini, seseorang dikategorikan mengalami hipertensi apabila memenuhi setidaknya salah satu dari dua kondisi berikut: tekanan darah sistolik $\geq$ 140 mmHg atau tekanan darah diastolik $\geq$ 90 mmHg.
+ 
+ 
+
+\setlength{\parskip}{1em} 
+% \subsection{Penanganan \emph{Missing Value}}
+% Inspeksi \emph{missing value} pada dataset mengungkap dua kelompok fitur yang memerlukan penanganan khusus. Pertama, fitur \texttt{waist\_cm} (lingkar pinggang) memiliki 19.300 nilai kosong atau setara dengan 59,7\% dari total data. Meskipun persentase \emph{missing} yang tinggi ini sempat mempertimbangkan opsi penghapusan kolom, fitur ini dipertahankan mengingat relevansinya yang signifikan sebagai indikator klinis risiko hipertensi. Imputasi dilakukan menggunakan nilai median sebesar 83,6 cm, yang lebih kuat terhadap distribusi data yang miring dibandingkan nilai rata-rata.
+
+% Kedua, fitur psikososial \texttt{ps\_A}, \texttt{ps\_B}, \texttt{ps\_C}, \texttt{ps\_E}, dan \texttt{ps\_F} masing-masing memiliki 1.465 nilai kosong atau sebesar 4,5\%. Fitur-fitur ini memiliki skala ordinal 1 hingga 3, sehingga pengisian dengan nilai 0 yang diterapkan pada versi sebelumnya merupakan nilai di luar rentang skala yang valid dan berpotensi mengintroduksi \emph{noise} pada model. Oleh karena itu, imputasi dilakukan menggunakan median masing-masing kolom.
+
+% \subsection{Konversi Tipe Data}
+% Fitur \texttt{ak05} ditemukan bertipe \emph{object} (\emph{string}) pada dataset asli, yang menyebabkan fitur ini secara otomatis tereksklusi dari proses pemodelan pada implementasi sebelumnya. Konversi ke tipe numerik menggunakan \texttt{pd.to\_numeric(errors='coerce')} dilakukan untuk mengikutsertakan fitur ini, sehingga jumlah fitur aktif meningkat dari 15 menjadi 16 variabel.
+
+
+
+
+
+% \subsection{Normalisasi Data}
+% Normalisasi data menggunakan \texttt{StandardScaler} diterapkan secara selektif. Logistic Regression yang sensitif terhadap skala fitur menerima data yang telah dinormalisasi melalui mekanisme \emph{pipeline} dari sklearn. Sementara itu, model berbasis pohon keputusan seperti XGBoost tidak memerlukan normalisasi karena proses pembuatan percabangan pada algoritma tersebut didasarkan pada urutan peringkat nilai, bukan besar absolut nilainya. Penerapan normalisasi pada model berbasis pohon pada implementasi sebelumnya telah diperbaiki pada versi ini.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Profil Dataset Final}
+Setelah melalui proses pembersihan data, diperoleh dataset bersih sebagaimana dirangkum dalam Tabel \ref{tab:profil-dataset-final} berikut.
 
 \begin{table}[H]
     \centering
-    \caption{Profil Dataset}
-    \label{tab:profil-dataset}
+    \caption{Profil Dataset Final}
+    \label{tab:profil-dataset-final}
     \begin{tabular}{|p{4.5cm}|p{3.5cm}|p{5cm}|}
         \hline
-        \textbf{Karakteristik} & \textbf{Nilai} & \textbf{Keterangan} \\
+        \textbf{Karakteristik} & \textbf{Nilai} \\
         \hline
-        Total Sampel & 32.334 & Setelah pembersihan data \\
+        Total Sampel & 32.334  \\
         \hline
-        Jumlah Fitur Input & 16 & Fitur numerik aktif \\
+        Jumlah Fitur Input & 16  \\
         \hline
-        Kelas Positif (Hipertensi) & 8.939 (27,65\%) & Label = 1 \\
+        Kelas Positif (Hipertensi) & 8.939 (Label = 1)  \\
         \hline
-        Kelas Negatif (Sehat) & 23.395 (72,35\%) & Label = 0 \\
+        Kelas Negatif (Sehat) & 23.395 (Label = 0 ) \\
         \hline
-        Rasio Imbalance & 2,62 : 1 & Negatif : Positif \\
+        Rasio Imbalance & 2,62 : 1  \\
         \hline
-        Data Training & 25.867 (80\%) & \emph{Stratified split} \\
+        Data Training & 25.867 (80\%)  \\
         \hline
-        Data Pengujian & 6.467 (20\%) & \emph{Stratified split} \\
+        Data Pengujian & 6.467 (20\%)  \\
         \hline
     \end{tabular}
 \end{table}
 
-Dari Tabel \ref{tab:profil-dataset} terlihat bahwa proporsi kelas positif (hipertensi) sebesar 27,65\% dan kelas negatif (sehat) sebesar 72,35\%, dengan rasio ketidakseimbangan sebesar 2,62 : 1. Menurut kategorisasi \emph{imbalance} pada literatur Machine Learning, rasio ini tergolong dalam kategori \emph{moderate imbalance} (10-30\%), sehingga penanganan \emph{imbalance} tetap diperlukan namun tidak membutuhkan teknik \emph{resampling} yang agresif. Pembagian data dilakukan dengan proporsi 80\% untuk pelatihan dan 20\% untuk pengujian menggunakan \emph{stratified split} guna menjaga distribusi kelas pada kedua \emph{subset}.
+Berdasarkan Tabel V.1, proporsi kelas positif (hipertensi) tercatat sebesar 27,65\%, sedangkan kelas negatif (sehat) mendominasi dengan proporsi 72,35\%, sehingga menghasilkan rasio ketidakseimbangan sekitar 2,62:1. Merujuk pada literatur terkait pembelajaran pada data tidak seimbang, rasio ini tergolong dalam kategori ketidakseimbangan moderat (\textit{moderate imbalance}), di mana kelas minoritas berada pada rentang 10--30\% dari total observasi \cite{krawczyk2016}. Meskipun tidak dikategorikan sebagai ketidakseimbangan ekstrem, dominasi kelas negatif ini tetap berpotensi menggeser kecenderungan model untuk memprediksi kelas mayoritas, yang pada gilirannya dapat menurunkan sensitivitas deteksi kasus hipertensi. Oleh karena itu, penanganan untuk menyeimbangkan performa tetap diperlukan. Namun, mengingat tingkat ketidakseimbangan yang masih moderat, pendekatan algoritmik seperti pembobotan kelas (\textit{class weighting}) atau penyesuaian ambang batas (\textit{threshold adjustment}) dinilai lebih rasional. Pendekatan tersebut secara empiris lebih direkomendasikan dibandingkan dengan teknik \textit{resampling} yang agresif, seperti \textit{oversampling} atau \textit{undersampling}, yang rentan memicu terjadinya \textit{overfitting} maupun hilangnya informasi krusial dari struktur asli dataset \cite{he2009}.
 
+Pembagian data dilakukan dengan proporsi 80\% untuk data latih (\textit{training set}) dan 20\% untuk data uji (\textit{testing set}) menggunakan metode pemisahan bertingkat (\textit{stratified split}) guna menjaga distribusi kelas pada kedua subsampel. Penggunaan \textit{stratified split} bertujuan agar proporsi kelas hipertensi dan non-hipertensi pada data latih maupun data uji tetap merepresentasikan distribusi data asli, sehingga hasil evaluasi model menjadi lebih reliabel. Proporsi 80:20 dipilih karena dapat menyediakan jumlah data yang memadai untuk proses pembelajaran model, sekaligus mempertahankan ukuran sampel pengujian yang representatif untuk mengukur kemampuan generalisasi model secara objektif.
 \subsection{Deskripsi Fitur Input}
 Seluruh fitur yang digunakan dalam pemodelan merupakan variabel bertipe numerik. Fitur \texttt{ak05} yang semula bertipe \emph{object} (\emph{string}) dikonversi ke tipe numerik menggunakan \texttt{pd.to\_numeric()} dengan parameter \texttt{errors='coerce'} sebelum diikutsertakan dalam pemodelan. Deskripsi lengkap seluruh fitur input disajikan pada Tabel \ref{tab:deskripsi-fitur}.
 
@@ -50,60 +308,60 @@ Seluruh fitur yang digunakan dalam pemodelan merupakan variabel bertipe numerik.
     \caption{Deskripsi Fitur Input Model}
     \label{tab:deskripsi-fitur}
     \small
-    \begin{tabular}{|c|p{3.5cm}|p{4cm}|p{2cm}|p{3.5cm}|}
+    \begin{tabular}{|c|p{3.5cm}|p{4cm}|p{2cm}|p{4cm}|}
         \hline
-        \textbf{No} & \textbf{Nama Fitur} & \textbf{Deskripsi} & \textbf{Tipe Data} & \textbf{Penanganan \emph{Missing}} \\
+        \textbf{No} & \textbf{Nama Fitur} & \textbf{Deskripsi} & \textbf{Tipe Data} & \textbf{Keterangan} \\
         \hline
-        1 & \texttt{age} & Usia responden (tahun) & \texttt{float64} & -- \\
+        1 & \texttt{age} & Usia responden (tahun) & \texttt{float64} & - \\
         \hline
-        2 & \texttt{is\_female} & Jenis kelamin (1=P, 0=L) & \texttt{int64} & -- \\
+        2 & \texttt{is\_female} & Jenis kelamin & \texttt{int64} & 1 = Perempuan, 0 = Laki-laki \\
         \hline
-        3 & \texttt{bmi} & Body Mass Index & \texttt{float64} & -- \\
+        3 & \texttt{bmi} & \textit{Body Mass Index} & \texttt{float64} & Satuan: $kg/m^2$ \\
         \hline
-        4 & \texttt{waist\_cm} & Lingkar pinggang (cm) & \texttt{float64} & Imputasi median (83,6 cm) \\
+        4 & \texttt{waist\_cm} & Lingkar pinggang & \texttt{float64} & Satuan: cm \\
         \hline
-        5 & \texttt{is\_smoker} & Status merokok (0/1) & \texttt{int64} & -- \\
+        5 & \texttt{is\_smoker} & Status merokok & \texttt{int64} & 1 = Ya, 0 = Tidak \\
         \hline
-        6 & \texttt{freq\_instant\_noodle} & Frekuensi mie instan/minggu & \texttt{float64} & -- \\
+        6 & \texttt{freq\_instant\_noodle} & Frekuensi konsumsi mi instan & \texttt{float64} & Porsi per minggu \\
         \hline
-        7 & \texttt{ak02} & Intensitas aktivitas fisik & \texttt{float64} & -- \\
+        7 & \texttt{ak02} & Frekuensi aktivitas fisik berat & \texttt{float64} & Jumlah hari/minggu untuk aktivitas berat \\
         \hline
-        8 & \texttt{ak05} & Aktivitas fisik (converted) & \texttt{float64} & Konversi dari \emph{object} \\
+        8 & \texttt{ak05} & Frekuensi aktivitas fisik sedang & \texttt{float64} & Jumlah hari/minggu untuk aktivitas sedang \\
         \hline
-        9 & \texttt{ak07} & Durasi aktivitas fisik & \texttt{float64} & -- \\
+        9 & \texttt{ak07} & Durasi aktivitas fisik & \texttt{float64} & Total durasi waktu beraktivitas (menit/hari) \\
         \hline
-        10 & \texttt{has\_diabetes} & Riwayat diabetes (0/1) & \texttt{int64} & -- \\
+        10 & \texttt{has\_diabetes} & Riwayat diabetes & \texttt{int64} & 1 = Ya, 0 = Tidak \\
         \hline
-        11 & \texttt{genetic\_risk\_score} & Skor risiko genetik (0-2) & \texttt{int64} & -- \\
+        11 & \texttt{genetic\_risk\_score} & Skor risiko genetik & \texttt{int64} & Skala 0--2 \\
         \hline
-        12 & \texttt{ps\_A} & Faktor psikososial A (1-3) & \texttt{float64} & Imputasi median \\
+        12 & \texttt{ps\_A} & Komponen afektif CES-D (Rentannya ketahanan stres / \textit{Bothered by things}) & \texttt{float64} & Skala ordinal 1--3 \\
         \hline
-        13 & \texttt{ps\_B} & Faktor psikososial B (1-3) & \texttt{float64} & Imputasi median \\
+        13 & \texttt{ps\_B} & Komponen kognitif CES-D (Kesulitan konsentrasi / \textit{Trouble concentrating}) & \texttt{float64} & Skala ordinal 1--3 \\
         \hline
-        14 & \texttt{ps\_C} & Faktor psikososial C (1-3) & \texttt{float64} & Imputasi median \\
+        14 & \texttt{ps\_C} & Komponen afektif depresif CES-D (Kecenderungan disforia / \textit{Felt depressed}) & \texttt{float64} & Skala ordinal 1--3 \\
         \hline
-        15 & \texttt{ps\_E} & Faktor psikososial E (1-3) & \texttt{float64} & Imputasi median \\
+        15 & \texttt{ps\_E} & Komponen afektif positif CES-D (Tingkat optimisme / Felt hopeful - \textit{ini reverse scored}) & \texttt{float64} & Skala ordinal 1--3 \\
         \hline
-        16 & \texttt{ps\_F} & Faktor psikososial F (1-3) & \texttt{float64} & Imputasi median \\
+        16 & \texttt{ps\_F} & Komponen afektif kecemasan CES-D (Tingkat ketakutan/ansietas / \textit{Felt fearful}) & \texttt{float64} & Skala ordinal 1--3 \\
         \hline
     \end{tabular}
 \end{table}
 
-\section{Persiapan Data (\emph{Data Preparation})}
-Tahap persiapan data mencakup serangkaian proses transformasi dan pembersihan yang diperlukan sebelum data dapat digunakan untuk melatih model Machine Learning. Terdapat tiga isu utama yang diidentifikasi dan ditangani pada tahap ini.
+Model ini menggunakan variabel antropometri dan gaya hidup. 
+Peneliti juga menambahkan enam fitur psikososial, yaitu ps\_A hingga ps\_F. 
+Fitur ini berasal dari alat ukur \textit{Center for Epidemiologic Studies Depression Scale} (CES-D) pada modul kesehatan IFLS-5. 
+Indikator tersebut tidak hanya menggambarkan stres secara umum. 
+Fitur ini mengukur tiga komponen spesifik dari gejala depresi, yaitu: afektif, somatik, dan kognitif.
 
-\subsection{Penanganan \emph{Missing Value}}
-Inspeksi \emph{missing value} pada dataset mengungkap dua kelompok fitur yang memerlukan penanganan khusus. Pertama, fitur \texttt{waist\_cm} (lingkar pinggang) memiliki 19.300 nilai kosong atau setara dengan 59,7\% dari total data. Meskipun persentase \emph{missing} yang tinggi ini sempat mempertimbangkan opsi penghapusan kolom, fitur ini dipertahankan mengingat relevansinya yang signifikan sebagai indikator klinis risiko hipertensi. Imputasi dilakukan menggunakan nilai median sebesar 83,6 cm, yang lebih \emph{robust} terhadap distribusi data yang miring (\emph{skewed}) dibandingkan nilai rata-rata.
+Penggunaan skor psikologis ini memiliki dasar medis yang kuat. 
+Gejala depresi dan stres jangka panjang terbukti memicu gangguan fungsi tubuh. 
+Kondisi tersebut mengganggu sistem saraf simpatik dan poros \textit{Hypothalamic-Pituitary-Adrenal} (HPA). 
+Gangguan ini kemudian meningkatkan risiko tekanan darah tinggi atau hipertensi \cite{meng2012}. 
+Data klinis yang mendalam ini menaikkan akurasi prediksi model \textit{machine learning}. 
+Data ini juga menjadi dasar konteks medis yang penting untuk sistem \textit{Retrieval-Augmented Generation} (RAG). 
+Jadi, modul \textit{Explainable Artificial Intelligence} (XAI) dapat menjelaskan prediksi risiko kesehatan tersebut secara logis dan mendalam.
 
-Kedua, fitur psikososial \texttt{ps\_A}, \texttt{ps\_B}, \texttt{ps\_C}, \texttt{ps\_E}, dan \texttt{ps\_F} masing-masing memiliki 1.465 nilai kosong (4,5\%). Fitur-fitur ini memiliki skala ordinal 1 hingga 3, sehingga pengisian dengan nilai 0 yang diterapkan pada versi sebelumnya merupakan nilai di luar rentang skala yang valid dan berpotensi mengintroduksi \emph{noise} pada model. Oleh karena itu, imputasi dilakukan menggunakan median masing-masing kolom.
-
-\subsection{Konversi Tipe Data}
-Fitur \texttt{ak05} ditemukan bertipe \emph{object} (\emph{string}) pada dataset asli, yang menyebabkan fitur ini secara otomatis tereksklusi dari proses pemodelan pada implementasi sebelumnya. Konversi ke tipe numerik menggunakan \texttt{pd.to\_numeric(errors='coerce')} dilakukan untuk mengikutsertakan fitur ini, sehingga jumlah fitur aktif meningkat dari 15 menjadi 16 variabel.
-
-\subsection{Normalisasi Data}
-Normalisasi data menggunakan \texttt{StandardScaler} diterapkan secara selektif. Logistic Regression yang sensitif terhadap skala fitur menerima data yang telah dinormalisasi melalui mekanisme \emph{pipeline} dari sklearn. Sementara itu, model berbasis pohon keputusan seperti XGBoost tidak memerlukan normalisasi karena proses pembuatan percabangan pada algoritma tersebut didasarkan pada urutan peringkat nilai, bukan besar absolut nilainya. Penerapan normalisasi pada model berbasis pohon pada implementasi sebelumnya telah diperbaiki pada versi ini.
-
-\section{Pemodelan (\emph{Modeling})}
+\section{\emph{Modelling}}
 
 \subsection{Baseline Model}
 Sebagai titik awal eksperimen, tiga algoritma dilatih dengan konfigurasi dasar menggunakan \emph{threshold} keputusan \emph{default} sebesar 0,5. Hasil evaluasi \emph{baseline} disajikan pada Tabel \ref{tab:evaluasi-baseline}.
@@ -128,7 +386,7 @@ Sebagai titik awal eksperimen, tiga algoritma dilatih dengan konfigurasi dasar m
 Dari Tabel \ref{tab:evaluasi-baseline} terlihat bahwa Logistic Regression menghasilkan Recall tertinggi sebesar 70,19\%, sementara Random Forest mengalami penurunan Recall yang signifikan hingga 39,37\%. Anomali ini mengindikasikan bahwa mekanisme \emph{majority voting} pada Random Forest rentan terhadap dominasi kelas mayoritas meskipun telah dikonfigurasi dengan proporsi kelas seimbang. XGBoost yang belum melalui proses \emph{tuning} menghasilkan Recall 63,59\%, di bawah performa Logistic Regression. Seluruh model \emph{baseline} belum memenuhi target Recall sebesar lebih dari 90\% sebagaimana ditetapkan dalam NFR02.
 
 \subsection{Konfigurasi Model Final}
-Berdasarkan hasil analisis \emph{baseline}, Random Forest dikeluarkan dari eksperimen lanjutan karena performa Recall yang tidak kompetitif. Dua model yang dilanjutkan, yaitu Logistic Regression dan XGBoost, dikonfigurasi sebagai berikut:
+Berdasarkan hasil analisis \emph{baseline}, Random Forest dikeluarkan dari eksperimen lanjutan karena performa Recall yang tidak kompetitif. Dua model yang dilanjutkan, yaitu Logistic Regression dan XGBoost, dikonfigurasi sebagai berikut.
 
 Logistic Regression dikonfigurasi secara tertimbang untuk menangani ketidakseimbangan kelas, menggunakan regularisasi L2 yang lebih ketat dibanding nilai bawaannya, dan \emph{solver} \texttt{liblinear} yang sesuai untuk dataset berukuran sedang. Model ini diintegrasikan dalam \emph{pipeline} bersama \texttt{StandardScaler} untuk memastikan normalisasi diterapkan secara konsisten pada data latih dan data uji.
 

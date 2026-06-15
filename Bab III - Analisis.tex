@@ -21,7 +21,7 @@ Subbab-subbab dalam bab ini dapat disesuaikan dengan kebutuhan topik TA yang dib
 \section{Analisis Kondisi Saat Ini}
 Saat ini, prosedur diagnosis dan prediksi risiko hipertensi di fasilitas kesehatan maupun dalam penelitian epidemiologi sebagian besar masih bergantung pada pengukuran klinis konvensional dan penilaian manual oleh tenaga medis. Pasien umumnya datang ke fasilitas kesehatan, melakukan pengukuran tekanan darah (TD) sesaat, dan dokter akan melakukan anamnesis untuk menggali riwayat kesehatan serta faktor risiko. Data ini kemudian diolah berdasarkan pedoman klinis standar untuk menentukan status kesehatan pasien sebagaimana digambarkan pada Gambar III.1. Dalam praktiknya, pendekatan ini sering kali bersifat reaktif, di mana intervensi medis baru diberikan setelah pasien menunjukkan gejala klinis yang nyata atau tekanan darah yang sudah melampaui ambang batas normal secara persisten \autocite{Mills2020Global}.
 
-Keterbatasan waktu konsultasi dan kompleksitas interaksi antar faktor risiko sering menyebabkan penilaian risiko menjadi kurang komprehensif. Hal ini diperburuk dengan fakta bahwa hipertensi sering dijuluki sebagai \emph{silent killer}, di mana banyak pasien tidak menyadari kondisi mereka hingga terjadi komplikasi serius. Kebutuhan akan alat bantu prediksi yang lebih dini dan akurat memunculkan tren penggunaan algoritma Machine Learning (ML). Namun, penerapan model ML konvensional, seperti Neural Networks atau Ensemble Trees, sering kali menghadapi kendala transparansi. Model tersebut bekerja sebagai kotak hitam atau biasa disebut juga dengan black box, memberikan skor risiko tanpa disertai alasan medis yang jelas. Kondisi ini menciptakan keraguan di kalangan praktisi medis untuk mengadopsi hasil prediksi komputer dalam pengambilan keputusan klinis \autocite{Amann2020Explainability}.
+Keterbatasan waktu konsultasi dan kompleksitas interaksi antar faktor risiko sering menyebabkan penilaian risiko menjadi kurang komprehensif. Hal ini diperburuk dengan fakta bahwa hipertensi sering dijuluki sebagai \emph{silent killer}, di mana banyak pasien tidak menyadari kondisi mereka hingga terjadi komplikasi serius. Kebutuhan akan alat bantu prediksi yang lebih dini dan akurat memunculkan tren penggunaan algoritma \textit{machine learning}. Namun, penerapan model ML konvensional, seperti Neural Networks atau Ensemble Trees, sering kali menghadapi kendala transparansi. Model tersebut bekerja sebagai kotak hitam atau biasa disebut juga dengan \textit{black box}, memberikan skor risiko tanpa disertai alasan medis yang jelas. Kondisi ini menciptakan keraguan di kalangan praktisi medis untuk mengadopsi hasil prediksi komputer dalam pengambilan keputusan klinis \autocite{Amann2020Explainability}.
 
 \begin{figure}[H]
     \centering
@@ -33,8 +33,8 @@ Keterbatasan waktu konsultasi dan kompleksitas interaksi antar faktor risiko ser
 
 Dalam upaya mengatasi masalah transparansi tersebut, penelitian terkini mulai mengintegrasikan Explainable Artificial Intelligence (XAI). Meskipun demikian, luaran dari XAI umumnya masih berupa grafik fitur atau nilai matematis yang sulit dipahami oleh pasien awam. Kesenjangan komunikasi ini menjadi tantangan baru dalam menyampaikan risiko kesehatan kepada pasien secara efektif. Di sisi lain, kemunculan Large Language Model (LLM) menawarkan potensi untuk menarasikan data tersebut, namun penggunaannya yang tanpa pengawasan rentan menghasilkan informasi yang tidak valid atau halusinasi medis \autocite{Singhal2023Large}. Oleh karena itu, kondisi saat ini menunjukkan adanya fragmentasi antara kemampuan prediksi yang tinggi, kebutuhan akan transparansi (\emph{explainability}), dan penyajian informasi yang akurat secara medis.
 
-\subsection{Kesenjangan Transparansi dan Kepercayaan Klinis (Trust Gap)}
-Masalah paling fundamental dalam adopsi teknologi prediksi risiko saat ini terletak pada asimetri pemahaman antara cara kerja model komputasi dan logika klinis dokter. Model Machine Learning yang memiliki performa akurasi tinggi sering kali memiliki struktur internal yang sangat kompleks dan tidak dapat ditafsirkan secara langsung. Hal ini menciptakan dua hambatan utama dalam implementasi klinis:
+\subsection{Kesenjangan Transparansi dan Kepercayaan Klinis}
+Masalah paling fundamental dalam adopsi teknologi prediksi risiko saat ini terletak pada asimetri pemahaman antara cara kerja model komputasi dan logika klinis dokter. Model \textit{machine learning} yang memiliki performa akurasi tinggi sering kali memiliki struktur internal yang sangat kompleks dan tidak dapat ditafsirkan secara langsung. Hal ini menciptakan dua hambatan utama dalam implementasi klinis:
 
 \begin{enumerate}
     \item \textbf{Skeptisisme Tenaga Medis}\\
@@ -66,7 +66,7 @@ Pada konteks teknis pengolahan data, masalah diperparah dengan sifat data keseha
 \end{enumerate}
 
 \subsection{Identifikasi Kesenjangan (Gap Analysis)}
-Berdasarkan analisis kondisi saat ini, dilakukan pemetaan kesenjangan antara kondisi \emph{As-Is} (sistem konvensional/black box) dengan kondisi ideal \emph{To-Be} (sistem yang diusulkan) yang dirangkum dalam Tabel \ref{tab:gap-analysis} di bawah ini.
+Berdasarkan analisis kondisi saat ini, dilakukan pemetaan kesenjangan antara kondisi \emph{As-Is} (sistem konvensional/\textit{black box}) dengan kondisi ideal \emph{To-Be} (sistem yang diusulkan) yang dirangkum dalam Tabel \ref{tab:gap-analysis} di bawah ini.
 
 \begin{table}[H]
     \caption{Identifikasi Kesenjangan (Gap Analysis)}
@@ -77,7 +77,7 @@ Berdasarkan analisis kondisi saat ini, dilakukan pemetaan kesenjangan antara kon
         \hline
         \textbf{Domain Masalah} & \textbf{Kondisi Saat Ini (\emph{As-Is})} & \textbf{Kesenjangan (Gap)} & \textbf{Kondisi Ideal (\emph{To-Be})} \\
         \hline
-        Transparansi \& Kepercayaan & Model prediksi bekerja sebagai black box; pengguna hanya menerima skor risiko tanpa alasan penjelas. & Tidak adanya mekanisme untuk menelusuri alasan di balik prediksi dominan variabel. & Sistem menyediakan fitur visualisasi (XAI) yang menjelaskan variabel dominan penyebab risiko. \\
+        Transparansi \& Kepercayaan & Model prediksi bekerja sebagai \textit{black box}; pengguna hanya menerima skor risiko tanpa alasan penjelas. & Tidak adanya mekanisme untuk menelusuri alasan di balik prediksi dominan variabel. & Sistem menyediakan fitur visualisasi (XAI) yang menjelaskan variabel dominan penyebab risiko. \\
         \hline
         Validitas Informasi & Penjelasan risiko jika menggunakan LLM biasa masih rentan terhadap halusinasi dan tidak memiliki referensi yang jelas. & Risiko kesalahan informasi medis yang membahayakan keselamatan pasien. & Narasi penjelasan divalidasi oleh arsitektur RAG yang merujuk pada pedoman medis resmi (Kemenkes/WHO). \\
         \hline
@@ -86,7 +86,7 @@ Berdasarkan analisis kondisi saat ini, dilakukan pemetaan kesenjangan antara kon
     \end{tabular}
 \end{table}
 
-Analisis kesenjangan pada Tabel \ref{tab:gap-analysis} menggarisbawahi bahwa tantangan yang dihadapi tidak hanya sekadar meningkatkan akurasi angka prediksi, tetapi juga membangun jembatan komunikasi antara logika mesin dan pemahaman manusia. Secara kumulatif, kesenjangan ini menegaskan urgensi pengembangan sistem terintegrasi yang menggabungkan kekuatan prediksi Machine Learning, transparansi XAI, dan kemampuan naratif LLM yang diamankan oleh RAG. Untuk mewujudkan solusi tersebut, langkah selanjutnya adalah menerjemahkan temuan ini ke dalam analisis kebutuhan sistem yang terukur.
+Analisis kesenjangan pada Tabel \ref{tab:gap-analysis} menggarisbawahi bahwa tantangan yang dihadapi tidak hanya sekadar meningkatkan akurasi angka prediksi, tetapi juga membangun jembatan komunikasi antara logika mesin dan pemahaman manusia. Secara kumulatif, kesenjangan ini menegaskan urgensi pengembangan sistem terintegrasi yang menggabungkan kekuatan prediksi \textit{machine learning}, transparansi XAI, dan kemampuan naratif LLM yang diamankan oleh RAG. Untuk mewujudkan solusi tersebut, langkah selanjutnya adalah menerjemahkan temuan ini ke dalam analisis kebutuhan sistem yang terukur.
 
 \section{Analisis Kebutuhan}
 Dalam perancangan sistem pendukung keputusan klinis yang menggabungkan kecerdasan buatan dan interpretasi bahasa alami ini, diperlukan pemahaman mendalam terhadap kebutuhan pengguna serta spesifikasi teknis yang ketat. Mengingat domain kesehatan merupakan area yang sensitif terhadap keselamatan (\emph{safety-critical}), analisis kebutuhan tidak hanya berfokus pada akurasi komputasi, tetapi juga pada aspek kepercayaan, transparansi, dan validitas informasi yang disampaikan kepada pengguna \autocite{Amann2020Explainability}. Tahapan ini bertujuan menerjemahkan kesenjangan masalah yang telah diidentifikasi sebelumnya menjadi spesifikasi fungsional dan non-fungsional yang terukur.
@@ -99,7 +99,7 @@ Berdasarkan analisis konteks, pengguna potensial dari sistem ini dikategorikan m
     Tantangan utama yang dihadapi pasien adalah ketidakmampuan untuk memahami terminologi medis yang kompleks dan angka probabilitas statistik yang dihasilkan oleh alat kesehatan konvensional. Pasien sering kali menerima hasil diagnosis atau prediksi risiko tanpa penjelasan kausalitas yang memadai mengenai faktor gaya hidup apa yang memicu risiko tersebut \autocite{Tjoa2021Survey}. Selain itu, kurangnya akses terhadap informasi kesehatan yang terpersonalisasi membuat pasien kesulitan menentukan langkah mitigasi mandiri yang tepat tanpa harus berkonsultasi panjang dengan dokter.
     
     \item \textbf{Tenaga Medis Profesional}\\
-    Dokter dan tenaga kesehatan menghadapi kendala dalam mengadopsi teknologi Machine Learning karena sifat black box dari algoritma tersebut. Tanpa adanya transparansi mengenai bagaimana model mengambil keputusan, tenaga medis sulit untuk memvalidasi apakah prediksi tersebut didasarkan pada logika medis yang benar atau hanya korelasi data yang bias \autocite{Linardatos2021Explainable}. Hal ini mengakibatkan keraguan dalam menggunakan hasil prediksi AI sebagai dasar pengambilan keputusan klinis, serta menambah beban kognitif dokter untuk menjelaskan risiko kepada pasien secara manual.
+    Dokter dan tenaga kesehatan menghadapi kendala dalam mengadopsi teknologi \textit{machine learning} karena sifat \textit{black box} dari algoritma tersebut. Tanpa adanya transparansi mengenai bagaimana model mengambil keputusan, tenaga medis sulit untuk memvalidasi apakah prediksi tersebut didasarkan pada logika medis yang benar atau hanya korelasi data yang bias \autocite{Linardatos2021Explainable}. Hal ini mengakibatkan keraguan dalam menggunakan hasil prediksi AI sebagai dasar pengambilan keputusan klinis, serta menambah beban kognitif dokter untuk menjelaskan risiko kepada pasien secara manual.
 \end{enumerate}
 
 Untuk mengatasi permasalahan tersebut, maka dirumuskan sistem yang tidak hanya mampu memprediksi risiko hipertensi dengan akurasi tinggi, tetapi juga mampu menjelaskan alasan di balik prediksi tersebut menggunakan bahasa alami yang merujuk pada pedoman medis standar.
@@ -173,7 +173,7 @@ Permasalahan multidimensi yang muncul dalam lingkup diagnosis dan prediksi hiper
         \hline
         \textbf{ID} & \textbf{Nama Masalah} &\textbf{Deskripsi Masalah} & \textbf{Dampak} \\
         \hline
-        M01 & Fenomena black box pada Model Prediksi & Model Machine Learning konvensional menghasilkan skor risiko tanpa menyertakan alasan medis yang mendasarinya. & Terjadi defisit kepercayaan (\emph{trust deficit}) dari tenaga medis untuk menggunakan hasil prediksi dalam pengambilan keputusan klinis. \\
+        M01 & Fenomena \textit{black box} pada Model Prediksi & Model \textit{machine learning} konvensional menghasilkan skor risiko tanpa menyertakan alasan medis yang mendasarinya. & Terjadi defisit kepercayaan (\emph{trust deficit}) dari tenaga medis untuk menggunakan hasil prediksi dalam pengambilan keputusan klinis. \\
         \hline
         M02 & Inkomprehensibilitas bagi Pasien Awam & Luaran sistem prediksi berupa angka probabilitas atau grafik statistik sulit dipahami oleh pasien tanpa latar belakang medis. & Pasien gagal memahami urgensi kondisi kesehatan mereka yang berpotensi menyebabkan rendahnya kepatuhan. \\
         \hline
@@ -219,7 +219,7 @@ Berdasarkan pemetaan masalah dan peluang tersebut, penulis mengevaluasi berbagai
         \hline
         1. & Sistem Pakar Berbasis Aturan (Rule-Based System) & Sangat transparan dan mudah diaudit karena logika diprogram secara eksplisit. & Sangat kaku (\emph{rigid}), tidak mampu menangkap pola non-linier yang kompleks, dan sulit diperbarui. \\
         \hline
-        2. & Pure Machine Learning  & Mampu mencapai akurasi prediksi yang sangat tinggi pada dataset besar dan menangkap pola rumit. & Tidak memiliki interpretabilitas keputusan (alasan tidak diketahui), sehingga sulit diterima dalam praktik klinis. \\
+        2. & Pure \textit{Machine Learning}  & Mampu mencapai akurasi prediksi yang sangat tinggi pada dataset besar dan menangkap pola rumit. & Tidak memiliki interpretabilitas keputusan (alasan tidak diketahui), sehingga sulit diterima dalam praktik klinis. \\
         \hline
         3. & Chatbot LLM dengan (Direct Prompting) & Interaksi sangat natural dan mampu memberikan penjelasan panjang lebar. & Rentan halusinasi medis (fakta yang salah), tidak deterministik, dan sulit memproses numerik presisi. \\
         \hline
@@ -231,7 +231,7 @@ Berdasarkan pemetaan masalah dan peluang tersebut, penulis mengevaluasi berbagai
 Tabel \ref{tab:alternatif-solusi} di atas menunjukkan bahwa setiap pendekatan memiliki \emph{trade-off} tersendiri. Pemilihan solusi harus memprioritaskan keselamatan pasien dan kegunaan klinis di atas kemudahan pengembangan semata. Penentuan solusi final akan dikalkulasi secara objektif pada subbab selanjutnya.
 
 \subsection{Analisis Penentuan Solusi}
-Dalam menentukan pendekatan teknis yang paling optimal untuk sistem prediksi risiko hipertensi ini, penulis melakukan evaluasi kuantitatif menggunakan metode \emph{Weighted Scoring Matrix} (WSM). WSM adalah teknik pengambilan keputusan yang memberikan bobot prioritas pada kriteria tertentu untuk membandingkan alternatif solusi secara objektif \autocite{Ouchra2021Comparative}. Metode ini dipilih karena fleksibilitasnya dalam mengakomodasi kriteria teknis seperti akurasi dan kriteria kualitatif seperti kepercayaan pengguna dalam satu kerangka evaluasi.
+Dalam menentukan pendekatan teknis yang paling optimal untuk sistem prediksi risiko hipertensi ini, penulis melakukan evaluasi kuantitatif menggunakan metode \emph{Weighted Scoring Matrix} (WSM). WSM adalah teknik pengambilan keputusan yang memberikan bobot prioritas pada kriteria tertentu untuk membandingkan alternatif solusi secara objektif. Metode ini dipilih karena fleksibilitasnya dalam mengakomodasi kriteria teknis seperti akurasi dan kriteria kualitatif seperti kepercayaan pengguna dalam satu kerangka evaluasi.
 
 Parameter penilaian didasarkan pada kebutuhan nonfungsional sistem medis yang kritis. Setiap alternatif solusi diberi nilai skala 1 hingga 5, di mana nilai 1 merepresentasikan performa sangat buruk dan nilai 5 merepresentasikan performa sangat baik. Adapun perhitungan skor akhir yang diperoleh dari perkalian nilai dengan bobot prioritas dijabarkan pada Tabel \ref{tab:pemilihan-solusi}.
 
@@ -242,7 +242,7 @@ Parameter penilaian didasarkan pada kebutuhan nonfungsional sistem medis yang kr
     \small
     \begin{tabular}{|p{3cm}|p{1cm}|p{2cm}|p{2.2cm}|p{2.2cm}|p{2.5cm}|}
         \hline
-        \textbf{Parameter} & \textbf{Bobot} & \textbf{Rule-Based System} & \textbf{Pure ML (Black Box)} & \textbf{LLM Chatbot (Direct)} & \textbf{Hybrid System (ML+XAI+RAG)} \\
+        \textbf{Parameter} & \textbf{Bobot} & \textbf{Rule-Based System} & \textbf{Pure ML (\textit{black box})} & \textbf{LLM Chatbot (Direct)} & \textbf{Hybrid System (ML+XAI+RAG)} \\
         \hline
         Keamanan Medis & 0,25 & 5 & 5 & 2 & 5 \\
         \hline
