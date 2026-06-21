@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.4) (preloaded format=xelatex 2025.10.28)  15 JUN 2026 18:37
+This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.4) (preloaded format=xelatex 2025.10.28)  21 JUN 2026 12:21
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1061,7 +1061,7 @@ Package csquotes Info: Redefining alias 'default' -> 'fallback'.
 (C:\Users\Samuel\AppData\Local\Programs\MiKTeX\tex/generic/babel/locale/en\babe
 l-english.tex)
 Package babel Info: Importing data for english
-(babel)             from babel-en.ini. Reported on input line 64.
+(babel)             from babel-en.ini. Reported on input line 70.
 )
 \openout1 = `TA.aux'.
 
@@ -1255,21 +1255,7 @@ Package biblatex Info: ... file 'TA.bbl' found.
 
 Package biblatex Warning: The following entry could not be found
 (biblatex)                in the database:
-(biblatex)                Chen2023Benchmarking
-(biblatex)                Please verify the spelling and rerun
-(biblatex)                LaTeX afterwards.
-
-
-Package biblatex Warning: The following entry could not be found
-(biblatex)                in the database:
 (biblatex)                ElSalamony2023Comparative
-(biblatex)                Please verify the spelling and rerun
-(biblatex)                LaTeX afterwards.
-
-
-Package biblatex Warning: The following entry could not be found
-(biblatex)                in the database:
-(biblatex)                Liu2024Evaluating
 (biblatex)                Please verify the spelling and rerun
 (biblatex)                LaTeX afterwards.
 
@@ -1390,7 +1376,7 @@ Package geometry Warning: `a4paper': not available in `\newgeometry'; skipped.
 
 
 ] (TA.toc
-Overfull \hbox (6.5578pt too wide) in paragraph at lines 106--106
+Overfull \hbox (6.5578pt too wide) in paragraph at lines 116--116
  [][] [][][]\TU/TimesNewRoman(0)/m/n/12 Local Interpretable Model-agnostic Expl
 anations (LI- 
  []
@@ -1478,14 +1464,15 @@ Overfull \hbox (16.93071pt too wide) in alignment at lines 15--104
 ] (Bab I - Pendahuluan.tex
 Bab I.
 
-Package biblatex-chicago Warning: Empty Ibidem citation on input line 13.
-
-
 
 [1
 
 
 ]
+
+Package biblatex-chicago Warning: Empty Ibidem citation on input line 15.
+
+
 
 [2]
 
@@ -1539,7 +1526,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [15]
 
-LaTeX Warning: Citation 'Molnar2025Interpretable' on page 16 undefined on input
+LaTeX Warning: Citation 'molnar2025interpretable' on page 16 undefined on input
  line 126.
 
 
@@ -1588,22 +1575,15 @@ Package biblatex-chicago Warning: Empty Ibidem citation on input line 214.
 
 
 [21]
-
-Package biblatex-chicago Warning: Empty Ibidem citation on input line 221.
-
 File: images/ImplementasiRAG.png Graphic file (type bmp)
 <images/ImplementasiRAG.png>
+
 
 Package biblatex-chicago Warning: Empty Ibidem citation on input line 236.
 
 
 
 [22]
-
-LaTeX Warning: Citation 'Chen2024Benchmarking' on page 23 undefined on input li
-ne 241.
-
-
 Overfull \hbox (9.53241pt too wide) in paragraph at lines 243--244
 \TU/TimesNewRoman(0)/m/n/12 sarkan fokus evaluasinya yang terbagi menjadi metri
 k berbasis komponen (\TU/TimesNewRoman(0)/m/it/12 component-
@@ -1616,11 +1596,6 @@ File: images/RAGASEvaluation.png Graphic file (type bmp)
 [23]
 File: images/AlurKerjaRAGAS.png Graphic file (type bmp)
 <images/AlurKerjaRAGAS.png>
-
-
-LaTeX Warning: Citation 'Chen2024Benchmarking' on page 24 undefined on input li
-ne 277.
-
 
 
 [24]
@@ -1642,11 +1617,6 @@ Overfull \hbox (68.22633pt too wide) in alignment at lines 301--306
  []
 
 
-Overfull \hbox (398.3386pt too wide) detected at line 308
-[]
- []
-
-
 Overfull \hbox (68.22633pt too wide) in alignment at lines 306--312
 [] [] [] [] []
  []
@@ -1662,227 +1632,126 @@ Overfull \hbox (68.22633pt too wide) in alignment at lines 316--319
  []
 
 
-LaTeX Warning: Citation 'ElSalamony2023Comparative' on page 26 undefined on inp
-ut line 321.
+LaTeX Warning: Citation 'Inyang2026' on page 26 undefined on input line 321.
 
 
-Underfull \hbox (badness 6236) in paragraph at lines 321--321
-[]|\TU/TimesNewRoman(0)/m/n/12 Ensemble Learning
+Underfull \hbox (badness 10000) in paragraph at lines 321--321
+[]|\TU/TimesNewRoman(0)/m/n/12 A Comparative
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 321--321
-\TU/TimesNewRoman(0)/m/n/12 for Hyperten-
+\TU/TimesNewRoman(0)/m/n/12 Study of Machine
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 321--321
-\TU/TimesNewRoman(0)/m/n/12 sion Prediction
+\TU/TimesNewRoman(0)/m/n/12 Learning Models
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 321--321
-\TU/TimesNewRoman(0)/m/n/12 Using Explaina-
+\TU/TimesNewRoman(0)/m/n/12 for Hypertension
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 321--321
-\TU/TimesNewRoman(0)/m/n/12 ble Machine Le-
+\TU/TimesNewRoman(0)/m/n/12 Risk Assessment
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 321--321
-\TU/TimesNewRoman(0)/m/n/12 arning Techniques
+\TU/TimesNewRoman(0)/m/n/12 With Explainable
  []
 
 
-Overfull \hbox (61.34554pt too wide) in paragraph at lines 321--321
-\TU/TimesNewRoman(0)/m/n/12 ([])| 
+Underfull \hbox (badness 10000) in paragraph at lines 321--321
+\TU/TimesNewRoman(0)/m/n/12 Artificial Intelli-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 322--322
-[]|\TU/TimesNewRoman(0)/m/n/12 Menggunakan pen-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 322--322
-\TU/TimesNewRoman(0)/m/n/12 dekatan ensemble
+Underfull \hbox (badness 10000) in paragraph at lines 321--321
+\TU/TimesNewRoman(0)/m/n/12 gence Integration
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 322--322
-\TU/TimesNewRoman(0)/m/n/12 learning berbasis
- []
-
-
-Underfull \hbox (badness 2884) in paragraph at lines 322--322
-\TU/TimesNewRoman(0)/m/n/12 gabungkan Logistic
- []
-
-
-Underfull \hbox (badness 4391) in paragraph at lines 322--322
-\TU/TimesNewRoman(0)/m/n/12 al Neural Network
+[]|\TU/TimesNewRoman(0)/m/n/12 Tinjauan sistematis
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 322--322
-\TU/TimesNewRoman(0)/m/n/12 (ANN), Random
+\TU/TimesNewRoman(0)/m/n/12 dan eksperimen
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 322--322
-\TU/TimesNewRoman(0)/m/n/12 Forest (RF), Li-
+\TU/TimesNewRoman(0)/m/n/12 awal penggunaan
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 322--322
-\TU/TimesNewRoman(0)/m/n/12 ghtGBM (LGBM),
+\TU/TimesNewRoman(0)/m/n/12 model berbasis
  []
 
 
-Underfull \hbox (badness 1540) in paragraph at lines 322--322
-\TU/TimesNewRoman(0)/m/n/12 dan XGBoost. In-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 322--322
-\TU/TimesNewRoman(0)/m/n/12 terpretasi model
+Underfull \hbox (badness 3460) in paragraph at lines 322--322
+\TU/TimesNewRoman(0)/m/n/12 Transformer (LLM)
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 322--322
-\TU/TimesNewRoman(0)/m/n/12 dilakukan menggu-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 322--322
-\TU/TimesNewRoman(0)/m/n/12 (SHapley Additive
- []
-
-
-Underfull \hbox (badness 2237) in paragraph at lines 322--322
-\TU/TimesNewRoman(0)/m/n/12 exPlanations) untuk
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 322--322
-\TU/TimesNewRoman(0)/m/n/12 mengidentifikasi
- []
-
-
-Underfull \hbox (badness 5175) in paragraph at lines 322--322
-\TU/TimesNewRoman(0)/m/n/12 faktor risiko hiper-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 322--322
-\TU/TimesNewRoman(0)/m/n/12 tensi yang paling
+\TU/TimesNewRoman(0)/m/n/12 untuk dukungan
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 323--323
-[]|\TU/TimesNewRoman(0)/m/n/12 Model stacking
+[]|\TU/TimesNewRoman(0)/m/n/12 LLM mampu me-
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 323--323
-\TU/TimesNewRoman(0)/m/n/12 menghasilkan
+\TU/TimesNewRoman(0)/m/n/12 nyintesis informasi
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 323--323
-\TU/TimesNewRoman(0)/m/n/12 performa terbaik
+\TU/TimesNewRoman(0)/m/n/12 medis kompleks
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 323--323
-\TU/TimesNewRoman(0)/m/n/12 dengan akurasi
+\TU/TimesNewRoman(0)/m/n/12 mudah dipahami
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 323--323
-\TU/TimesNewRoman(0)/m/n/12 96,32%, precision
+\TU/TimesNewRoman(0)/m/n/12 oleh pasien dan
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 323--323
-\TU/TimesNewRoman(0)/m/n/12 95,48%, recall
+Underfull \hbox (badness 6859) in paragraph at lines 324--325
+\TU/TimesNewRoman(0)/m/n/12 data pelatihan dan
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 323--323
-\TU/TimesNewRoman(0)/m/n/12 97,51%, F1-score
+Underfull \hbox (badness 10000) in paragraph at lines 324--325
+\TU/TimesNewRoman(0)/m/n/12 ”halusinasi” fakta,
  []
 
 
-Underfull \hbox (badness 3386) in paragraph at lines 323--323
-\TU/TimesNewRoman(0)/m/n/12 96,48%, dan AUC
+Underfull \hbox (badness 10000) in paragraph at lines 324--325
+\TU/TimesNewRoman(0)/m/n/12 serta belum diin-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 323--323
-\TU/TimesNewRoman(0)/m/n/12 0,971. Analisis
+Underfull \hbox (badness 10000) in paragraph at lines 324--325
+\TU/TimesNewRoman(0)/m/n/12 tegrasikan secara
  []
 
 
-Underfull \hbox (badness 1990) in paragraph at lines 323--323
-\TU/TimesNewRoman(0)/m/n/12 bahwa berat badan,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 323--323
-\TU/TimesNewRoman(0)/m/n/12 konsumsi alkohol,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 323--323
-\TU/TimesNewRoman(0)/m/n/12 riwayat hipertensi,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 323--323
-\TU/TimesNewRoman(0)/m/n/12 konsumsi garam,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 323--323
-\TU/TimesNewRoman(0)/m/n/12 dan konsumsi le-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 323--323
-\TU/TimesNewRoman(0)/m/n/12 mak merupakan
- []
-
-
-Underfull \hbox (badness 2096) in paragraph at lines 323--323
-\TU/TimesNewRoman(0)/m/n/12 faktor risiko utama
- []
-
-
-Underfull \hbox (badness 4024) in paragraph at lines 324--325
-[]|\TU/TimesNewRoman(0)/m/n/12 Jumlah data relatif
- []
-
-
-Underfull \hbox (badness 5133) in paragraph at lines 324--325
-\TU/TimesNewRoman(0)/m/n/12 kecil yaitu sebesar
- []
-
-
-Underfull \hbox (badness 2644) in paragraph at lines 324--325
-\TU/TimesNewRoman(0)/m/n/12 612 responden dan
- []
-
-
-Underfull \hbox (badness 6220) in paragraph at lines 324--325
-\TU/TimesNewRoman(0)/m/n/12 memiliki ketidakse-
- []
-
-
-Underfull \hbox (badness 3302) in paragraph at lines 324--325
-\TU/TimesNewRoman(0)/m/n/12 cukup besar antara
+Underfull \hbox (badness 10000) in paragraph at lines 324--325
+\TU/TimesNewRoman(0)/m/n/12 prediksi hipertensi
  []
 
 
@@ -2086,17 +1955,23 @@ Underfull \hbox (badness 2961) in paragraph at lines 329--330
  []
 
 
-LaTeX Warning: Citation 'tazarv2021deep' on page 26 undefined on input line 331
-.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 331--331
-\TU/TimesNewRoman(0)/m/n/12 roaches for Blood
+[]|\TU/TimesNewRoman(0)/m/n/12 Deep Learning
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 331--331
-\TU/TimesNewRoman(0)/m/n/12 Pressure Prediction
+\TU/TimesNewRoman(0)/m/n/12 Approaches for
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 331--331
+\TU/TimesNewRoman(0)/m/n/12 Blood Pressure
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 331--331
+\TU/TimesNewRoman(0)/m/n/12 Prediction ([][][]Tazarv
  []
 
 
@@ -2271,27 +2146,47 @@ Underfull \hbox (badness 10000) in paragraph at lines 341--341
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 342--342
-[]|\TU/TimesNewRoman(0)/m/n/12 Mengkomparasi 5
+[]|\TU/TimesNewRoman(0)/m/n/12 Mengkomparasi
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 342--342
-\TU/TimesNewRoman(0)/m/n/12 LightGBM dan
+\TU/TimesNewRoman(0)/m/n/12 5 algoritma yaitu
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 342--342
-\TU/TimesNewRoman(0)/m/n/12 XGBoost) pada
+\TU/TimesNewRoman(0)/m/n/12 XGBoost, Li-
  []
 
 
-Underfull \hbox (badness 3179) in paragraph at lines 342--342
-\TU/TimesNewRoman(0)/m/n/12 9,58 juta data SA-
+Underfull \hbox (badness 3148) in paragraph at lines 342--342
+\TU/TimesNewRoman(0)/m/n/12 ghtGBM, CatBoost,
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 342--342
-\TU/TimesNewRoman(0)/m/n/12 TUSEHAT dengan
+\TU/TimesNewRoman(0)/m/n/12 Logistic Regres-
+ []
+
+
+Underfull \hbox (badness 5175) in paragraph at lines 342--342
+\TU/TimesNewRoman(0)/m/n/12 sion, dan Random
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 342--342
+\TU/TimesNewRoman(0)/m/n/12 Forest pada 9,58
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 342--342
+\TU/TimesNewRoman(0)/m/n/12 juta data SATU-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 342--342
+\TU/TimesNewRoman(0)/m/n/12 SEHAT dengan
  []
 
 
@@ -2320,23 +2215,23 @@ Underfull \hbox (badness 10000) in paragraph at lines 343--343
  []
 
 
-Underfull \hbox (badness 1072) in paragraph at lines 343--343
-\TU/TimesNewRoman(0)/m/n/12 0,78 (tanpa riwayat
+Underfull \hbox (badness 4416) in paragraph at lines 343--343
+\TU/TimesNewRoman(0)/m/n/12 0,78 tanpa riwayat
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 343--343
-\TU/TimesNewRoman(0)/m/n/12 pasien) dan 0,85
+\TU/TimesNewRoman(0)/m/n/12 Usia dan lingkar
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 343--343
-\TU/TimesNewRoman(0)/m/n/12 dan lingkar ping-
+\TU/TimesNewRoman(0)/m/n/12 pinggang menja-
  []
 
 
-Underfull \hbox (badness 5119) in paragraph at lines 343--343
-\TU/TimesNewRoman(0)/m/n/12 gang menjadi fitur
+Underfull \hbox (badness 10000) in paragraph at lines 343--343
+\TU/TimesNewRoman(0)/m/n/12 di fitur prediktor
  []
 
 
@@ -2387,7 +2282,7 @@ Bab III.
 File: images/gambar1.png Graphic file (type bmp)
 <images/gambar1.png>
 
-Overfull \hbox (2.05078pt too wide) in paragraph at lines 34--35
+Overfull \hbox (2.05078pt too wide) in paragraph at lines 36--37
 []\TU/TimesNewRoman(0)/m/n/12 Dalam upaya mengatasi masalah transparansi terseb
 ut, penelitian terkini mulai meng-
  []
@@ -2397,104 +2292,104 @@ ut, penelitian terkini mulai meng-
 [30]
 
 [31]
-Overfull \hbox (0.90555pt too wide) in paragraph at lines 61--63
+Overfull \hbox (0.90555pt too wide) in paragraph at lines 63--65
 \TU/TimesNewRoman(0)/m/n/12 Metode statistik tradisional sering gagal menangkap
  hubungan non-linier yang
  []
 
 
-Underfull \hbox (badness 2343) in paragraph at lines 78--78
+Underfull \hbox (badness 2343) in paragraph at lines 80--80
 []|\TU/TimesNewRoman(0)/b/n/10.95 Domain Masa-
  []
 
 
-Underfull \hbox (badness 1990) in paragraph at lines 80--80
+Underfull \hbox (badness 1990) in paragraph at lines 82--82
 []|\TU/TimesNewRoman(0)/m/n/10.95 Transparansi &
  []
 
 
-Underfull \hbox (badness 1043) in paragraph at lines 80--80
+Underfull \hbox (badness 1043) in paragraph at lines 82--82
 \TU/TimesNewRoman(0)/m/n/10.95 ja sebagai \TU/TimesNewRoman(0)/m/it/10.95 black
  box\TU/TimesNewRoman(0)/m/n/10.95 ;
  []
 
 
-Underfull \hbox (badness 1769) in paragraph at lines 80--80
+Underfull \hbox (badness 1769) in paragraph at lines 82--82
 \TU/TimesNewRoman(0)/m/n/10.95 me untuk menelusuri
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 80--81
+Underfull \hbox (badness 10000) in paragraph at lines 82--83
 []|\TU/TimesNewRoman(0)/m/n/10.95 Sistem menyediakan
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 80--81
+Underfull \hbox (badness 10000) in paragraph at lines 82--83
 \TU/TimesNewRoman(0)/m/n/10.95 yang menjelaskan
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 80--81
+Underfull \hbox (badness 10000) in paragraph at lines 82--83
 \TU/TimesNewRoman(0)/m/n/10.95 variabel dominan
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 82--82
+Underfull \hbox (badness 10000) in paragraph at lines 84--84
 []|\TU/TimesNewRoman(0)/m/n/10.95 Validitas Infor-
  []
 
 
-Underfull \hbox (badness 1009) in paragraph at lines 82--82
+Underfull \hbox (badness 1009) in paragraph at lines 84--84
 []|\TU/TimesNewRoman(0)/m/n/10.95 Penjelasan risiko jika
  []
 
 
-Underfull \hbox (badness 3396) in paragraph at lines 82--82
+Underfull \hbox (badness 3396) in paragraph at lines 84--84
 \TU/TimesNewRoman(0)/m/n/10.95 bahayakan keselamat-
  []
 
 
-Underfull \hbox (badness 3525) in paragraph at lines 82--83
+Underfull \hbox (badness 3525) in paragraph at lines 84--85
 []|\TU/TimesNewRoman(0)/m/n/10.95 Narasi penjelasan di-
  []
 
 
-Underfull \hbox (badness 1199) in paragraph at lines 84--84
+Underfull \hbox (badness 1199) in paragraph at lines 86--86
 []|\TU/TimesNewRoman(0)/m/n/10.95 Akurasi & Per-
  []
 
 
-Underfull \hbox (badness 2556) in paragraph at lines 84--84
+Underfull \hbox (badness 2556) in paragraph at lines 86--86
 \TU/TimesNewRoman(0)/m/n/10.95 reaktif dan generalis;
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 84--84
+Underfull \hbox (badness 10000) in paragraph at lines 86--86
 []|\TU/TimesNewRoman(0)/m/n/10.95 Rendahnya sensiti-
  []
 
 
-Underfull \hbox (badness 7759) in paragraph at lines 84--84
+Underfull \hbox (badness 7759) in paragraph at lines 86--86
 \TU/TimesNewRoman(0)/m/n/10.95 vitas terhadap profil
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 84--85
+Underfull \hbox (badness 10000) in paragraph at lines 86--87
 []|\TU/TimesNewRoman(0)/m/n/10.95 Model ML mampu
  []
 
 
-Underfull \hbox (badness 4279) in paragraph at lines 84--85
+Underfull \hbox (badness 4279) in paragraph at lines 86--87
 \TU/TimesNewRoman(0)/m/n/10.95 narasi personal yang
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 84--85
+Underfull \hbox (badness 10000) in paragraph at lines 86--87
 \TU/TimesNewRoman(0)/m/n/10.95 mudah dipahami
  []
 
 
-Overfull \hbox (21.54718pt too wide) in paragraph at lines 76--87
+Overfull \hbox (21.54718pt too wide) in paragraph at lines 78--89
  [][] 
  []
 
@@ -2506,24 +2401,27 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [32]
 
 [33]
-Underfull \hbox (badness 2653) in paragraph at lines 125--126
+Underfull \hbox (badness 2653) in paragraph at lines 127--128
 []|\TU/TimesNewRoman(0)/m/n/10.95 Sistem mampu menerjemahkan hasil analisis
  []
 
 
-Overfull \hbox (23.37357pt too wide) in paragraph at lines 115--130
+Overfull \hbox (23.37357pt too wide) in paragraph at lines 117--132
  [][] 
  []
 
 
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 
 [34]
-Underfull \hbox (badness 10000) in paragraph at lines 144--144
+Underfull \hbox (badness 10000) in paragraph at lines 146--146
 []|\TU/TimesNewRoman(0)/b/n/10.95 Kebutuhan Non-
  []
 
 
-Overfull \hbox (23.37357pt too wide) in paragraph at lines 142--157
+Overfull \hbox (23.37357pt too wide) in paragraph at lines 144--159
  [][] 
  []
 
@@ -2533,155 +2431,155 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [35]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 6047) has occurred while \output is active []
 
 
 
 [36]
-Underfull \hbox (badness 3803) in paragraph at lines 176--176
+Underfull \hbox (badness 3803) in paragraph at lines 178--178
 []|\TU/TimesNewRoman(0)/m/n/10.95 Fenomena \TU/TimesNewRoman(0)/m/it/10.95 blac
 k box
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 176--176
+Underfull \hbox (badness 10000) in paragraph at lines 178--178
 []|\TU/TimesNewRoman(0)/m/n/10.95 Model \TU/TimesNewRoman(0)/m/it/10.95 machine
  learning
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 176--176
+Underfull \hbox (badness 10000) in paragraph at lines 178--178
 \TU/TimesNewRoman(0)/m/n/10.95 konvensional menghasilkan
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 176--176
+Underfull \hbox (badness 10000) in paragraph at lines 178--178
 \TU/TimesNewRoman(0)/m/n/10.95 skor risiko tanpa menyer-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 176--176
+Underfull \hbox (badness 10000) in paragraph at lines 178--178
 \TU/TimesNewRoman(0)/m/n/10.95 takan alasan medis yang
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 178--178
+Underfull \hbox (badness 10000) in paragraph at lines 180--180
 []|\TU/TimesNewRoman(0)/m/n/10.95 Inkomprehensibilitas
  []
 
 
-Underfull \hbox (badness 1430) in paragraph at lines 178--178
+Underfull \hbox (badness 1430) in paragraph at lines 180--180
 []|\TU/TimesNewRoman(0)/m/n/10.95 Luaran sistem prediksi ber-
  []
 
 
-Underfull \hbox (badness 1960) in paragraph at lines 178--179
+Underfull \hbox (badness 1960) in paragraph at lines 180--181
 []|\TU/TimesNewRoman(0)/m/n/10.95 Pasien gagal memahami
  []
 
 
-Underfull \hbox (badness 4036) in paragraph at lines 178--179
+Underfull \hbox (badness 4036) in paragraph at lines 180--181
 \TU/TimesNewRoman(0)/m/n/10.95 urgensi kondisi kesehat-
  []
 
 
-Underfull \hbox (badness 3108) in paragraph at lines 178--179
+Underfull \hbox (badness 3108) in paragraph at lines 180--181
 \TU/TimesNewRoman(0)/m/n/10.95 si menyebabkan rendah-
  []
 
 
-Underfull \hbox (badness 8151) in paragraph at lines 180--180
+Underfull \hbox (badness 8151) in paragraph at lines 182--182
 []|\TU/TimesNewRoman(0)/m/n/10.95 Penggunaan model bahasa
  []
 
 
-Underfull \hbox (badness 3343) in paragraph at lines 182--182
+Underfull \hbox (badness 3343) in paragraph at lines 184--184
 []|\TU/TimesNewRoman(0)/m/n/10.95 Metode statistik tradisional
  []
 
 
-Overfull \hbox (21.54718pt too wide) in paragraph at lines 172--185
+Overfull \hbox (21.54718pt too wide) in paragraph at lines 174--187
  [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 196--196
+Underfull \hbox (badness 10000) in paragraph at lines 198--198
 []|\TU/TimesNewRoman(0)/b/n/10.95 Pemetaan
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 198--198
+Underfull \hbox (badness 10000) in paragraph at lines 200--200
 []|\TU/TimesNewRoman(0)/m/n/10.95 Integrasi Metode Model-
  []
 
 
-Underfull \hbox (badness 5345) in paragraph at lines 198--199
+Underfull \hbox (badness 5345) in paragraph at lines 200--201
 \TU/TimesNewRoman(0)/m/n/10.95 del ML tanpa mengorbankan
  []
 
 
-Underfull \hbox (badness 1067) in paragraph at lines 200--200
+Underfull \hbox (badness 1067) in paragraph at lines 202--202
 []|\TU/TimesNewRoman(0)/m/n/10.95 Pemanfaatan Large Langua-
  []
 
 
-Underfull \hbox (badness 2343) in paragraph at lines 200--201
+Underfull \hbox (badness 2343) in paragraph at lines 202--203
 []|\TU/TimesNewRoman(0)/m/n/10.95 Kemampuan \TU/TimesNewRoman(0)/m/it/10.95 nat
 ural language
  []
 
 
-Underfull \hbox (badness 1199) in paragraph at lines 200--201
+Underfull \hbox (badness 1199) in paragraph at lines 202--203
 \TU/TimesNewRoman(0)/m/n/10.95 pat menerjemahkan data mate-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 202--202
+Underfull \hbox (badness 10000) in paragraph at lines 204--204
 []|\TU/TimesNewRoman(0)/m/n/10.95 Arsitektur Retrieval-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 202--202
+Underfull \hbox (badness 10000) in paragraph at lines 204--204
 \TU/TimesNewRoman(0)/m/n/10.95 Augmented Generation
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 202--203
+Underfull \hbox (badness 10000) in paragraph at lines 204--205
 []|\TU/TimesNewRoman(0)/m/n/10.95 Penerapan mekanisme RAG
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 202--203
+Underfull \hbox (badness 10000) in paragraph at lines 204--205
 \TU/TimesNewRoman(0)/m/n/10.95 berdasarkan pedoman klinis
  []
 
 
-Underfull \hbox (badness 1472) in paragraph at lines 202--203
+Underfull \hbox (badness 1472) in paragraph at lines 204--205
 \TU/TimesNewRoman(0)/m/n/10.95 terverifikasi, memitigasi risiko
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 204--204
+Underfull \hbox (badness 10000) in paragraph at lines 206--206
 []|\TU/TimesNewRoman(0)/m/n/10.95 M01, M03,
  []
 
 
-Underfull \hbox (badness 3396) in paragraph at lines 204--204
+Underfull \hbox (badness 3396) in paragraph at lines 206--206
 []|\TU/TimesNewRoman(0)/m/n/10.95 Ketersediaan Dataset Kese-
  []
 
 
-Underfull \hbox (badness 1803) in paragraph at lines 204--205
+Underfull \hbox (badness 1803) in paragraph at lines 206--207
 []|\TU/TimesNewRoman(0)/m/n/10.95 Tersedianya data sekunder pu-
  []
 
 
-Underfull \hbox (badness 7397) in paragraph at lines 204--205
+Underfull \hbox (badness 7397) in paragraph at lines 206--207
 \TU/TimesNewRoman(0)/m/n/10.95 blik memungkinkan pelatihan
  []
 
 
-Overfull \hbox (7.3208pt too wide) in paragraph at lines 194--207
+Overfull \hbox (7.3208pt too wide) in paragraph at lines 196--209
  [][] 
  []
 
@@ -2691,59 +2589,54 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [37]
-Underfull \hbox (badness 10000) in paragraph at lines 220--220
+Underfull \hbox (badness 10000) in paragraph at lines 222--222
 \TU/TimesNewRoman(0)/m/n/10.95 Aturan (Rule-Based
  []
 
 
-Underfull \hbox (badness 4096) in paragraph at lines 220--221
+Underfull \hbox (badness 4096) in paragraph at lines 222--223
 []|\TU/TimesNewRoman(0)/m/n/10.95 Sangat kaku (\TU/TimesNewRoman(0)/m/it/10.95 
 rigid\TU/TimesNewRoman(0)/m/n/10.95 ), tidak
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 222--222
+Underfull \hbox (badness 10000) in paragraph at lines 224--224
 []|\TU/TimesNewRoman(0)/m/n/10.95 Pure \TU/TimesNewRoman(0)/m/it/10.95 Machine 
 Lear-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 222--222
+Underfull \hbox (badness 10000) in paragraph at lines 224--224
 []|\TU/TimesNewRoman(0)/m/n/10.95 Mampu mencapai akurasi
  []
 
 
-Underfull \hbox (badness 1331) in paragraph at lines 222--222
+Underfull \hbox (badness 1331) in paragraph at lines 224--224
 \TU/TimesNewRoman(0)/m/n/10.95 prediksi yang sangat tinggi
  []
 
 
-Underfull \hbox (badness 1024) in paragraph at lines 222--222
+Underfull \hbox (badness 1024) in paragraph at lines 224--224
 \TU/TimesNewRoman(0)/m/n/10.95 pada dataset besar dan me-
  []
 
 
-Underfull \hbox (badness 4120) in paragraph at lines 224--224
-\TU/TimesNewRoman(0)/m/n/10.95 mampu memberikan penje-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 226--226
+Underfull \hbox (badness 10000) in paragraph at lines 228--228
 []|\TU/TimesNewRoman(0)/m/n/10.95 Menyeimbangkan akurasi
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 226--226
+Underfull \hbox (badness 10000) in paragraph at lines 228--228
 \TU/TimesNewRoman(0)/m/n/10.95 tinggi, transparansi alasan
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 226--226
+Underfull \hbox (badness 10000) in paragraph at lines 228--228
 \TU/TimesNewRoman(0)/m/n/10.95 prediksi, dan penyajian
  []
 
 
-Overfull \hbox (21.54718pt too wide) in paragraph at lines 216--229
+Overfull \hbox (21.54718pt too wide) in paragraph at lines 218--231
  [][] 
  []
 
@@ -2753,39 +2646,37 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 [38]
-Underfull \hbox (badness 10000) in paragraph at lines 245--245
+Underfull \hbox (badness 10000) in paragraph at lines 247--247
 []|\TU/TimesNewRoman(0)/b/n/10.95 Rule-Based
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 245--245
-[]|\TU/TimesNewRoman(0)/b/n/10.95 Pure ML
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 245--245
+Underfull \hbox (badness 10000) in paragraph at lines 247--247
 []|\TU/TimesNewRoman(0)/b/n/10.95 LLM Cha-
  []
 
 
-Overfull \hbox (10.327pt too wide) in paragraph at lines 245--246
-\TU/TimesNewRoman(0)/b/n/10.95 (ML+XAI+RAG)| 
+Underfull \hbox (badness 10000) in paragraph at lines 247--248
+[]|\TU/TimesNewRoman(0)/b/n/10.95 Hybrid System
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 249--249
+Underfull \hbox (badness 10000) in paragraph at lines 251--251
 []|\TU/TimesNewRoman(0)/m/n/10.95 Interpretabilitas
  []
 
 
-Underfull \hbox (badness 1215) in paragraph at lines 253--253
+Underfull \hbox (badness 1215) in paragraph at lines 255--255
 []|\TU/TimesNewRoman(0)/m/n/10.95 Kualitas Narasi &
  []
 
 
-Overfull \hbox (43.50168pt too wide) in paragraph at lines 243--260
+Overfull \hbox (57.72806pt too wide) in paragraph at lines 245--262
  [][] 
  []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 
@@ -2955,6 +2846,9 @@ Overfull \hbox (51.63675pt too wide) in paragraph at lines 110--111
 
 
 [55]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 
 [56]
 Overfull \hbox (20.52086pt too wide) in paragraph at lines 196--198
@@ -2963,14 +2857,8 @@ kup \TU/lmtt/m/n/12 freq_instant_noodle\TU/TimesNewRoman(0)/m/n/12 ,
  []
 
 
-Underfull \vbox (badness 1412) has occurred while \output is active []
-
-
 
 [57]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
 
 [58]
 
@@ -3221,7 +3109,7 @@ L3 programming layer <2025-10-09>
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `TA.out' has not changed.
-(rerunfilecheck)             Checksum: 7CF97B7ADD33FD0381BE49124635F063;20931.
+(rerunfilecheck)             Checksum: 14E4DCDFD86159DEE533948426252E6B;21511.
 
 Package biblatex Warning: Please (re)run Biber on the file:
 (biblatex)                TA
@@ -3232,12 +3120,12 @@ Package logreq Info: Writing requests to 'TA.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 35053 strings out of 403196
- 682903 string characters out of 5455712
- 2235677 words of memory out of 5000000
- 63116 multiletter control sequences out of 15000+600000
+ 35075 strings out of 403196
+ 683634 string characters out of 5455712
+ 2236478 words of memory out of 5000000
+ 63138 multiletter control sequences out of 15000+600000
  634546 words of font info for 99 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 73i,14n,95p,1470b,6983s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 73i,14n,95p,1478b,6983s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on TA.pdf (114 pages).

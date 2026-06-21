@@ -15,7 +15,7 @@ Gambar \ref{fig:konsep-solusi} mengilustrasikan desain konsep solusi yang diranc
     \centering
     % Pastikan nama file tidak menggunakan spasi. Gunakan underscore atau dash.
     \includegraphics[width=0.8\textwidth]{images/Desain Konsep Solusi.png} 
-    \caption{Desain Konsep Solusi Sistem}
+    \caption{Desain konsep solusi sistem}
     \label{fig:konsep-solusi}
 \end{figure}
 Berikut ini adalah uraian komponen pada desain sistem:
@@ -24,46 +24,45 @@ Berikut ini adalah uraian komponen pada desain sistem:
 \begin{enumerate}
     \item \textit{Input Layer \& Preprocessing} \\
     Komponen ini berfungsi sebagai antarmuka akuisisi data yang menerima variabel input mentah dari pengguna. Sebelum masuk ke model, data tabular melalui pipa pra-pemrosesan (\textit{preprocessing pipeline}) yang ketat menggunakan pustaka manipulasi data (seperti \textit{Pandas}). Proses ini mencakup dua mekanisme utama:
-    \begin{itemize}
+    \begin{enumerate}
         \item \textit{Value Imputation}: Sistem mendeteksi \textit{null values} dan melakukan imputasi (misalnya menggunakan \textit{mean/median} atau menghapus baris) untuk menjaga integritas matriks fitur.
         \item \textit{Feature Encoding}: Model matematis seperti ML hanya dapat memproses angka, sehingga variabel kategorikal harus dikonversi menjadi format numerik. Untuk variabel biner dan ordinal seperti jenis kelamin atau tingkat aktivitas, diterapkan teknik \textit{label encoding} yang memetakan kategori ke integer.
-    \end{itemize}
+    \end{enumerate}
 
     \item \textit{ML Module} \\
-    Modul ini bertindak sebagai mesin inferensi yang menjalankan algoritma \textit{Machine Learning}. Secara teknis, model ini bekerja dengan membangun \textit{ensemble} dari pohon keputusan (\textit{decision trees}) secara sekuensial, di mana setiap pohon baru memperbaiki residu kesalahan (\textit{error residual}) dari pohon sebelumnya.
-    \begin{itemize}
+    Modul ini bertindak sebagai mesin inferensi yang menjalankan algoritma \textit{Machine Learning}. Secara teknis, model ini bekerja dengan membangun \textit{ensemble} dari pohon keputusan (\textit{decision trees}) secara sekuensial, dengan setiap pohon baru dibangun untuk memperbaiki kesalahan prediksi yang masih tersisa pada pohon sebelumnya.
+    \begin{enumerate}
         \item \textit{Kalkulasi Probabilitas}: Model menghasilkan luaran berupa nilai \textit{log-odds} (\textit{logit}) yang kemudian ditransformasi menggunakan fungsi \textit{sigmoid} untuk menghasilkan skor probabilitas kontinu antara 0 hingga 1.
-        \item \textit{Penentuan Kelas}: Probabilitas tersebut dikomparasi terhadap ambang batas (\textit{threshold}) keputusan (biasanya 0.5 atau disesuaikan demi sensitivitas) untuk mengklasifikasikan label akhir menjadi "Berisiko" atau "Tidak Beresiko".
-    \end{itemize}
+        \item \textit{Penentuan Kelas}: Probabilitas tersebut dikomparasi terhadap ambang batas (\textit{threshold}) keputusan (biasanya 0,5 atau disesuaikan demi sensitivitas) untuk mengklasifikasikan label akhir menjadi "Berisiko" atau "Tidak Beresiko".
+    \end{enumerate}
 
     \item \textit{XAI Module} \\
     Modul ini menerapkan metode XAI untuk mengaudit keputusan model. Secara matematis, modul ini menghitung nilai \textit{Shapley}, yaitu kontribusi marginal rata-rata dari setiap fitur terhadap selisih antara prediksi aktual instans tersebut dengan prediksi rata-rata dasar.
-    \begin{itemize}
+    \begin{enumerate}
         \item \textit{Output Atribusi}: Hasilnya adalah vektor nilai XAI untuk setiap fitur (positif atau negatif), yang menunjukkan seberapa besar dan ke arah mana (menaikkan atau menurunkan risiko) fitur tersebut mempengaruhi skor probabilitas pasien secara spesifik.
-    \end{itemize}
+    \end{enumerate}
 
     \item \textit{RAG Module} \\
     Modul ini terdiri dari dua fase utama, yaitu \textit{Ingestion} dan \textit{Retrieval \& Generation}.
     \begin{enumerate}[label=\Alph*.]
         \item \textit{Ingestion} \\
         Proses ini mengubah dokumen statis menjadi struktur data yang dapat dicari secara semantik oleh mesin:
-        \begin{itemize}
+        \begin{enumerate}
             \item \textit{Raw Documents}: Sistem mengumpulkan dokumen pedoman klinis resmi, seperti panduan hipertensi dari Kemenkes RI atau WHO, dalam format PDF atau teks digital. Dokumen ini menjadi \textit{ground truth} atau sumber kebenaran tunggal.
             \item \textit{Text Extraction}: Karena mesin tidak bisa membaca visual PDF secara langsung, proses ekstraksi dilakukan menggunakan teknik OCR atau \textit{parsing} untuk memisahkan konten teks murni dari elemen \textit{layout}, gambar, atau \textit{header/footer} yang tidak relevan.
             \item \textit{Chunking}: Teks hasil ekstraksi tidak langsung diproses utuh karena keterbatasan \textit{context window} pada model bahasa. Teks dipecah menjadi segmen-segmen kecil atau \textit{chunks}, misalnya per paragraf atau per 512 token untuk mempertahankan granularitas konteks. Semakin spesifik potongan dari \textit{chunks}, semakin akurat nanti pencariannya.
             \item \textit{Embedding}: Setiap \textit{chunk} teks dikonversi menjadi representasi numerik berupa vektor berdimensi tinggi, misalnya \textit{array} berisi 1536 angka \textit{float}, menggunakan model \textit{embedding}. Vektor ini merepresentasikan makna semantik dari teks tersebut. Kalimat dengan makna serupa akan memiliki nilai vektor yang berdekatan secara matematis.
             \item \textit{Vector Database}: Vektor-vektor tersebut kemudian diindeks dan disimpan dalam \textit{Vector Database} yang dioptimalkan untuk operasi pencarian jarak yang berkecepatan tinggi, bukan pencarian kata kunci biasa.
-        \end{itemize}
+        \end{enumerate}
 
         \item \textit{Retrieval \& Generation} \\
         Fase ini terjadi secara \textit{real-time} saat pengguna meminta prediksi:
-        \begin{itemize}
+        \begin{enumerate}
             \item \textit{Auto-Query}: Ini adalah komponen yang menjembatani hasil analisis XAI dengan pencarian referensi. Sistem secara otomatis menyusun kueri pencarian berdasarkan luaran modul XAI, bukan sekadar meneruskan input mentah pengguna. Sebagai contoh, jika pengguna hanya memasukkan data "umur 50", \textit{Auto-Query} akan mengambil konteks "Usia Lanjut" dan "Hipertensi" dari analisis risiko untuk membentuk kueri spesifik: "Bagaimana pengaruh usia lanjut terhadap risiko hipertensi menurut pedoman medis?"
             \item \textit{Retriever System}: Sistem penerima kueri ini melakukan pencarian kesamaan (\textit{similarity search}) ke dalam \textit{Vector Database}. Sistem membandingkan vektor dari \textit{Auto-Query} dengan jutaan vektor dokumen yang tersimpan menggunakan perhitungan \textit{Cosine Similarity} atau \textit{Euclidean Distance}.
             \item \textit{Retrieve Context}: Hasil dari \textit{Retriever} bukanlah jawaban, melainkan potongan dokumen (\textit{chunks}) yang memiliki skor kemiripan tertinggi dengan kueri. Konteks ini diambil untuk memberikan "bahan bacaan" yang valid bagi LLM.
-            \item \textit{Prompt Augmentation}: Di sini sistem menggabungkan tiga elemen menjadi satu instruksi lengkap: (1) Kueri Asli, (2) Hasil Analisis SHAP (Faktor Risiko), dan (3) \textit{Retrieved Context} (Dokumen Pedoman). Teknik ini disebut \textit{In-Context Learning}, di mana kita memaksa model untuk menjawab hanya berdasarkan konteks yang kita suapkan.
-            \item \textit{Large Language Model (Generator)}: Terakhir, LLM memproses \textit{prompt} yang sudah diperkaya (\textit{augmented}) tersebut untuk menyusun narasi bahasa alami yang koheren, personal, dan tervalidasi oleh dokumen medis yang dilampirkan dalam konteks.
-        \end{itemize}
+\textit{Prompt Augmentation}: Pada tahap ini, sistem menggabungkan tiga elemen menjadi satu instruksi yang komprehensif, yaitu (1) kueri asli, (2) hasil analisis SHAP berupa faktor-faktor risiko yang berkontribusi terhadap prediksi, dan (3) \textit{retrieved context} yang berisi dokumen pedoman. Pendekatan ini merupakan bentuk \textit{in-context learning}, yaitu teknik yang mengarahkan model untuk menghasilkan respons berdasarkan konteks yang disediakan dalam \textit{prompt}.            \item \textit{Large Language Model (Generator)}: Terakhir, LLM memproses \textit{prompt} yang sudah diperkaya (\textit{augmented}) tersebut untuk menyusun narasi bahasa alami yang koheren, personal, dan tervalidasi oleh dokumen medis yang dilampirkan dalam konteks.
+        \end{enumerate}
     \end{enumerate}
 \end{enumerate}
 \subsection{Alur Kerja Sistem}
@@ -73,7 +72,7 @@ Gambar \ref{fig:alur-kerja} mengilustrasikan alur kerja dari sistem yang diranca
     \centering
     % Pastikan nama file tidak menggunakan spasi. Gunakan underscore atau dash.
     \includegraphics[width=0.8\textwidth]{images/alur kerja sistem.png} 
-    \caption{Gambar Alur Kerja Sistem}
+    \caption{Alur kerja sistem}
     \label{fig:alur-kerja}
 \end{figure}
 Sistem yang diusulkan bekerja dalam alur sebagai berikut:
@@ -98,14 +97,14 @@ Gambar \ref{fig:arsitektur-teknis} berikut mengilustrasikan arsitektur teknis si
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{images/arsitektur sistem.png}
-    \caption{Arsitektur Teknis Sistem }
+    \caption{Arsitektur teknis sistem }
     \label{fig:arsitektur-teknis}
 \end{figure}
 
 Berdasarkan Gambar \ref{fig:arsitektur-teknis} di atas, sistem terbagi menjadi empat lapisan utama dengan fungsi spesifik sebagai berikut:
 
-\begin{itemize}
-    \item Client Layer (Frontend) \\
+\begin{enumerate}
+    \item Client Layer \\
     Lapisan ini merupakan titik interaksi pengguna, baik melalui peramban web desktop maupun perangkat seluler. Lapisan ini bertugas menangkap input data klinis pasien dan memvisualisasikan hasil prediksi berupa grafik risiko dan narasi penjelasan yang dikirimkan oleh server melalui protokol HTTPS/JSON yang aman.
 
     \item Application Layer \\
@@ -121,7 +120,7 @@ Berdasarkan Gambar \ref{fig:arsitektur-teknis} di atas, sistem terbagi menjadi e
 
     \item External Services \\
     Sistem terhubung dengan penyedia layanan \textit{Large Language Model} (LLM) pihak ketiga seperti OpenAI atau model \textit{open-source} terhosting lainnya. Komponen ini menerima \textit{prompt} yang telah diperkaya dengan konteks medis dari sistem internal untuk menghasilkan narasi penjelasan yang natural, namun tetap tervalidasi.
-\end{itemize}
+\end{enumerate}
 
 \section{Perbandingan dengan Sistem Saat Ini}
 Desain konsep solusi di atas menawarkan perubahan paradigma dari pendekatan konvensional yang digambarkan pada Bab III menjadi pendekatan berbasis kecerdasan buatan yang terintegrasi. Perbandingan komparatif antara kondisi saat ini (\textit{As-Is}) dan solusi yang diusulkan (\textit{To-Be}) dirangkum dalam Gambar \ref{fig:alur-diagnosis}.
@@ -161,7 +160,7 @@ Desain konsep solusi di atas menawarkan perubahan paradigma dari pendekatan konv
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{images/alursistemtobe.png}
-    \caption{Alur Diagnosis Hipertensi di Fasilitas Kesehatan Tingkat Pertama (FKTP) (To-Be)}
+    \caption{Alur diagnosis hipertensi di fasilitas kesehatan tingkat pertama (FKTP) (To-Be)}
     \label{fig:alur-diagnosis}
 \end{figure}
 

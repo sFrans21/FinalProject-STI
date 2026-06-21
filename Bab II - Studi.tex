@@ -6,7 +6,7 @@
 \section{Hipertensi}
 Hipertensi secara global didefinisikan sebagai suatu kondisi hemodinamik kronis yang ditandai dengan meningkatnya tekanan darah di arteri secara persisten. Menurut konsensus medis internasional terbaru, hipertensi bukan sekadar angka tekanan darah yang tinggi, melainkan sindrom kardiovaskular progresif yang memicu perubahan struktural dan fungsional pada pembuluh darah serta organ vital \autocite{Reges2020Association}. Dalam konteks fisiologis, kondisi ini terjadi ketika tekanan darah sistolik (TDS) berada pada nilai 140 mmHg atau lebih, dan/atau tekanan darah diastolik (TDD) berada pada nilai 90 mmHg atau lebih, setelah dilakukan pengukuran berulang di klinik \autocite{Reges2020Association}.
 
-Penyakit ini sering disebut sebagai \emph{the silent killer} karena sebagian besar penderita tidak menunjukkan gejala klinis yang spesifik hingga terjadi kerusakan organ target atau \emph{Target Organ Damage} (TOD) seperti hipertrofi ventrikel kiri, gagal ginjal kronis, atau retinopati \autocite{Mills2020Global}. Prevalensi hipertensi terus meningkat secara global, didorong oleh penuaan populasi dan pergeseran gaya hidup, di mana data terbaru menunjukkan bahwa lebih dari 1,28 miliar orang dewasa berusia 30--79 tahun di seluruh dunia hidup dengan hipertensi, dengan dua pertiga di antaranya tinggal di negara berpenghasilan rendah dan menengah \autocite{WHO2023}.
+Penyakit ini sering disebut sebagai \emph{the silent killer} karena sebagian besar penderita tidak menunjukkan gejala klinis yang spesifik hingga terjadi kerusakan organ target atau \emph{Target Organ Damage} (TOD) seperti hipertrofi ventrikel kiri, gagal ginjal kronis, atau retinopati \autocite{Mills2020Global}. Prevalensi hipertensi terus meningkat secara global, didorong oleh penuaan populasi dan pergeseran gaya hidup, dengan data terbaru menunjukkan bahwa lebih dari 1,28 miliar orang dewasa berusia 30--79 tahun di seluruh dunia hidup dengan hipertensi, dengan dua pertiga di antaranya tinggal di negara berpenghasilan rendah dan menengah \autocite{WHO2023}.
 
 Di Indonesia, hipertensi masih menjadi tantangan kesehatan utama dengan tingkat pengendalian yang rendah. Studi epidemiologi terbaru menunjukkan bahwa prevalensi hipertensi di Indonesia tidak hanya didominasi oleh lansia, tetapi mulai merambah ke populasi usia produktif akibat transisi nutrisi dan penurunan aktivitas fisik \autocite{manongga2024gambaran}. Patofisiologi hipertensi melibatkan interaksi kompleks antara curah jantung dan resistensi vaskular perifer, yang diatur oleh sistem saraf simpatis, sistem renin-angiotensin-aldosteron (RAAS), dan keseimbangan cairan tubuh. Ketidakseimbangan pada salah satu mekanisme ini dapat memicu vasokonstriksi berkepanjangan yang berujung pada elevasi tekanan darah sistemik.
 
@@ -72,7 +72,7 @@ Faktor risiko hipertensi dibagi menjadi dua klaster utama, yaitu faktor risiko y
 Klasifikasi pada data medis merupakan tugas pembelajaran mesin terawasi atau Supervised Machine Learning yang bertujuan memetakan variabel input ke dalam label kategori diskrit. Dalam konteks prediksi hipertensi, model dilatih untuk memisahkan data pasien ke dalam kelas risiko positif atau negatif berdasarkan pola historis yang terdapat pada dataset pelatihan \autocite{Shailaja2018Machine}. Akurasi dan keandalan model klasifikasi sangat bergantung pada pemilihan algoritma yang mampu menangani karakteristik data tabular yang sering kali memiliki distribusi tidak seimbang.
 
 \subsection{Gradient Boosting}
-Gradient Boosting adalah teknik machine learning berbasis \emph{ensemble} yang dikembangkan untuk meningkatkan akurasi prediksi dengan cara menggabungkan sejumlah model prediksi sederhana (\emph{weak learners}) umumnya berupa \emph{decision trees} menjadi satu model prediksi yang kuat dan komprehensif. Prinsip dasar dari algoritma ini adalah pembentukan model secara bertahap (\emph{stage-wise}), di mana setiap model baru yang ditambahkan bertujuan untuk memperbaiki kesalahan (\emph{residual errors}) yang dihasilkan oleh gabungan model-model sebelumnya \autocite{Guo2024Gradient}.
+Gradient Boosting adalah teknik machine learning berbasis \emph{ensemble} yang dikembangkan untuk meningkatkan akurasi prediksi dengan cara menggabungkan sejumlah model prediksi sederhana (\emph{weak learners}) umumnya berupa \emph{decision trees} menjadi satu model prediksi yang kuat dan komprehensif. Prinsip dasar dari algoritma ini adalah pembentukan model secara bertahap (\emph{stage-wise}), dengan setiap model baru yang ditambahkan bertujuan untuk memperbaiki kesalahan (\emph{residual errors}) yang dihasilkan oleh gabungan model-model sebelumnya \autocite{Guo2024Gradient}.
 
 Dalam konteks pengembangan sistem prediksi risiko penyakit seperti hipertensi, Gradient Boosting memiliki keunggulan signifikan dibandingkan metode statistik konvensional. Algoritma ini mampu menangani hubungan non-linear yang kompleks antar variabel klinis pasien, seperti interaksi antara indeks massa tubuh (BMI), tekanan darah sistolik, dan riwayat genetik, yang seringkali sulit dimodelkan oleh Logistic Regression \autocite{Muftisany2025Perbandingan}. Proses matematis Gradient Boosting melibatkan optimasi fungsi kerugian (\emph{loss function}) yang dapat disesuaikan, memungkinkannya untuk meminimalkan bias prediksi secara iteratif pada data rekam medis yang seringkali memiliki tingkat \emph{noise} atau variabilitas tinggi.
 
@@ -84,10 +84,10 @@ Secara umum, jika diberikan fungsi tujuan untuk meminimalkan kesalahan prediksi 
     \mathcal{F}_m(x) = \mathcal{F}_{m-1}(x) + \nu \cdot h_m(x)
 \end{equation}
 
-Di mana $\nu$ adalah \emph{learning rate} yang mengontrol kontribusi setiap pohon untuk mencegah \emph{overfitting}, sebuah mekanisme regularisasi yang sangat penting saat bekerja dengan dataset kesehatan yang terbatas atau tidak seimbang \autocite{Zhang2025Machine}.
+$\nu$ adalah \emph{learning rate} yang mengontrol kontribusi setiap pohon untuk mencegah \emph{overfitting}, sebuah mekanisme regularisasi yang sangat penting saat bekerja dengan dataset kesehatan yang terbatas atau tidak seimbang \autocite{Zhang2025Machine}.
 
 \subsection{Extreme Gradient Boosting (XGBoost)}
-Extreme Gradient Boosting atau XGBoost adalah pengembangan tingkat lanjut dari algoritma Gradient Boosting Machine (GBM) yang dirancang untuk memiliki efisiensi komputasi tinggi, skalabilitas, dan kinerja prediksi yang lebih akurat dibandingkan pendahulunya. XGBoost bekerja dengan prinsip \emph{ensemble learning}, di mana algoritma ini menggabungkan hasil dari banyak model prediksi lemah (\emph{weak learners}) biasanya berupa \emph{decision trees} secara berurutan untuk membentuk satu model prediksi yang kuat dan stabil \autocite{Emmanuel2025Advanced}.
+Extreme Gradient Boosting atau XGBoost adalah pengembangan tingkat lanjut dari algoritma Gradient Boosting Machine (GBM) yang dirancang untuk memiliki efisiensi komputasi tinggi, skalabilitas, dan kinerja prediksi yang lebih akurat dibandingkan pendahulunya. XGBoost bekerja dengan prinsip \emph{ensemble learning} dengan menggabungkan hasil dari banyak model prediksi lemah (\emph{weak learners}) biasanya berupa \emph{decision trees} secara berurutan untuk membentuk satu model prediksi yang kuat dan stabil \autocite{Emmanuel2025Advanced}.
 
 Dalam konteks pengembangan sistem prediksi risiko kesehatan seperti hipertensi, XGBoost memiliki keunggulan signifikan dibandingkan metode tradisional. Algoritma ini dilengkapi dengan mekanisme \emph{regularization} (L1 dan L2) yang terintegrasi di dalam fungsi objektifnya. Fitur ini berfungsi untuk mengontrol kompleksitas model dan mencegah terjadinya \emph{overfitting}, yaitu kondisi saat model terlalu menghafal data latih namun gagal memprediksi data baru dengan akurat, yang sering menjadi masalah utama dalam analisis data medis yang memiliki \emph{noise} tinggi \autocite{Guo2024Gradient}.
 
@@ -97,7 +97,7 @@ Secara matematis, jika diberikan sekumpulan data dengan fitur $m$ dan jumlah sam
     \mathcal{L}(\phi) = \sum_{i} l(y_i, \hat{y}_i) + \sum_{k} \Omega(f_k)
 \end{equation}
 
-Di mana $l$ adalah fungsi \emph{loss} yang mengukur perbedaan antara prediksi ($\hat{y}_i$) dan nilai aktual ($y_i$), sedangkan $\Omega$ adalah komponen regularisasi yang mengontrol kompleksitas \emph{tree} (pohon keputusan) untuk mencegah \emph{overfitting}. Komponen regularisasi ini dihitung dengan rumus:
+$l$ adalah fungsi \emph{loss} yang mengukur perbedaan antara prediksi ($\hat{y}_i$) dan nilai aktual ($y_i$), sedangkan $\Omega$ adalah komponen regularisasi yang mengontrol kompleksitas \emph{tree} (pohon keputusan) untuk mencegah \emph{overfitting}. Komponen regularisasi ini dihitung dengan rumus:
 
 \begin{equation}
     \Omega(f) = \gamma T + \frac{1}{2}\lambda ||w||^2
@@ -123,7 +123,7 @@ Metode SHAP merupakan pendekatan XAI yang mengadopsi konsep teori permainan koop
 Metode alternatif yang sering digunakan adalah Local Interpretable Model-agnostic Explanations atau LIME. LIME bekerja dengan cara melakukan perturbasi atau pengubahan acak di sekitar data \emph{instance} untuk membangun model linear sederhana yang dapat dijelaskan secara lokal. Pendekatan ini berfokus pada pendekatan perilaku model di sekitar satu titik prediksi spesifik tanpa mencoba memahami model global secara keseluruhan.
 
 \subsubsection{Analisis Komparatif SHAP dan LIME}
-Meskipun LIME lebih cepat secara komputasi, metode ini memiliki kelemahan dalam hal stabilitas karena penjelasan yang dihasilkan dapat berubah-ubah pada setiap iterasi eksekusi untuk data yang sama \autocite{Molnar2025Interpretable}. Sebaliknya, SHAP menawarkan landasan teoretis yang lebih kuat melalui properti aksiomatik teori permainan yang menjamin keunikan solusi penjelasan. Oleh karena itu, penelitian ini memilih menggunakan SHAP karena stabilitas dan konsistensi penjelasan merupakan syarat mutlak dalam sistem pendukung keputusan medis yang menyangkut keselamatan pasien.
+Meskipun LIME lebih cepat secara komputasi, metode ini memiliki kelemahan dalam hal stabilitas karena penjelasan yang dihasilkan dapat berubah-ubah pada setiap iterasi eksekusi untuk data yang sama \autocite{molnar2025interpretable}. Sebaliknya, SHAP menawarkan landasan teoretis yang lebih kuat melalui properti aksiomatik teori permainan yang menjamin keunikan solusi penjelasan. Oleh karena itu, penelitian ini memilih menggunakan SHAP karena stabilitas dan konsistensi penjelasan merupakan syarat mutlak dalam sistem pendukung keputusan medis yang menyangkut keselamatan pasien.
 
 % --- II.4 Large Language Model (LLM) ---
 \section{Large Language Model (LLM)}
@@ -159,7 +159,7 @@ Pencarian dalam Vector Database umumnya menggunakan algoritma \emph{Nearest Neig
 \begin{figure}[ht]
 	\centering
     \includegraphics[width=0.7\textwidth]{images/vector_viz.png}
-	\caption{Visualisasi Data Vector Database}
+	\caption{Visualisasi data \textit{vector database}}
 	\label{gambar:vector_db}
 \end{figure}
 
@@ -178,7 +178,7 @@ Mekanisme kerja Vector Database dapat diuraikan melalui tahapan berikut:
 \begin{figure}[ht]
 	\centering
     \includegraphics[width=0.9\textwidth]{images/vector_query.png}
-	\caption{Visualisasi Query Vector Database}
+	\caption{Visualisasi \textit{query vector database}}
 	\label{gambar:vector_query}
 \end{figure}
 
@@ -192,17 +192,17 @@ Berbagai strategi dikembangkan untuk memitigasi keterbatasan tersebut. Salah sat
 
 % --- II.5 Retrieval-Augmented Generation (RAG) ---
 \section{Retrieval-Augmented Generation (RAG)}
-Retrieval-Augmented Generation (RAG) adalah kerangka kerja arsitektur yang dirancang untuk meningkatkan kapabilitas Large Language Model (LLM) dengan mengintegrasikan sistem temu kembali informasi (\emph{information retrieval}) eksternal. Metode ini mengatasi keterbatasan pengetahuan statis yang dimiliki oleh LLM pasca-pelatihan dengan memungkinkan model mengakses data terkini atau data spesifik domain yang tersimpan dalam basis data eksternal \autocite{Gao2023Retrieval}. Pendekatan ini secara efektif memitigasi isu "halusinasi" pada AI, di mana model menghasilkan informasi yang tampak meyakinkan namun faktualnya salah \autocite{Ji2023Survey}.
+Retrieval-Augmented Generation (RAG) adalah kerangka kerja arsitektur yang dirancang untuk meningkatkan kapabilitas Large Language Model (LLM) dengan mengintegrasikan sistem temu kembali informasi (\emph{information retrieval}) eksternal. Metode ini mengatasi keterbatasan pengetahuan statis yang dimiliki oleh LLM pasca-pelatihan dengan memungkinkan model mengakses data terkini atau data spesifik domain yang tersimpan dalam basis data eksternal \autocite{Gao2023Retrieval}. Pendekatan ini secara efektif memitigasi isu halusinasi pada model AI saat menghasilkan informasi yang tampak meyakinkan namun faktualnya salah \autocite{Ji2023Survey}.
 
 Secara operasional, RAG bekerja melalui tiga fase utama yang saling terintegrasi:
 \begin{enumerate}
-    \item \textbf{Retrieval} \\
-    Tahap ini merupakan fondasi dari RAG, di mana sistem mencari dan mengambil informasi yang relevan dari basis pengetahuan eksternal berdasarkan \emph{prompt} atau pertanyaan pengguna. Proses ini seringkali memanfaatkan Vector Database. Kueri pengguna dikonversi menjadi representasi vektor, yang kemudian digunakan untuk memindai basis data guna menemukan dokumen atau potongan informasi (\emph{chunks}) yang memiliki kesamaan semantik tertinggi. Hasil dari proses ini adalah kumpulan konteks yang relevan dengan pertanyaan pengguna \autocite{Karpukhin2020Dense}.
+    \item Retrieval \\
+    Tahap ini merupakan fondasi dari RAG, saat sistem mencari dan mengambil informasi yang relevan dari basis pengetahuan eksternal berdasarkan \emph{prompt} atau pertanyaan pengguna. Proses ini seringkali memanfaatkan Vector Database. Kueri pengguna dikonversi menjadi representasi vektor, yang kemudian digunakan untuk memindai basis data guna menemukan dokumen atau potongan informasi (\emph{chunks}) yang memiliki kesamaan semantik tertinggi. Hasil dari proses ini adalah kumpulan konteks yang relevan dengan pertanyaan pengguna \autocite{Karpukhin2020Dense}.
     
-    \item \textbf{Augmentation} \\
+    \item Augmentation \\
     Setelah informasi relevan berhasil diambil, tahap selanjutnya adalah memperkaya (\emph{augment}) \emph{prompt} asli pengguna dengan informasi tersebut. Sistem akan menyusun \emph{prompt} baru yang menggabungkan pertanyaan asli pengguna dengan data yang ditemukan dari tahap \emph{retrieval}. Proses ini dapat melibatkan restrukturisasi kalimat atau penambahan instruksi khusus agar LLM dapat memproses konteks tambahan tersebut secara efektif. Tujuannya adalah menyediakan "konteks" yang lengkap bagi model sebelum model mulai menyusun jawaban \autocite{Lewis2020Retrieval}.
     
-    \item \textbf{Generation} \\
+    \item Generation \\
     Pada tahap akhir ini, \emph{prompt} yang telah diaugmentasi dikirimkan ke LLM. Model kemudian memproses input gabungan tersebut untuk menghasilkan respons teks yang koheren. Karena model memiliki akses ke fakta-fakta spesifik yang disediakan dalam \emph{prompt}, jawaban yang dihasilkan cenderung lebih akurat, faktual, dan relevan dengan konteks pertanyaan, dibandingkan jika model hanya mengandalkan parameter internalnya sendiri \autocite{Shuster2021Retrieval}.
 \end{enumerate}
 
@@ -226,7 +226,7 @@ Proses Retrieval-Augmented Generation secara umum dapat digambarkan melalui diag
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.8\textwidth]{images/ImplementasiRAG.png}
-    \caption{Rangkaian Proses Implementasi Retrieval-Augmented Generation.}
+    \caption{Rangkaian proses implementasi \textit{retrieval-augmented generation}}
     \label{fig:2.3}
 \end{figure}
 
@@ -245,7 +245,7 @@ Kerangka kerja RAGAS menyediakan berbagai metrik yang dikategorikan berdasarkan 
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.8\textwidth]{images/RAGASEvaluation.png}
-    \caption{Taksonomi Metrik Evaluasi dalam \emph{framework} RAGAS.}
+    \caption{Taksonomi metrik evaluasi dalam \emph{framework} RAGAS}
     \label{fig:II.5}
 \end{figure}
 
@@ -265,12 +265,12 @@ Berdasarkan taksonomi di atas, metrik \emph{Faithfulness} dan \emph{Answer Relev
 \end{enumerate}
 
 \vspace{1em}
-Selain metrik per komponen, terdapat juga metrik \emph{Answer Semantic Similarity} dan \emph{Answer Correctness} yang memberikan gambaran performa sistem secara keseluruhan \autocite{Es2023RAGAS}. Proses kerja RAGAS dalam melakukan evaluasi melibatkan alur data yang sistematis di mana data input diproses melalui \emph{retriever} dan \emph{generator} sebelum akhirnya dinilai oleh evaluator.
+Selain metrik per komponen, terdapat juga metrik \emph{Answer Semantic Similarity} dan \emph{Answer Correctness} yang memberikan gambaran performa sistem secara keseluruhan \autocite{Es2023RAGAS}. Proses kerja RAGAS dalam melakukan evaluasi melibatkan alur data yang sistematis dengan memproses data input melalui \emph{retriever} dan \emph{generator} sebelum akhirnya dinilai oleh evaluator.
 
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.8\textwidth]{images/AlurKerjaRAGAS.png}
-    \caption{Alur Kerja Evaluasi Sistem RAG Menggunakan RAGAS.}
+    \caption{Alur kerja evaluasi sistem RAG menggunakan \textit{framework} RAGAS}
     \label{fig:II.6}
 \end{figure}
 
@@ -305,7 +305,7 @@ Untuk memberikan gambaran komprehensif mengenai posisi penelitian ini dibandingk
 \midrule
 \endfirsthead
 
-\caption[]{Studi Sebelumnya (lanjutan)} \\
+
 \toprule
 \textbf{No} & \textbf{Judul \& Penulis} & \textbf{Metode} & \textbf{Hasil} & \textbf{Keterbatasan} \\
 \midrule
@@ -318,10 +318,10 @@ Untuk memberikan gambaran komprehensif mengenai posisi penelitian ini dibandingk
 \bottomrule
 \endlastfoot
 
-1 & Ensemble Learning for Hypertension Prediction Using Explainable Machine Learning Techniques \autocite{ElSalamony2023Comparative} & 
-Menggunakan pendekatan ensemble learning berbasis stacking yang menggabungkan Logistic Regression, Artificial Neural Network (ANN), Random Forest (RF), LightGBM (LGBM), dan XGBoost. Interpretasi model dilakukan menggunakan metode SHAP (SHapley Additive exPlanations) untuk mengidentifikasi faktor risiko hipertensi yang paling berpengaruh. & 
-Model stacking menghasilkan performa terbaik dengan akurasi 96,32\%, precision 95,48\%, recall 97,51\%, F1-score 96,48\%, dan AUC 0,971. Analisis SHAP menunjukkan bahwa berat badan, konsumsi alkohol, riwayat hipertensi, konsumsi garam, usia, diabetes, BMI, dan konsumsi lemak merupakan faktor risiko utama hipertensi. & 
-Jumlah data relatif kecil yaitu sebesar 612 responden dan memiliki ketidakseimbangan kelas yang cukup besar antara kelompok hipertensi dan non-hipertensi. \\
+1 & A Comparative Study of Machine Learning Models for Hypertension Risk Assessment With Explainable Artificial Intelligence Integration \autocite{Inyang2026} & 
+Tinjauan sistematis dan eksperimen awal penggunaan model berbasis Transformer (LLM) untuk dukungan keputusan klinis. & 
+LLM mampu menyintesis informasi medis kompleks menjadi saran yang mudah dipahami oleh pasien dan tenaga medis. & 
+Rentan terhadap bias data pelatihan dan "halusinasi" fakta, serta belum diintegrasikan secara penuh dengan model prediksi hipertensi yang numerik. \\
 \hline
 2 & XGBoost and SHAP-Based Analysis of Risk Factor for Hypertension Classification in Korean Postmenopausal Women \autocite{Li2025XGBoost}  & 
 Menggunakan algoritma XGBoost, Support Vector Machine (SVM), dan Artificial Neural Network (ANN) untuk klasifikasi hipertensi. Analisis interpretabilitas model dilakukan menggunakan metode SHAP (Shapley Additive exPlanations) guna mengidentifikasi faktor risiko yang paling berpengaruh. & 
@@ -339,7 +339,13 @@ LLM mampu menyintesis informasi medis kompleks menjadi saran yang mudah dipahami
 Rentan terhadap bias data pelatihan dan "halusinasi" fakta, serta belum diintegrasikan secara penuh dengan model prediksi hipertensi yang numerik. \\
 \hline
 5 & Prediction of Personalised Hypertension Using Machine Learning in Indonesian Population \autocite{Septian2025Prediction} & 
-Mengkomparasi 5 algoritma (termasuk LightGBM dan XGBoost) pada 9,58 juta data SATUSEHAT dengan analisis fitur menggunakan SHAP (SHapley Additive exPlanations) & 
-Model LightGBM mencapai performa terbaik dengan AUC 0,78 (tanpa riwayat pasien) dan 0,85 (dengan riwayat pasien), di mana usia dan lingkar pinggang menjadi fitur prediktor dominan. & 
+Mengkomparasi 5 algoritma yaitu XGBoost, LightGBM, CatBoost, Logistic Regression, dan Random Forest pada 9,58 juta data SATUSEHAT dengan analisis fitur menggunakan SHAP (SHapley Additive exPlanations) & 
+Model LightGBM mencapai performa terbaik dengan AUC 0,78 tanpa riwayat pasien dan 0,85 dengan riwayat pasien. Usia dan lingkar pinggang menjadi fitur prediktor dominan. & 
 Studi bersifat \emph{cross-sectional} sehingga tidak dapat menyimpulkan kausalitas, serta data terbatas pada seting non-rumah sakit yang tidak mencakup variabel klinis mendalam seperti status pengobatan rinci. \\
 \end{longtable}
+
+XGBoost
+LightGBM
+CatBoost
+Logistic Regression
+Random Forest

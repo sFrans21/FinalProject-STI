@@ -95,7 +95,7 @@ Data yang diakuisisi dari survei IFLS-5 tidak sepenuhnya menyediakan seluruh fak
 
 Dislipidemia merupakan salah satu faktor risiko penting yang berkontribusi terhadap peningkatan tekanan darah dan penyakit kardiovaskular. Kondisi ini umumnya ditandai oleh peningkatan kadar \textit{Low-Density Lipoprotein} (LDL) dan trigliserida, serta penurunan kadar \textit{High-Density Lipoprotein} (HDL). Namun demikian, dataset publik IFLS-5 tidak menyediakan hasil pemeriksaan laboratorium yang memuat profil lipid secara lengkap sehingga kondisi dislipidemia tidak dapat diukur secara langsung.
 
-Sebagai alternatif, penelitian ini menggunakan variabel \texttt{bmi} dan \texttt{waist\_cm} sebagai fitur substitusi. Pemilihan kedua variabel tersebut didasarkan pada temuan klinis yang menunjukkan bahwa obesitas umum maupun obesitas sentral memiliki hubungan erat dengan gangguan metabolik, termasuk dislipidemia. Dengan demikian, indeks massa tubuh dan lingkar pinggang digunakan sebagai proksi untuk merepresentasikan risiko dislipidemia dalam proses pemodelan.
+Sebagai alternatif, penelitian ini menggunakan variabel \texttt{bmi} dan \texttt{waist\_cm} sebagai fitur substitusi. Pemilihan kedua variabel tersebut didasarkan pada studi yang dilakukan \textcite{Mallick2018} pada 200 orang dewasa berusia 35--45 tahun di wilayah Rohilkhand, India, yang menunjukkan bahwa obesitas umum yang direpresentasikan oleh BMI maupun obesitas sentral yang direpresentasikan oleh WHR memiliki hubungan erat dengan gangguan metabolik, termasuk dislipidemia. Hasil penelitian tersebut menunjukkan bahwa WHR bahkan memiliki korelasi yang lebih kuat terhadap beberapa indikator profil lipid dibandingkan BMI, sehingga kedua variabel ini dinilai relevan sebagai faktor risiko dalam pemodelan penyakit kardiovaskular dan hipertensi. Dengan demikian, indeks massa tubuh dan lingkar pinggang digunakan sebagai proksi untuk merepresentasikan risiko dislipidemia dalam proses pemodelan.
 
 \item Variasi Genetik
 
@@ -200,7 +200,7 @@ Pada fitur frekuensi konsumsi mie instan yang mencakup \texttt{freq\_instant\_no
 Pada fitur aktivitas fisik yang mencakup \texttt{ak02}, \texttt{ak05}, \texttt{ak07}, Responden yang tidak menjawab pertanyaan tentang frekuensi aktivitas fisik diasumsikan tidak berolahraga atau berjalan kaki secara teratur dalam minggu survei. Nilai NaN diisi dengan 0 (hari per minggu).
 \end{enumerate}
 
-Pendekatan ini konsisten dengan panduan imputasi pada data survei perilaku kesehatan, di mana ketidakhadiran jawaban pada pertanyaan tentang kegiatan tertentu lebih mungkin bermakna `tidak melakukan' daripada `lupa menjawab', terutama apabila pertanyaan tersebut bersifat spesifik dan mudah diingat oleh responden.
+Pendekatan ini konsisten dengan panduan imputasi pada data survei perilaku kesehatan, yang mengasumsikan bahwa ketidakhadiran jawaban pada pertanyaan tentang kegiatan tertentu lebih mungkin bermakna `tidak melakukan' daripada `lupa menjawab', terutama apabila pertanyaan tersebut bersifat spesifik dan mudah diingat oleh responden.
 
 \subsection{Penanganan Kode Kategoris}
 
@@ -208,7 +208,7 @@ Sistem pengkodean variabel kategoris dalam IFLS tidak secara langsung kompatibel
 
 \begin{enumerate}
 \item Variabel Merokok \\
-Variabel merokok yang direpresentasikan di IFLS dalam \texttt{km01a} menggunakan kode 1 untuk `Ya' (pernah merokok) dan kode 3 untuk `Tidak'. Nilai NaN terlebih dahulu diisi dengan kode 3 (Tidak) berdasarkan asumsi yang sama seperti pada variabel perilaku lainnya. Selanjutnya, penulis mebentuk variabel baru dengan nama \texttt{is\_smoker}, dimana kode 1 diubah menjadi nilai 1 dan seluruh nilai lainnya menjadi 0.
+Variabel merokok yang direpresentasikan di IFLS dalam \texttt{km01a} menggunakan kode 1 untuk `Ya' (pernah merokok) dan kode 3 untuk `Tidak'. Nilai NaN terlebih dahulu diisi dengan kode 3 (Tidak) berdasarkan asumsi yang sama seperti pada variabel perilaku lainnya. Selanjutnya, penulis mebentuk variabel baru dengan nama \texttt{is\_smoker}, Pada variabel ini, kode 1 diubah menjadi nilai 1 dan seluruh nilai lainnya menjadi 0.
 
 \item Variabel Diabetes \\
 Variabel diabetes yang direpresentasikan di IFLS dalam \texttt{is\_diabetes} memiliki empat kemungkinan nilai: 1 (Ya/pernah didiagnosis), 3 (Tidak), 8 (Tidak tahu), dan 9 (Tidak menjawab atau data hilang). Kode sentinel 8 dan 9 terlebih dahulu diubah menjadi kode 3 (Tidak) menggunakan operasi \textit{replace}, dengan argumen bahwa responden yang tidak mengetahui status diabetesnya atau menolak menjawab tidak memiliki riwayat diagnosis klinis yang terdokumentasi. Variabel biner \texttt{has\_diabetes} kemudian dibentuk dengan nilai 1 apabila kode asli adalah 1 dan 0 untuk kode lainnya.
@@ -220,7 +220,7 @@ Variabel jenis kelamin yang direpresentasikan di IFLS dalam \texttt{sex} menggun
 
 \subsection{Rekayasa Fitur Riwayat Kesehatan Orang Tua}
 
-Variabel \texttt{father\_health} dan \texttt{mother\_health} dari IFLS-4 menyimpan informasi kondisi kesehatan orang tua dalam format kode alfanumerik yang kompleks. Kode-kode ini dapat berupa huruf tunggal maupun kombinasi beberapa huruf, di mana setiap huruf merepresentasikan kondisi tertentu:
+Variabel \texttt{father\_health} dan \texttt{mother\_health} dari IFLS-4 menyimpan informasi kondisi kesehatan orang tua dalam format kode alfanumerik yang kompleks. Kode-kode ini dapat berupa huruf tunggal maupun kombinasi beberapa huruf, dengan setiap huruf merepresentasikan kondisi tertentu:
 \begin{itemize}
     \item Kode A: Sehat (masih hidup dan tidak memiliki penyakit yang dilaporkan)
     \item Kode B: Penyakit jantung atau pembuluh darah
@@ -270,7 +270,7 @@ Label target biner untuk klasifikasi hipertensi dibentuk berdasarkan kriteria di
 
 
 \subsection{Profil Dataset Final}
-Setelah melalui proses pembersihan data, diperoleh dataset bersih sebagaimana dirangkum dalam Tabel \ref{tab:profil-dataset-final} berikut.
+Setelah melalui proses pembersihan data, diperoleh dataset sebagaimana dirangkum dalam Tabel \ref{tab:profil-dataset-final} berikut.
 
 \begin{table}[H]
     \centering
@@ -297,7 +297,7 @@ Setelah melalui proses pembersihan data, diperoleh dataset bersih sebagaimana di
     \end{tabular}
 \end{table}
 
-Berdasarkan Tabel V.1, proporsi kelas positif (hipertensi) tercatat sebesar 27,65\%, sedangkan kelas negatif (sehat) mendominasi dengan proporsi 72,35\%, sehingga menghasilkan rasio ketidakseimbangan sekitar 2,62:1. Merujuk pada literatur terkait pembelajaran pada data tidak seimbang, rasio ini tergolong dalam kategori ketidakseimbangan moderat (\textit{moderate imbalance}), di mana kelas minoritas berada pada rentang 10--30\% dari total observasi \cite{krawczyk2016}. Meskipun tidak dikategorikan sebagai ketidakseimbangan ekstrem, dominasi kelas negatif ini tetap berpotensi menggeser kecenderungan model untuk memprediksi kelas mayoritas, yang pada gilirannya dapat menurunkan sensitivitas deteksi kasus hipertensi. Oleh karena itu, penanganan untuk menyeimbangkan performa tetap diperlukan. Namun, mengingat tingkat ketidakseimbangan yang masih moderat, pendekatan algoritmik seperti pembobotan kelas (\textit{class weighting}) atau penyesuaian ambang batas (\textit{threshold adjustment}) dinilai lebih rasional. Pendekatan tersebut secara empiris lebih direkomendasikan dibandingkan dengan teknik \textit{resampling} yang agresif, seperti \textit{oversampling} atau \textit{undersampling}, yang rentan memicu terjadinya \textit{overfitting} maupun hilangnya informasi krusial dari struktur asli dataset \cite{he2009}.
+Berdasarkan Tabel V.1, proporsi kelas positif (hipertensi) tercatat sebesar 27,65\%, sedangkan kelas negatif (sehat) mendominasi dengan proporsi 72,35\%, sehingga menghasilkan rasio ketidakseimbangan sekitar 2,62:1. Merujuk pada literatur terkait pembelajaran pada data tidak seimbang, rasio ini tergolong dalam kategori ketidakseimbangan moderat (\textit{moderate imbalance}), karena proporsi kelas minoritas berada pada rentang 10--30\% dari total observasi \cite{krawczyk2016}. Meskipun tidak dikategorikan sebagai ketidakseimbangan ekstrem, dominasi kelas negatif ini tetap berpotensi menggeser kecenderungan model untuk memprediksi kelas mayoritas, yang pada gilirannya dapat menurunkan sensitivitas deteksi kasus hipertensi. Oleh karena itu, penanganan untuk menyeimbangkan performa tetap diperlukan. Namun, mengingat tingkat ketidakseimbangan yang masih moderat, pendekatan algoritmik seperti pembobotan kelas (\textit{class weighting}) atau penyesuaian ambang batas (\textit{threshold adjustment}) dinilai lebih rasional. Pendekatan tersebut secara empiris lebih direkomendasikan dibandingkan dengan teknik \textit{resampling} yang agresif, seperti \textit{oversampling} atau \textit{undersampling}, yang rentan memicu terjadinya \textit{overfitting} maupun hilangnya informasi krusial dari struktur asli dataset \cite{he2009}.
 
 Pembagian data dilakukan dengan proporsi 80\% untuk data latih (\textit{training set}) dan 20\% untuk data uji (\textit{testing set}) menggunakan metode pemisahan bertingkat (\textit{stratified split}) guna menjaga distribusi kelas pada kedua subsampel. Penggunaan \textit{stratified split} bertujuan agar proporsi kelas hipertensi dan non-hipertensi pada data latih maupun data uji tetap merepresentasikan distribusi data asli, sehingga hasil evaluasi model menjadi lebih reliabel. Proporsi 80:20 dipilih karena dapat menyediakan jumlah data yang memadai untuk proses pembelajaran model, sekaligus mempertahankan ukuran sampel pengujian yang representatif untuk mengukur kemampuan generalisasi model secara objektif.
 \subsection{Deskripsi Fitur Input}

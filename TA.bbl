@@ -122,6 +122,130 @@
       \verb https://link.springer.com/article/10.1186/s12911-020-01332-6
       \endverb
     \endentry
+    \entry{amann2022explain}{article}{}{}
+      \name{author}{15}{}{%
+        {{un=2,uniquepart=given,hash=2a6d65995a6526e6c02bb1618c1a0851}{%
+           family={Amann},
+           familyi={A\bibinitperiod},
+           given={Julia},
+           giveni={J\bibinitperiod},
+           givenun=2}}%
+        {{un=0,uniquepart=base,hash=ea4b7285d3be2beb7bdac707b7092b79}{%
+           family={Vetter},
+           familyi={V\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=736733692d12656089bbcf23b4cb3522}{%
+           family={Blomberg},
+           familyi={B\bibinitperiod},
+           given={Simon\bibnamedelima N.},
+           giveni={S\bibinitperiod\bibinitdelim N\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7469ce91aba5408cd413d4cda011ecac}{%
+           family={Christensen},
+           familyi={C\bibinitperiod},
+           given={Helle\bibnamedelima C.},
+           giveni={H\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=fee34b7f4c683b774e173b37861660ad}{%
+           family={Coffee},
+           familyi={C\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d8b826e46af50f75789e9fc34bd01a2c}{%
+           family={Gerke},
+           familyi={G\bibinitperiod},
+           given={Sara},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d6f42382da43c0f954bf1836b2425e26}{%
+           family={Gilbert},
+           familyi={G\bibinitperiod},
+           given={Thomas\bibnamedelima K.},
+           giveni={T\bibinitperiod\bibinitdelim K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c2a5bd1c8abf4d0ac046e0640f4d2e66}{%
+           family={Hagendorff},
+           familyi={H\bibinitperiod},
+           given={Thilo},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=421500386e446b665a2152d0a21536ed}{%
+           family={Holm},
+           familyi={H\bibinitperiod},
+           given={S{ø}ren},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b130b3186e0f0ffee6361614d68d56ef}{%
+           family={Livne},
+           familyi={L\bibinitperiod},
+           given={Michal},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e5d69b165376188af85c195f826c3f18}{%
+           family={Spezzatti},
+           familyi={S\bibinitperiod},
+           given={Arianna},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5ee43a22d95b5417f89230db60069999}{%
+           family={Strümke},
+           familyi={S\bibinitperiod},
+           given={Inga},
+           giveni={I\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2a432b9c2ffe3e1309153107b8e72489}{%
+           family={Zicari},
+           familyi={Z\bibinitperiod},
+           given={Roberto\bibnamedelima V.},
+           giveni={R\bibinitperiod\bibinitdelim V\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=12e06e0a8f43e4ffecbec4cbae25a266}{%
+           family={Madai},
+           familyi={M\bibinitperiod},
+           given={Viola\bibnamedelima I.},
+           giveni={V\bibinitperiod\bibinitdelim I\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ae74913a11bbc5d687e6b79eb67685ed}{%
+           family={Initiative},
+           familyi={I\bibinitperiod},
+           given={Z-Inspection},
+           giveni={Z\bibinithyphendelim I\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{869930623b8291f2fad391f7508b989f}
+      \strng{fullhash}{607d50138ebe077967dd08422bfa90a6}
+      \strng{fullhashraw}{607d50138ebe077967dd08422bfa90a6}
+      \strng{bibnamehash}{5819034e3cbc7288b5edc0216fac85b2}
+      \strng{authorbibnamehash}{5819034e3cbc7288b5edc0216fac85b2}
+      \strng{authornamehash}{869930623b8291f2fad391f7508b989f}
+      \strng{authorfullhash}{607d50138ebe077967dd08422bfa90a6}
+      \strng{authorfullhashraw}{607d50138ebe077967dd08422bfa90a6}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{author}
+      \field{journaltitle}{PLOS Digital Health}
+      \field{number}{2}
+      \field{title}{To Explain or Not to Explain? Artificial Intelligence Explainability in Clinical Decision Support Systems}
+      \field{volume}{1}
+      \field{year}{2022}
+      \field{pages}{e0000016}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb 10.1371/journal.pdig.0000016
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1371/journal.pdig.0000016
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1371/journal.pdig.0000016
+      \endverb
+    \endentry
     \entry{Amugongo2025Retrieval}{article}{}{}
       \true{moreauthor}
       \true{morelabelname}
@@ -237,6 +361,58 @@
       \endverb
       \verb{url}
       \verb https://doi.org/10.48550/arXiv.2005.14165
+      \endverb
+    \endentry
+    \entry{Chen2024Benchmarking}{inproceedings}{}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=38241eaee18102cab15a125b0654c7da}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={J},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=006d527428ae3b86c2093d6d28e16072}{%
+           family={Lin},
+           familyi={L\bibinitperiod},
+           given={H},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=d5f7ae42a563998bd7eccae3eaed6b75}{%
+           family={Han},
+           familyi={H\bibinitperiod},
+           given={X},
+           giveni={X\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=abe54d71a8749221df19e0ecf976f01c}{%
+           family={Sun},
+           familyi={S\bibinitperiod},
+           given={L},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{009ae0939de2e2902cbc6c9fa114de64}
+      \strng{fullhash}{b8c1fbeb88110fa89ec341f7b6f7809e}
+      \strng{fullhashraw}{b8c1fbeb88110fa89ec341f7b6f7809e}
+      \strng{bibnamehash}{b8c1fbeb88110fa89ec341f7b6f7809e}
+      \strng{authorbibnamehash}{b8c1fbeb88110fa89ec341f7b6f7809e}
+      \strng{authornamehash}{009ae0939de2e2902cbc6c9fa114de64}
+      \strng{authorfullhash}{b8c1fbeb88110fa89ec341f7b6f7809e}
+      \strng{authorfullhashraw}{b8c1fbeb88110fa89ec341f7b6f7809e}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the AAAI Conference on Artificial Intelligence}
+      \field{issue}{16}
+      \field{title}{Benchmarking large language models in retrieval-augmented generation}
+      \field{volume}{38}
+      \field{year}{2023}
+      \field{pages}{17890\bibrangedash 17898}
+      \range{pages}{9}
+      \verb{doi}
+      \verb https://doi.org/10.48550/arXiv.2309.01431
       \endverb
     \endentry
     \entry{Clusmann2023Future}{article}{}{}
@@ -1228,6 +1404,65 @@
       \endverb
       \verb{url}
       \verb https://repository.badankebijakan.kemkes.go.id/id/eprint/3514/1/Laporan%20Riskesdas%202018%20Nasional.pdf
+      \endverb
+    \endentry
+    \entry{Mallick2018}{article}{}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=a8e5ffd5492ce425f34aeb6bfecb05a2}{%
+           family={Khurram\bibnamedelima Mallick},
+           familyi={K\bibinitperiod\bibinitdelim M\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=0a845793e3f06626fb296e5a37edc23c}{%
+           family={Ahsan},
+           familyi={A\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=9f67c0b63bfca15ae2ef20f48275ff53}{%
+           family={Das},
+           familyi={D\bibinitperiod},
+           given={B.},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=fcb4ca51f546b1b816aee99e743c05cd}{%
+           family={Rai},
+           familyi={R\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{60bc1aadd78e3dc736358bab1e4c1bf9}
+      \strng{fullhash}{2c0851ff12ec00451c03586b47cb8085}
+      \strng{fullhashraw}{2c0851ff12ec00451c03586b47cb8085}
+      \strng{bibnamehash}{2c0851ff12ec00451c03586b47cb8085}
+      \strng{authorbibnamehash}{2c0851ff12ec00451c03586b47cb8085}
+      \strng{authornamehash}{60bc1aadd78e3dc736358bab1e4c1bf9}
+      \strng{authorfullhash}{2c0851ff12ec00451c03586b47cb8085}
+      \strng{authorfullhashraw}{2c0851ff12ec00451c03586b47cb8085}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{author}
+      \field{journaltitle}{International Journal of Medical Research and Review}
+      \field{month}{3}
+      \field{number}{3}
+      \field{title}{A Correlation Study of Lipid Profile with Body Mass Index and Waist Hip Ratio in Rohilkhand Region}
+      \field{volume}{6}
+      \field{year}{2018}
+      \field{pages}{186\bibrangedash 191}
+      \range{pages}{6}
+      \verb{doi}
+      \verb 10.17511/ijmrr.2018.i03.10
+      \endverb
+      \verb{urlraw}
+      \verb https://ijmrr.medresearch.in/index.php/ijmrr/article/view/976
+      \endverb
+      \verb{url}
+      \verb https://ijmrr.medresearch.in/index.php/ijmrr/article/view/976
       \endverb
     \endentry
     \entry{Kleppmann2021Designing}{book}{}{}
@@ -2742,6 +2977,50 @@
       \verb https://doi.org/10.36040/jati.v8i6.11793
       \endverb
     \endentry
+    \entry{tazarv2021deep}{inproceedings}{}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=a86dbd85bf2e2d941d62a08cd3f8b136}{%
+           family={Tazarv},
+           familyi={T\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=0be7359bb82206e2f7b525821851025e}{%
+           family={Levorato},
+           familyi={L\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Mexico City, Mexico}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{f8fba7ec77a821197154f33de0dc5063}
+      \strng{fullhash}{f8fba7ec77a821197154f33de0dc5063}
+      \strng{fullhashraw}{f8fba7ec77a821197154f33de0dc5063}
+      \strng{bibnamehash}{f8fba7ec77a821197154f33de0dc5063}
+      \strng{authorbibnamehash}{f8fba7ec77a821197154f33de0dc5063}
+      \strng{authornamehash}{f8fba7ec77a821197154f33de0dc5063}
+      \strng{authorfullhash}{f8fba7ec77a821197154f33de0dc5063}
+      \strng{authorfullhashraw}{f8fba7ec77a821197154f33de0dc5063}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{2021 43rd Annual International Conference of the IEEE Engineering in Medicine \& Biology Society (EMBC)}
+      \field{title}{A Deep Learning Approach to Predict Blood Pressure from PPG Signals}
+      \field{year}{2021}
+      \field{pages}{5658\bibrangedash 5662}
+      \range{pages}{5}
+      \verb{doi}
+      \verb 10.1109/EMBC46164.2021.9629687
+      \endverb
+    \endentry
     \entry{Thirunavukarasu2023Large}{article}{}{}
       \name{author}{5}{}{%
         {{un=0,uniquepart=base,hash=606f7ae6affb6f50913dc4d68262e8a6}{%
@@ -3364,9 +3643,7 @@
       \endverb
     \endentry
   \enddatalist
-  \missing{Chen2023Benchmarking}
   \missing{ElSalamony2023Comparative}
-  \missing{Liu2024Evaluating}
   \missing{Molnar2025Interpretable}
 \endrefsection
 \endinput
