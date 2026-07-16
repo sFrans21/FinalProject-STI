@@ -4,7 +4,35 @@
 \cleardoublepage
 \chapter{PENUTUP}
 \label{chap:penutup}
+
+Bab ini memuat kesimpulan yang menjawab rumusan masalah dan tujuan penelitian berdasarkan hasil perancangan, implementasi, dan evaluasi yang telah dilakukan, serta saran untuk pengembangan lebih lanjut.
+
 \section{Kesimpulan}
-Jelaskan secara detail langkah-langkah rencana selanjutnya, hal-hal yang diperlukan atau akan disiapkan, dan risiko dan mitigasinya, yang meliputi:
+Berdasarkan hasil pengembangan sistem estimasi risiko hipertensi yang mengintegrasikan \textit{machine learning}, \textit{Explainable Artificial Intelligence} (XAI), dan \textit{Large Language Model} (LLM), diperoleh kesimpulan sebagai berikut.
+
+\begin{enumerate}
+    \item Model klasifikasi risiko hipertensi berbasis \textit{machine learning} berhasil dibangun menggunakan data sekunder IFLS-5 dengan delapan fitur non-invasif dan label biner yang dibentuk dari kriteria tekanan darah 140/90 mmHg. Dari empat algoritma yang dibandingkan, yaitu \textit{Logistic Regression}, \textit{Random Forest}, \textit{XGBoost}, dan \textit{CatBoost}, model \textit{XGBoost} dipilih sebagai model akhir karena menawarkan keseimbangan terbaik antara kemampuan membedakan kelas, sensitivitas, dukungan interpretasi berbasis SHAP, serta kemudahan penerapan. Model ini mencapai ROC-AUC 0,7795 serta \textit{recall} 0,7186 pada ambang 0,5 dan 0,7062 pada ambang \textit{Youden} yang menjadi titik operasi final sistem, sehingga memenuhi kriteria keberhasilan yang ditetapkan, yaitu ROC-AUC minimal 0,75 dan \textit{recall} minimal 0,70. Dengan demikian, rumusan masalah pertama terjawab.
+
+    \item Metode XAI berbasis SHAP (\textit{TreeExplainer}) berhasil diterapkan untuk menjelaskan kontribusi setiap fitur terhadap prediksi, baik pada tingkat global maupun individu, dalam bentuk visualisasi yang dapat dipahami tanpa keahlian teknis tambahan. Analisis menempatkan usia, indeks massa tubuh, dan jenis kelamin sebagai faktor paling dominan, dengan arah kontribusi yang sebagian besar selaras dengan pengetahuan medis. Validasi oleh dokter umum memberikan rerata skor 3,60 pada skala Likert 1--5 (kategori valid), dengan catatan adanya galat arah pada sebagian fitur berdampak kecil (magnitudo di bawah 3\%), termasuk status merokok, yang diduga dipengaruhi oleh faktor perancu pada data survei. Dengan demikian, rumusan masalah kedua terjawab, sekaligus teridentifikasi keterbatasan yang perlu diperbaiki.
+
+    \item Modul narasi berbasis \textit{prompt engineering} berhasil mentransformasi luaran teknis SHAP menjadi penjelasan berbahasa Indonesia yang personal dan mudah dipahami. Faktualitas narasi dijaga melalui arsitektur dua lapisan: seluruh angka, arah pengaruh, pemilihan fakta, dan materi saran ditetapkan secara deterministik dari nilai SHAP dan kondisi klinis pasien, sedangkan LLM (\textit{llama-3.1-8b-instant}) hanya bertugas menghaluskan bahasa dengan \textit{guardrail} yang melarang fabrikasi angka maupun klaim medis, tanpa menggunakan basis pengetahuan eksternal (RAG). Mekanisme \textit{override} pada fitur yang berarah keliru, seperti status merokok, mencegah artefak model berubah menjadi misinformasi. Validasi dokter memberikan rerata skor 3,93 (kategori valid), dengan aspek keamanan memperoleh nilai tertinggi (4,57). Dengan demikian, rumusan masalah ketiga terjawab.
+\end{enumerate}
+
+Secara keseluruhan, ketiga komponen berhasil diintegrasikan ke dalam sebuah purwarupa berbasis web yang berfungsi secara \textit{end-to-end}, mulai dari masukan faktor risiko non-invasif hingga keluaran berupa status risiko, grafik kontribusi faktor, dan narasi penjelasan. Sistem terbukti mampu menyajikan estimasi risiko hipertensi yang akurat, transparan, dan komunikatif. Meskipun demikian, hasil evaluasi menegaskan bahwa sistem ini diposisikan sebagai alat bantu skrining awal dan edukasi, bukan sebagai pengganti diagnosis maupun keputusan klinis tenaga kesehatan.
+
 \section{Saran}
-asdfas
+Berdasarkan temuan dan keterbatasan yang teridentifikasi selama penelitian, diajukan beberapa saran untuk pengembangan lebih lanjut sebagai berikut.
+
+\begin{enumerate}
+    \item Menambah jumlah penilai ahli, yaitu lebih dari satu dokter, agar kesepakatan antar-penilai (\textit{inter-rater agreement}) seperti Cohen's Kappa atau Aiken's V dapat dihitung dan hasil validasi dapat digeneralisasi lebih kuat, sekaligus memperluas jumlah dan variasi kasus yang dievaluasi.
+
+    \item Memperbaiki galat arah kontribusi SHAP pada fitur berdampak kecil, misalnya dengan menyaring atau menggabungkan kontribusi di bawah ambang tertentu agar tidak ditampilkan sebagai arah yang menyesatkan bagi pengguna.
+
+    \item Memperkuat strategi \textit{prompt engineering} pada modul narasi agar teks secara konsisten mempertahankan arah dan proporsi kontribusi dari hasil SHAP serta terhindar dari kesalahan logika kausal.
+
+    \item Memperkaya fitur dengan sumber data yang lebih lengkap dan mutakhir, termasuk faktor risiko yang secara medis penting namun tidak tersedia atau terlalu banyak kosong pada IFLS-5, seperti riwayat hipertensi keluarga dan asupan garam (natrium).
+
+    \item Meningkatkan stabilitas interpretasi pada fitur dengan jumlah data positif yang sedikit, yaitu diabetes dan kolesterol tinggi, misalnya melalui penambahan data atau teknik penyeimbangan yang sesuai.
+
+    \item Melakukan pengujian kepada pengguna akhir nyata (\textit{usability testing}) untuk menilai keterpahaman dan penerimaan narasi di luar konteks validasi ahli.
+\end{enumerate}

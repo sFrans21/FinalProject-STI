@@ -1,21 +1,35 @@
 [0] Config.pm:328> INFO - This is Biber 2.21
 [1] Config.pm:331> INFO - Logfile is 'TA.blg'
-[613] biber-MSWIN64:342> INFO - === 
-[828] Biber.pm:421> INFO - Reading 'TA.bcf'
-[1504] Biber.pm:1002> INFO - Found 67 citekeys in bib section 0
-[1539] Biber.pm:4487> INFO - Processing section 0
-[1603] Biber.pm:4678> INFO - Looking for bibtex file 'daftar-pustaka.bib' for section 0
-[1766] bibtex.pm:1713> INFO - LaTeX decoding ...
-[2176] bibtex.pm:1519> INFO - Found BibTeX data source 'daftar-pustaka.bib'
-[4035] UCollate.pm:68> INFO - Overriding locale 'indonesian' defaults 'level = 4' with 'level = 2'
-[4035] UCollate.pm:68> INFO - Overriding locale 'indonesian' defaults 'variable = shifted' with 'variable = non-ignorable'
-[4036] UCollate.pm:68> INFO - Overriding locale 'indonesian' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[4046] Biber.pm:4307> INFO - Sorting list 'cms/global//global/global/global' of type 'entry' with template 'cms' and locale 'indonesian'
-[4046] Biber.pm:4313> INFO - No sort tailoring available for locale 'indonesian'
-[4475] bbl.pm:676> INFO - Writing 'TA.bbl' with encoding 'UTF-8'
-[4628] bbl.pm:779> INFO - Output to TA.bbl
-[4629] Biber.pm:132> WARN - legacy month field 'October' in entry 'manongga2024gambaran' is not an integer - this will probably not sort properly.
-[4630] Biber.pm:132> WARN - Possible typo (case mismatch) between citation and datasource keys: 'Molnar2025Interpretable' and 'molnar2025interpretable' in file 'daftar-pustaka.bib'
-[4630] Biber.pm:132> WARN - I didn't find a database entry for 'Molnar2025Interpretable' (section 0)
-[4630] Biber.pm:132> WARN - I didn't find a database entry for 'ElSalamony2023Comparative' (section 0)
-[4631] Biber.pm:134> INFO - WARNINGS: 4
+[140] biber-MSWIN64:342> INFO - === 
+[186] Biber.pm:421> INFO - Reading 'TA.bcf'
+[428] Biber.pm:1002> INFO - Found 87 citekeys in bib section 0
+[444] Biber.pm:4487> INFO - Processing section 0
+[456] Biber.pm:4678> INFO - Looking for bibtex file 'daftar-pustaka.bib' for section 0
+[525] bibtex.pm:1713> INFO - LaTeX decoding ...
+[668] bibtex.pm:1519> INFO - Found BibTeX data source 'daftar-pustaka.bib'
+[1446] UCollate.pm:68> INFO - Overriding locale 'indonesian' defaults 'level = 4' with 'level = 2'
+[1446] UCollate.pm:68> INFO - Overriding locale 'indonesian' defaults 'variable = shifted' with 'variable = non-ignorable'
+[1447] UCollate.pm:68> INFO - Overriding locale 'indonesian' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[1447] Biber.pm:4307> INFO - Sorting list 'cms/global//global/global/global' of type 'entry' with template 'cms' and locale 'indonesian'
+[1447] Biber.pm:4313> INFO - No sort tailoring available for locale 'indonesian'
+[1575] bbl.pm:676> INFO - Writing 'TA.bbl' with encoding 'UTF-8'
+[1654] bbl.pm:779> INFO - Output to TA.bbl
+[1655] Biber.pm:132> WARN - legacy month field 'October' in entry 'manongga2024gambaran' is not an integer - this will probably not sort properly.
+[1655] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_nuSL\41ffe2d8d9a3f06b4c5a0f7a04e3d585_49892.utf8, line 41, warning: possible runaway string started at line 39
+[1655] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_nuSL\41ffe2d8d9a3f06b4c5a0f7a04e3d585_49892.utf8, line 64, warning: possible runaway string started at line 62
+[1655] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_nuSL\41ffe2d8d9a3f06b4c5a0f7a04e3d585_49892.utf8, line 83, warning: possible runaway string started at line 81
+[1655] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_nuSL\41ffe2d8d9a3f06b4c5a0f7a04e3d585_49892.utf8, line 103, warning: possible runaway string started at line 101
+[1656] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_nuSL\41ffe2d8d9a3f06b4c5a0f7a04e3d585_49892.utf8, line 299, warning: possible runaway string started at line 297
+[1656] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_nuSL\41ffe2d8d9a3f06b4c5a0f7a04e3d585_49892.utf8, line 358, warning: possible runaway string started at line 356
+[1656] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_nuSL\41ffe2d8d9a3f06b4c5a0f7a04e3d585_49892.utf8, line 439, warning: possible runaway string started at line 437
+[1656] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_nuSL\41ffe2d8d9a3f06b4c5a0f7a04e3d585_49892.utf8, line 476, warning: possible runaway string started at line 474
+[1656] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_nuSL\41ffe2d8d9a3f06b4c5a0f7a04e3d585_49892.utf8, line 489, warning: possible runaway string started at line 487
+[1656] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_nuSL\41ffe2d8d9a3f06b4c5a0f7a04e3d585_49892.utf8, line 498, warning: possible runaway string started at line 496
+[1656] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_nuSL\41ffe2d8d9a3f06b4c5a0f7a04e3d585_49892.utf8, line 508, warning: possible runaway string started at line 506
+[1656] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_nuSL\41ffe2d8d9a3f06b4c5a0f7a04e3d585_49892.utf8, line 597, warning: possible runaway string started at line 595
+[1657] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_nuSL\41ffe2d8d9a3f06b4c5a0f7a04e3d585_49892.utf8, line 616, warning: possible runaway string started at line 614
+[1657] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_nuSL\41ffe2d8d9a3f06b4c5a0f7a04e3d585_49892.utf8, line 636, warning: possible runaway string started at line 634
+[1657] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_nuSL\41ffe2d8d9a3f06b4c5a0f7a04e3d585_49892.utf8, line 646, warning: possible runaway string started at line 644
+[1657] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_nuSL\41ffe2d8d9a3f06b4c5a0f7a04e3d585_49892.utf8, line 711, warning: possible runaway string started at line 709
+[1657] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_nuSL\41ffe2d8d9a3f06b4c5a0f7a04e3d585_49892.utf8, line 783, warning: possible runaway string started at line 781
+[1657] Biber.pm:134> INFO - WARNINGS: 18

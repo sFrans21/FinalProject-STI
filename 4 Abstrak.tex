@@ -3,7 +3,7 @@
 
 \begin{center}
 
-    \textbf{Pengembangan Sistem Informasi Berbasis Machine Learning dan Explainable Artificial Intelligence untuk Estimasi Risiko Hipertensi} \\
+    \textbf{Sistem Informasi Berbasis Machine Learning dan Explainable Artificial Intelligence untuk Estimasi Risiko Hipertensi} \\
     \vspace{0.4cm}
     oleh \\
     \vspace{0.4cm}
@@ -13,32 +13,32 @@
 
 
 \begin{spacing}{1.0}
-Proses manual dalam rantai pasok jeruk di tingkat lapak, yang mencakup sortir,
-timbang, dan catat, terbukti tidak efisien, memakan waktu, dan rentan terhadap
-kesalahan. Meskipun solusi berbasis Internet of Things (IoT) dapat mengatasi
-masalah ini, arsitektur terpusat konvensional berbasis cloud justru menimbulkan
-masalah baru berupa latensi tinggi yang menghambat alur kerja real-time.
-Penelitian ini bertujuan untuk merancang dan mengimplementasikan sebuah
-purwarupa sistem smart scale berbasis IoT dengan pendekatan desentralisasi (edge
-computing) untuk meminimalkan latensi dan meningkatkan efisiensi operasional.
-Metode yang digunakan adalah Model Purwarupa, yang diwujudkan dalam bentuk
-perangkat keras dengan arsitektur prosesor ganda (Raspberry Pi 5 dan ESP32) yang
-mampu mengintegrasikan fungsi timbang dan analisis kualitas citra secara
-simultan. Hasil evaluasi menunjukkan bahwa purwarupa dengan arsitektur edge
-computing yang diimplementasikan mampu memberikan respons 43,5\% lebih cepat
-(latensi rata-rata 18,05 detik) dibandingkan dengan simulasi arsitektur terpusat.
-Selain itu, sistem ini berhasil meningkatkan efisiensi waktu kerja secara
-keseluruhan sebesar 58,32\% jika dibandingkan dengan metode manual
-konvensional. Pengujian Penerimaan Pengguna (UAT) yang melibatkan 30
-partisipan juga menunjukkan penerimaan yang sangat positif, dengan skor rata-rata
-untuk kemudahan penggunaan (5,0/5,0), kejelasan antarmuka (4,87/5,0) dan
-persepsi kinerja (4,95/5,0). Kesimpulannya, implementasi sistem smart scale
-dengan arsitektur desentralisasi terbukti merupakan solusi yang valid dan efektif
-untuk menjawab permasalahan latensi dan inefisiensi di lapak. Sistem ini tidak
-hanya unggul secara teknis dalam hal performa, tetapi juga fungsional dan dapat
-diterima dengan baik oleh pengguna akhir, serta berpotensi besar untuk modernisasi
-rantai pasok agribisnis.
+Hipertensi adalah salah satu faktor risiko utama yang berkontribusi terhadap terjadinya penyakit kardiovaskular dengan
+prevalensi yang terus meningkat, namun penanganannya masih cenderung reaktif sehingga
+banyak kasus baru terdeteksi setelah timbul komplikasi. Pendekatan \textit{machine
+learning} berpotensi mengestimasi risiko hipertensi lebih dini, tetapi sifat \textit{black
+box} model menghambat kepercayaan klinis, sementara luaran \textit{Explainable Artificial
+Intelligence} (XAI) yang berupa nilai numerik sulit dipahami masyarakat awam dan penggunaan
+\textit{Large Language Model} (LLM) generik rentan terhadap halusinasi medis. Penelitian ini
+bertujuan merancang dan mengimplementasikan sistem estimasi risiko hipertensi yang
+mengintegrasikan \textit{machine learning}, XAI, dan LLM agar prediksi tidak hanya akurat,
+tetapi juga transparan dan komunikatif. Metode yang digunakan mengikuti kerangka CRISP-DM
+dengan data sekunder \textit{Indonesian Family Life Survey} gelombang kelima (IFLS-5), yang
+menghasilkan 30.251 responden dewasa dengan delapan fitur non-invasif. Empat algoritma, yaitu
+\textit{Logistic Regression}, \textit{Random Forest}, \textit{XGBoost}, dan \textit{CatBoost},
+dibandingkan, dan XGBoost dipilih sebagai model akhir dengan ROC-AUC 0,78 serta \textit{recall}
+0,71 pada titik operasi \textit{Youden Index}, sehingga memenuhi kriteria keberhasilan berupa
+ROC-AUC minimal 0,75 dan \textit{recall} minimal 0,70. Interpretasi model dilakukan menggunakan
+SHAP (\textit{SHapley Additive exPlanations}), sedangkan narasi penjelasan dibangun melalui
+arsitektur dua lapisan: seluruh angka, arah pengaruh, dan fakta ditetapkan secara deterministik
+dari nilai SHAP, sedangkan LLM (\textit{llama-3.1-8b-instant}) hanya bertugas menghaluskan bahasa
+tanpa mekanisme temu-kembali eksternal (RAG), sehingga risiko halusinasi dapat ditekan. Seluruh
+komponen diintegrasikan ke dalam purwarupa berbasis web. Hasil validasi oleh seorang dokter umum
+atas tujuh kasus menunjukkan komponen SHAP memperoleh rerata 3,60 dan komponen narasi LLM 3,93
+pada skala Likert 1--5, yang keduanya tergolong valid. Dengan demikian, sistem terbukti mampu
+menyajikan estimasi risiko hipertensi yang akurat, transparan, dan mudah dipahami, serta layak
+digunakan sebagai alat bantu skrining awal dan edukasi, bukan sebagai pengganti diagnosis tenaga
+kesehatan.
 
-Kata kunci: Smart Scale, Internet of Things, Edge Computing, Rantai Pasok Jeruk.
+Kata kunci: Hipertensi, Machine Learning, Explainable AI, SHAP, Large Language Model.
 \end{spacing}
-

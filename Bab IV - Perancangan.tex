@@ -1,169 +1,273 @@
 % ==========================================
 % BAB IV PERANCANGAN
 % ==========================================
+% CATATAN GAMBAR:
+% Seluruh gambar pada bab ini masih berupa PLACEHOLDER (\bivplaceholder).
+% Tiap placeholder disertai blok "% SPEC GAMBAR ..." yang menjelaskan apa yang
+% harus digambar. Setelah gambar selesai dibuat, ganti perintah
+%   \bivplaceholder{...}
+% dengan
+%   \includegraphics[width=0.8\textwidth]{images/bab4/<nama_berkas>.png}
+% ==========================================
 \cleardoublepage
 \chapter{PERANCANGAN}
-\vspace{-2cm}
 \label{chap:desain-konsep-solusi}
 
-\section{Model Konseptual Solusi yang Diusulkan}
-Berdasarkan analisis masalah dan pemilihan solusi pada bab sebelumnya, penelitian ini mengusulkan arsitektur sistem hibrida yang mengintegrasikan \textit{Machine Learning} (ML), \textit{Explainable Artificial Intelligence} (XAI), dan \textit{Large Language Model} (LLM) berbasis \textit{Retrieval-Augmented Generation} (RAG).
-Sistem ini dirancang dengan arsitektur yang memfasilitasi pengunaan baiik oleh pasien secara mandiri maupun oleh tenaga medis. Aplikasi ini menerapkan mekanisme pengumpulan data yang adaptif bergantung pada konteks pengunaan. Dalam skrining mandiri di rumah, pasien dapat melakukan deteksi dini risiko hipertensi dari rumah tanpa perlu mengunjungi fasilitas kesehatan fisik. Pada mode ini, sistem membatasi kuesioner hanya pada variabel non-invasif saja seperti demografi, gaya hidup, dan riwayat gejala, serta meniadakan parameter klinis yang membutuhkan alat medis atau tindakan invasif seperti pengukuran tekanan darah atau pengambilan sampel darah. Sebaliknya, aplikasi juga dapat digunakan dengan alat ukur tensi di rumah, atau di fasilitas kesehatan, karena terdapat opsi untuk menyertakan veriabel data klinis dan invasif.
-Gambar \ref{fig:konsep-solusi} mengilustrasikan desain konsep solusi yang dirancang untuk mengubah data klinis pasien menjadi prediksi risiko yang akurat, transparan, dan mudah dipahami.
+% Placeholder gambar sementara (hapus/ganti dengan \includegraphics bila gambar sudah ada)
+\newcommand{\bivplaceholder}[1]{%
+    \fbox{\begin{minipage}[c][4.8cm][c]{0.85\textwidth}\centering
+    \textbf{[ PLACEHOLDER GAMBAR ]}\par\vspace{4pt}\footnotesize\itshape #1\end{minipage}}%
+}
+
+Bab ini memaparkan perancangan sistem estimasi risiko hipertensi yang diusulkan. Pada bab ini, ditekankan perancangan sebagai sebuah \emph{proses}. Setiap keputusan rancangan diturunkan secara eksplisit dari kebutuhan fungsional (FR) dan nonfungsional (NFR) yang telah dirumuskan pada Bab \ref{chap:analisis-masalah}. Untuk memudahkan pembaca, arsitektur akhir sistem ditampilkan lebih dahulu sebagai gambaran utuh pada Subbab \ref{sec:arsitektur-usulan}, kemudian tahapan yang menurunkan tiap komponennya dari kebutuhan dijelaskan pada Subbab \ref{sec:tahapan-perancangan}.
+
+\section{Arsitektur Sistem yang Diusulkan}
+\label{sec:arsitektur-usulan}
+Berdasarkan analisis pemilihan solusi pada Bab \ref{chap:analisis-masalah}, sistem mengadopsi arsitektur yang menggabungkan \textit{Machine Learning} (ML) untuk prediksi, \textit{Explainable Artificial Intelligence} (XAI) untuk interpretasi, dan \textit{Large Language Model} (LLM) untuk narasi. Faktualitas narasi tidak diserahkan sepenuhnya kepada LLM, melainkan dikendalikan melalui kombinasi lapisan kaidah deterministik dan pembatasan LLM melalui \textit{prompt engineering}, sebagaimana ditetapkan pada kebutuhan FR05 dan NFR03.
+
+Secara teknis, sistem dirancang dengan pendekatan berbasis layanan (\textit{service-based architecture}) yang memisahkan antarmuka pengguna (\textit{frontend}) dari mesin analisis (\textit{backend}), sehingga seluruh logika prediksi terpusat di sisi server dan berkomunikasi melalui antarmuka REST berformat JSON. Gambar \ref{fig:arsitektur-final} menyajikan arsitektur akhir sistem secara utuh.
 
 \begin{figure}[H]
     \centering
-    % Pastikan nama file tidak menggunakan spasi. Gunakan underscore atau dash.
-    \includegraphics[width=0.8\textwidth]{images/Desain Konsep Solusi.png} 
-    \caption{Desain konsep solusi sistem}
-    \label{fig:konsep-solusi}
+    \includegraphics[width=0.9\textwidth]{images/ars-sistem.png}
+    \caption{Arsitektur sistem yang diusulkan}
+    \label{fig:arsitektur-final}
 \end{figure}
-Berikut ini adalah uraian komponen pada desain sistem:
+% ============================================================================
+% SPEC GAMBAR 4.1 (Arsitektur Final) — untuk digambar:
+% Diagram blok berlapis (top-down), tanpa komponen RAG/Vector Database.
+%   (1) CLIENT LAYER  : "Aplikasi Web (Next.js/React, TypeScript)" berisi
+%       Formulir 3-langkah + Halaman Hasil. Panah dua-arah ke backend
+%       berlabel "REST/JSON via HTTPS  (POST /api/v1/analyze)".
+%   (2) APPLICATION LAYER (Backend FastAPI), berisi rangkaian sekuensial:
+%       [Preprocessing] -> [Inference: XGBoost predict_proba]
+%       -> [Ambang Youden 0,516 -> kelas Risiko Tinggi/Rendah]
+%       -> [XAI: SHAP TreeExplainer -> atribusi fitur]
+%       -> [Modul Narasi: Lapisan Deterministik -> LLM (penghalus)]
+%       -> [Respons JSON tunggal: status + grafik SHAP + narasi].
+%   (3) MODEL & ARTEFAK: berkas joblib {model XGBoost + ambang Youden +
+%       urutan fitur} dan berkas nilai imputasi cadangan; dibaca oleh Inference.
+%   (4) EXTERNAL SERVICE: "LLM Groq — llama-3.1-8b-instant" dengan panah
+%       "materi saran (teks) -> narasi halus"; beri catatan "fallback deterministik
+%       bila LLM tidak tersedia". TIDAK ADA Vector DB / Retriever / RAG.
+% ============================================================================
 
-
+Berdasarkan Gambar \ref{fig:arsitektur-final}, sistem tersusun atas empat bagian dengan tautan langsung ke kebutuhan pada Bab \ref{chap:analisis-masalah}:
 \begin{enumerate}
-    \item \textit{Input Layer \& Preprocessing} \\
-    Komponen ini berfungsi sebagai antarmuka akuisisi data yang menerima variabel input mentah dari pengguna. Sebelum masuk ke model, data tabular melalui pipa pra-pemrosesan (\textit{preprocessing pipeline}) yang ketat menggunakan pustaka manipulasi data (seperti \textit{Pandas}). Proses ini mencakup dua mekanisme utama:
-    \begin{enumerate}
-        \item \textit{Value Imputation}: Sistem mendeteksi \textit{null values} dan melakukan imputasi (misalnya menggunakan \textit{mean/median} atau menghapus baris) untuk menjaga integritas matriks fitur.
-        \item \textit{Feature Encoding}: Model matematis seperti ML hanya dapat memproses angka, sehingga variabel kategorikal harus dikonversi menjadi format numerik. Untuk variabel biner dan ordinal seperti jenis kelamin atau tingkat aktivitas, diterapkan teknik \textit{label encoding} yang memetakan kategori ke integer.
-    \end{enumerate}
-
-    \item \textit{ML Module} \\
-    Modul ini bertindak sebagai mesin inferensi yang menjalankan algoritma \textit{Machine Learning}. Secara teknis, model ini bekerja dengan membangun \textit{ensemble} dari pohon keputusan (\textit{decision trees}) secara sekuensial, dengan setiap pohon baru dibangun untuk memperbaiki kesalahan prediksi yang masih tersisa pada pohon sebelumnya.
-    \begin{enumerate}
-        \item \textit{Kalkulasi Probabilitas}: Model menghasilkan luaran berupa nilai \textit{log-odds} (\textit{logit}) yang kemudian ditransformasi menggunakan fungsi \textit{sigmoid} untuk menghasilkan skor probabilitas kontinu antara 0 hingga 1.
-        \item \textit{Penentuan Kelas}: Probabilitas tersebut dikomparasi terhadap ambang batas (\textit{threshold}) keputusan (biasanya 0,5 atau disesuaikan demi sensitivitas) untuk mengklasifikasikan label akhir menjadi "Berisiko" atau "Tidak Beresiko".
-    \end{enumerate}
-
-    \item \textit{XAI Module} \\
-    Modul ini menerapkan metode XAI untuk mengaudit keputusan model. Secara matematis, modul ini menghitung nilai \textit{Shapley}, yaitu kontribusi marginal rata-rata dari setiap fitur terhadap selisih antara prediksi aktual instans tersebut dengan prediksi rata-rata dasar.
-    \begin{enumerate}
-        \item \textit{Output Atribusi}: Hasilnya adalah vektor nilai XAI untuk setiap fitur (positif atau negatif), yang menunjukkan seberapa besar dan ke arah mana (menaikkan atau menurunkan risiko) fitur tersebut mempengaruhi skor probabilitas pasien secara spesifik.
-    \end{enumerate}
-
-    \item \textit{RAG Module} \\
-    Modul ini terdiri dari dua fase utama, yaitu \textit{Ingestion} dan \textit{Retrieval \& Generation}.
-    \begin{enumerate}[label=\Alph*.]
-        \item \textit{Ingestion} \\
-        Proses ini mengubah dokumen statis menjadi struktur data yang dapat dicari secara semantik oleh mesin:
-        \begin{enumerate}
-            \item \textit{Raw Documents}: Sistem mengumpulkan dokumen pedoman klinis resmi, seperti panduan hipertensi dari Kemenkes RI atau WHO, dalam format PDF atau teks digital. Dokumen ini menjadi \textit{ground truth} atau sumber kebenaran tunggal.
-            \item \textit{Text Extraction}: Karena mesin tidak bisa membaca visual PDF secara langsung, proses ekstraksi dilakukan menggunakan teknik OCR atau \textit{parsing} untuk memisahkan konten teks murni dari elemen \textit{layout}, gambar, atau \textit{header/footer} yang tidak relevan.
-            \item \textit{Chunking}: Teks hasil ekstraksi tidak langsung diproses utuh karena keterbatasan \textit{context window} pada model bahasa. Teks dipecah menjadi segmen-segmen kecil atau \textit{chunks}, misalnya per paragraf atau per 512 token untuk mempertahankan granularitas konteks. Semakin spesifik potongan dari \textit{chunks}, semakin akurat nanti pencariannya.
-            \item \textit{Embedding}: Setiap \textit{chunk} teks dikonversi menjadi representasi numerik berupa vektor berdimensi tinggi, misalnya \textit{array} berisi 1536 angka \textit{float}, menggunakan model \textit{embedding}. Vektor ini merepresentasikan makna semantik dari teks tersebut. Kalimat dengan makna serupa akan memiliki nilai vektor yang berdekatan secara matematis.
-            \item \textit{Vector Database}: Vektor-vektor tersebut kemudian diindeks dan disimpan dalam \textit{Vector Database} yang dioptimalkan untuk operasi pencarian jarak yang berkecepatan tinggi, bukan pencarian kata kunci biasa.
-        \end{enumerate}
-
-        \item \textit{Retrieval \& Generation} \\
-        Fase ini terjadi secara \textit{real-time} saat pengguna meminta prediksi:
-        \begin{enumerate}
-            \item \textit{Auto-Query}: Ini adalah komponen yang menjembatani hasil analisis XAI dengan pencarian referensi. Sistem secara otomatis menyusun kueri pencarian berdasarkan luaran modul XAI, bukan sekadar meneruskan input mentah pengguna. Sebagai contoh, jika pengguna hanya memasukkan data "umur 50", \textit{Auto-Query} akan mengambil konteks "Usia Lanjut" dan "Hipertensi" dari analisis risiko untuk membentuk kueri spesifik: "Bagaimana pengaruh usia lanjut terhadap risiko hipertensi menurut pedoman medis?"
-            \item \textit{Retriever System}: Sistem penerima kueri ini melakukan pencarian kesamaan (\textit{similarity search}) ke dalam \textit{Vector Database}. Sistem membandingkan vektor dari \textit{Auto-Query} dengan jutaan vektor dokumen yang tersimpan menggunakan perhitungan \textit{Cosine Similarity} atau \textit{Euclidean Distance}.
-            \item \textit{Retrieve Context}: Hasil dari \textit{Retriever} bukanlah jawaban, melainkan potongan dokumen (\textit{chunks}) yang memiliki skor kemiripan tertinggi dengan kueri. Konteks ini diambil untuk memberikan "bahan bacaan" yang valid bagi LLM.
-\textit{Prompt Augmentation}: Pada tahap ini, sistem menggabungkan tiga elemen menjadi satu instruksi yang komprehensif, yaitu (1) kueri asli, (2) hasil analisis SHAP berupa faktor-faktor risiko yang berkontribusi terhadap prediksi, dan (3) \textit{retrieved context} yang berisi dokumen pedoman. Pendekatan ini merupakan bentuk \textit{in-context learning}, yaitu teknik yang mengarahkan model untuk menghasilkan respons berdasarkan konteks yang disediakan dalam \textit{prompt}.            \item \textit{Large Language Model (Generator)}: Terakhir, LLM memproses \textit{prompt} yang sudah diperkaya (\textit{augmented}) tersebut untuk menyusun narasi bahasa alami yang koheren, personal, dan tervalidasi oleh dokumen medis yang dilampirkan dalam konteks.
-        \end{enumerate}
-    \end{enumerate}
-\end{enumerate}
-\subsection{Alur Kerja Sistem}
-Gambar \ref{fig:alur-kerja} mengilustrasikan alur kerja dari sistem yang dirancang.
-
-\begin{figure}[H]
-    \centering
-    % Pastikan nama file tidak menggunakan spasi. Gunakan underscore atau dash.
-    \includegraphics[width=0.8\textwidth]{images/alur kerja sistem.png} 
-    \caption{Alur kerja sistem}
-    \label{fig:alur-kerja}
-\end{figure}
-Sistem yang diusulkan bekerja dalam alur sebagai berikut:
-
-\begin{enumerate}
-    \item Pengguna memasukkan parameter kesehatan seperti usia, tekanan darah, IMT, dan riwayat keluarga pada kuesioner di sistem.
-    
-    \item Model ML memproses data tersebut untuk menghasilkan skor probabilitas risiko hipertensi (misalnya: 56\% Berisiko).
-    
-    \item Secara paralel, modul XAI menghitung nilai atribusi fitur yang mendasar keputusan \textit{black box} model ML. Modul ini mengidentifikasi variabel mana yang paling berkontribusi terhadap skor risiko tersebut, misalnya tinggi konsumsi garam dan IMT, yang menjadi kontributor utama.
-    
-    \item Sistem mengambil hasil atribusi fitur dari SHAP. Lalu setelahnya, sistem melakukan pencarian (\textit{retrieval}) pada basis data vektor yang berisi pedoman medis yang relevan dengan faktor risiko yang ditemukan, seperti pedoman dari Kemenkes atau WHO. LLM akan menggabungkan hasil prediksi, alasan dari SHAP, dan referensi medis untuk menyusun narasi penjelasan yang personal dan valid.
-    
-    \item Pengguna menerima tiga luaran terintegrasi: Status Risiko (ML), Grafik Faktor Penyebab (XAI), dan Penjelasan Naratif serta Saran Medis (RAG-LLM).
+    \item \textbf{Client Layer.} \\
+    Antarmuka web yang menangkap masukan data non-invasif pengguna (mendukung FR01) dan menyajikan tiga luaran, yaitu status risiko, grafik kontribusi fitur, dan narasi penjelasan (mendukung FR02, FR03, dan FR04). Komunikasi ke server memakai REST/JSON melalui protokol aman.
+    \item \textbf{Application Layer (\textit{backend}).} \\
+    Inti pemrosesan berbasis FastAPI yang mengekspos satu titik akhir utama \textit{POST /api/v1/analyze}. Lapisan ini menjalankan empat fungsi berurutan: pra-pemrosesan masukan, inferensi model prediksi, perhitungan atribusi SHAP, dan penyusunan narasi. Keempat fungsi ini merupakan realisasi FR01--FR05 dan dirancang bertahap pada Subbab \ref{sec:tahapan-perancangan}.
+    \item \textbf{Model dan Artefak.} \\
+    Berkas model terlatih beserta ambang keputusan dan urutan fitur disimpan sebagai satu artefak sehingga konfigurasi prediksi pada sistem identik dengan hasil eksperimen. Sistem tidak menggunakan basis data relasional maupun basis data vektor, karena purwarupa berperan sebagai bukti konsep tanpa perlu persistensi data pengguna.
+    \item \textbf{Layanan LLM Eksternal.} \\
+    Sistem memanggil layanan LLM pihak ketiga, yaitu Groq dengan model \textit{llama-3.1-8b-instant}, semata untuk menghaluskan bahasa narasi. Tidak terdapat mekanisme temu-kembali (RAG) maupun basis pengetahuan eksternal; bila layanan tidak tersedia, sistem memakai materi narasi deterministik sebagai \textit{fallback}.
 \end{enumerate}
 
-\subsection{Arsitektur Sistem}
-Diagram arsitektur sistem diperlukan untuk memetakan bagaimana komponen perangkat lunak, aliran data, dan infrastruktur saling berinteraksi guna menjalankan logika prediksi secara stabil, aman, dan skalabel.
-
-Gambar \ref{fig:arsitektur-teknis} berikut mengilustrasikan arsitektur teknis sistem yang dirancang dengan pendekatan berbasis layanan (\textit{service-based architecture}).
+Aliran kerja sistem saat digunakan (\textit{runtime}) diilustrasikan pada Gambar \ref{fig:alur-runtime}. Pengguna memasukkan delapan fitur non-invasif; model menghasilkan skor probabilitas; skor dikategorikan memakai ambang keputusan; modul XAI menghitung kontribusi tiap fitur; modul narasi menyusun penjelasan; dan sistem mengembalikan tiga luaran terpadu.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/arsitektur sistem.png}
-    \caption{Arsitektur teknis sistem }
-    \label{fig:arsitektur-teknis}
+    \includegraphics[width=0.9\textwidth]{images/alur-kerja-sistem.png}
+    \caption{Alur kerja sistem yang diusulkan}
+    \label{fig:alur-runtime}
 \end{figure}
+% ============================================================================
+% SPEC GAMBAR 4.1b (Alur runtime end-to-end) — diagram alur horizontal/melingkar:
+%   [Pengguna: input 8 fitur non-invasif] -> [XGBoost -> probabilitas risiko]
+%   -> [Ambang Youden -> "Risiko Tinggi"/"Risiko Rendah"]
+%   -> [SHAP TreeExplainer -> kontribusi fitur (arah & besar)]
+%   -> [Narasi: deterministik menetapkan angka/arah/fakta -> LLM menghaluskan]
+%   -> [Halaman Hasil: (1) status+meter, (2) grafik SHAP, (3) narasi+disclaimer].
+% ============================================================================
 
-Berdasarkan Gambar \ref{fig:arsitektur-teknis} di atas, sistem terbagi menjadi empat lapisan utama dengan fungsi spesifik sebagai berikut:
+Cara tiap komponen arsitektur ini diperoleh dari kebutuhan diuraikan pada subbab berikut.
 
-\begin{enumerate}
-    \item Client Layer \\
-    Lapisan ini merupakan titik interaksi pengguna, baik melalui peramban web desktop maupun perangkat seluler. Lapisan ini bertugas menangkap input data klinis pasien dan memvisualisasikan hasil prediksi berupa grafik risiko dan narasi penjelasan yang dikirimkan oleh server melalui protokol HTTPS/JSON yang aman.
+\section{Tahapan Perancangan}
+\label{sec:tahapan-perancangan}
+Subbab ini memaparkan tahapan yang menurunkan arsitektur pada Subbab \ref{sec:arsitektur-usulan} dari kebutuhan Bab \ref{chap:analisis-masalah}. Setiap modul dirancang dengan menautkannya ke FR/NFR terkait, mempertimbangkan alternatif rancangan, lalu menetapkan keputusan yang dipilih. Rincian implementasi teknis dan bukti empiris dari tiap keputusan dibahas lebih lanjut pada Bab \ref{chap:hasil-pembahasan}.
 
-    \item Application Layer \\
-    Lapisan ini berfungsi sebagai otak pemrosesan sistem. Lapisan ini terdiri dari API Gateway yang mengatur lalu lintas data, serta unit AI Processing Services yang menjalankan tiga fungsi sekuensial:
-    \begin{enumerate}
-        \item \textit{Data Preprocessing} untuk membersihkan input.
-        \item \textit{Inference Service} yang menjalankan model XGBoost dan SHAP untuk menghitung skor risiko.
-        \item \textit{RAG Orchestrator} yang meramu \textit{prompt} untuk model bahasa.
-    \end{enumerate}
+\subsection{Perancangan Akuisisi dan Pra-pemrosesan Data}
+\label{subsec:rancang-data}
+Berdasarkan kebutuhan fungsional FR01, sistem harus menerima dan memproses masukan data non-invasif dalam format tabular. Oleh karena itu, dirancang skema masukan yang terdiri atas delapan fitur non-invasif, yaitu usia, jenis kelamin, indeks massa tubuh (IMT), status merokok, riwayat diabetes, riwayat kolesterol tinggi, kualitas tidur, dan gangguan tidur (deskripsi lengkap pada Bab \ref{chap:hasil-pembahasan}). Pengukuran tekanan darah sengaja tidak dijadikan fitur masukan karena nilai tersebut menjadi dasar pembentukan label sehingga penyertaannya akan menimbulkan kebocoran data.
 
-    \item Data Layer \\
-    Lapisan ini bertanggung jawab atas persistensi data dengan menggunakan dua jenis basis data. \textit{Relational Database} digunakan untuk menyimpan data terstruktur pasien dan log riwayat prediksi, sedangkan \textit{vector database} digunakan khusus untuk menyimpan \textit{embedding} dokumen pedoman medis yang memungkinkan pencarian konteks semantik (\textit{similarity search}) yang cepat.
+Agar masukan siap diproses model, dirancang tahapan pra-pemrosesan yang dijalankan berurutan: (1) validasi kelengkapan masukan; (2) konversi berat dan tinggi badan menjadi IMT di sisi klien sehingga \textit{backend} menerima tepat delapan fitur; (3) imputasi nilai hilang; dan (4) pengodean variabel kategorik menjadi representasi biner. Untuk imputasi, dipertimbangkan dua alternatif, yaitu menghapus baris tidak lengkap atau mengisi nilai hilang. Penghapusan baris tidak sesuai untuk skenario penggunaan nyata karena masukan tunggal pengguna harus tetap dapat diproses; maka dipilih imputasi menggunakan nilai median untuk fitur numerik/ordinal dan modus untuk fitur biner, dengan parameter imputasi ditetapkan dari data latih agar konsisten dan bebas kebocoran. Tahapan ini diilustrasikan pada Gambar \ref{fig:rancang-data}.
 
-    \item External Services \\
-    Sistem terhubung dengan penyedia layanan \textit{Large Language Model} (LLM) pihak ketiga seperti OpenAI atau model \textit{open-source} terhosting lainnya. Komponen ini menerima \textit{prompt} yang telah diperkaya dengan konteks medis dari sistem internal untuk menghasilkan narasi penjelasan yang natural, namun tetap tervalidasi.
-\end{enumerate}
-
-\section{Perbandingan dengan Sistem Saat Ini}
-Desain konsep solusi di atas menawarkan perubahan paradigma dari pendekatan konvensional yang digambarkan pada Bab III menjadi pendekatan berbasis kecerdasan buatan yang terintegrasi. Perbandingan komparatif antara kondisi saat ini (\textit{As-Is}) dan solusi yang diusulkan (\textit{To-Be}) dirangkum dalam Gambar \ref{fig:alur-diagnosis}.
-
-% \begin{table}[htbp]
-%     \centering
-%     \caption{Perbandingan Sistem Konvensional vs Sistem Usulan}
-%     \label{tab:perbandingan-sistem}
-%     \renewcommand{\arraystretch}{1.5} % Menambah jarak antar baris agar lebih rapi
-%     \begin{tabular}{|p{3.5cm}|p{5.5cm}|p{5.5cm}|}
-%     \hline
-%     \textbf{Aspek Pembanding} & \textbf{Sistem Saat Ini (As-Is)} & \textbf{Solusi Usulan (To-Be)} \\
-%     \hline
-%     Pendekatan Diagnosis & 
-%     Reaktif \& Manual. Diagnosis bergantung pada pengukuran sesaat di klinik dan ingatan dokter terhadap pedoman. & 
-%     Prediktif \& Otomatis. Sistem memprediksi risiko secara dini berdasarkan pola data historis menggunakan \textit{Machine Learning}. \\
-%     \hline
-%     Transparansi Keputusan & 
-%     Intuitif/Implisit. Keputusan dokter didasarkan pada \textit{tacit knowledge} yang sulit dijelaskan secara kuantitatif kepada pasien. & 
-%     \textit{Explainable} (XAI). Sistem menyediakan visualisasi atribusi fitur (SHAP) yang menunjukkan secara persis variabel penyebab risiko secara matematis. \\
-%     \hline
-%     Penyampaian Informasi & 
-%     Lisan \& Terbatas. Penjelasan risiko sering kali singkat karena keterbatasan waktu konsultasi, menyebabkan pasien kurang paham. & 
-%     Narasi Personal (GenAI). LLM menghasilkan penjelasan tertulis yang disesuaikan dengan profil pasien, menjabarkan hubungan sebab-akibat dengan bahasa alami. \\
-%     \hline
-%     Validitas Referensi & 
-%     Variatif. Sangat bergantung pada \textit{update} pengetahuan tenaga medis masing-masing. & 
-%     Terstandarisasi (RAG). Setiap saran yang dihasilkan divalidasi silang (\textit{cross-reference}) dengan dokumen pedoman medis terkini di \textit{Vector Database}. \\
-%     \hline
-%     Alur Kerja & 
-%     Linear dan membutuhkan eskalasi manual bertingkat (perawat $\rightarrow$ dokter). & 
-%     Terintegrasi dan \textit{real-time}, memberikan \textit{second opinion} instan sebelum eskalasi ke ahli. \\
-%     \hline
-%     \end{tabular}
-% \end{table}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/alursistemtobe.png}
-    \caption{Alur diagnosis hipertensi di fasilitas kesehatan tingkat pertama (FKTP) (To-Be)}
-    \label{fig:alur-diagnosis}
+    \includegraphics[width=0.5\textwidth]{images/data_pre_processing.png}
+    \caption{Tahapan pra-pemrosesan data masukan}
+    \label{fig:rancang-data}
+\end{figure}
+% ============================================================================
+% SPEC GAMBAR 4.2 (Alur pra-pemrosesan) — alur linear kiri->kanan:
+%   [Masukan pengguna (usia, jenis kelamin, berat, tinggi, merokok, diabetes,
+%    kolesterol, kualitas & gangguan tidur)]
+%   -> [Validasi kelengkapan]
+%   -> [Konversi berat+tinggi -> IMT (di sisi klien)]
+%   -> [Imputasi: median (numerik/ordinal), modus (biner) — parameter dari data latih]
+%   -> [Encoding biner: is_female, is_smoker, has_diabetes, has_high_cholesterol]
+%   -> [Vektor 8 fitur siap diprediksi].
+% Beri anotasi kecil: "tekanan darah TIDAK disertakan (mencegah kebocoran data)".
+% ============================================================================
+
+\subsection{Perancangan Modul Prediksi Risiko}
+\label{subsec:rancang-prediksi}
+Modul prediksi diturunkan dari FR02 yang menuntut klasifikasi biner risiko hipertensi beserta skor probabilitas, serta dari NFR01 dan NFR02 yang menekankan minimalisasi \textit{false negative} dengan target recall minimal 0,70. Konsekuensi rancangannya adalah pemilihan pendekatan \textit{supervised learning} untuk klasifikasi biner, penanganan ketidakseimbangan kelas, dan optimasi ambang keputusan agar sensitivitas terhadap kelas hipertensi terjaga.
+
+Tiga keputusan rancangan ditetapkan pada modul ini. Pertama, pemilihan keluarga algoritma: beberapa algoritma dibandingkan secara empiris, dan model \textit{gradient boosting} XGBoost dipilih sebagai model akhir dengan pertimbangan kinerja, dukungan analisis kontribusi fitur, dan kemudahan penerapan (perbandingan lengkap pada Bab \ref{chap:hasil-pembahasan}). Kedua, penanganan ketidakseimbangan kelas: dipertimbangkan teknik \textit{resampling} (mis. \textit{oversampling}) dan pembobotan kelas (\textit{class weighting}); karena ketidakseimbangan tergolong moderat, dipilih pembobotan kelas yang tidak mengubah struktur data dan lebih tahan terhadap \textit{overfitting}. Ketiga, penentuan ambang keputusan: alih-alih memakai ambang bawaan 0,5, ambang ditetapkan memakai \textit{Youden Index} demi menyeimbangkan sensitivitas dan spesifisitas sesuai NFR01/NFR02. Alur modul prediksi ditunjukkan pada Gambar \ref{fig:rancang-prediksi}.
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{images/alur-modul-prediksi.png}
+    \caption{Tahapan perancangan modul prediksi risiko}
+    \label{fig:rancang-prediksi}
+\end{figure}
+% ============================================================================
+% SPEC GAMBAR 4.3 (Alur prediksi) — alur linear:
+%   [Vektor 8 fitur] -> [Model XGBoost (class weighting saat latih)]
+%   -> [predict_proba -> skor probabilitas 0..1]
+%   -> [Bandingkan dengan ambang Youden (0,516)]
+%   -> [Keputusan: "Risiko Tinggi" bila >= ambang, selain itu "Risiko Rendah"].
+% Beri catatan: keluaran probabilitas dipertahankan sehingga ambang dapat disetel ulang.
+% ============================================================================
+
+\subsection{Perancangan Modul Interpretasi (XAI)}
+\label{subsec:rancang-xai}
+Modul interpretasi diturunkan dari FR03 yang menuntut sistem menganalisis dan memvisualisasikan kontribusi tiap fitur terhadap prediksi, serta dari NFR04 yang menuntut grafik SHAP yang terbaca untuk memindai faktor risiko dominan. Metode yang dipilih adalah SHAP (\textit{SHapley Additive exPlanations}) karena bersifat \textit{model-agnostic}, aditif, dan dapat menjelaskan prediksi baik pada tingkat global maupun individu.
+
+Keputusan rancangan pada modul ini adalah pemilihan \textit{explainer}. Terdapat dua alternatif: \textit{KernelExplainer} yang bersifat umum namun berbeban komputasi tinggi, dan \textit{TreeExplainer} yang dirancang khusus untuk model berbasis pohon sehingga menghitung kontribusi secara eksak dan efisien. Karena model akhir berbasis pohon (XGBoost), dipilih \textit{TreeExplainer}; perbandingan empiris keduanya (nilai nyaris identik dengan waktu komputasi jauh lebih singkat) disajikan pada Bab \ref{chap:hasil-pembahasan}. Rancangan penyajian juga ditetapkan, yaitu analisis global dalam satuan \textit{log-odds} dan analisis lokal dalam satuan probabilitas agar lebih mudah dipahami pengguna. Alur modul interpretasi ditunjukkan pada Gambar \ref{fig:rancang-xai}.
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{images/alur-modul-xai.png}
+    \caption{Tahapan perancangan modul interpretasi (XAI)}
+    \label{fig:rancang-xai}
 \end{figure}
 
-Secara visual, jika dibandingkan dengan kondisi awal, desain usulan menggambarkan adanya otomatisasi dalam proses penalaran klinis. Pada tahap ini, dokter tidak lagi melakukan observasi data pasien secara manual, melainkan memasukkan data tersebut ke dalam sistem yang berfungsi sebagai pendukung dalam pengambilan keputusan.
+% ============================================================================
+% SPEC GAMBAR 4.4 (Alur XAI) — alur:
+%   [Model XGBoost terlatih] + [Vektor fitur pasien] -> [SHAP TreeExplainer]
+%   -> [Vektor nilai SHAP bertanda per fitur (+ menaikkan / - menurunkan risiko)]
+%   -> [Grafik kontribusi (bar horizontal): merah menaikkan, hijau menurunkan].
+% Catatan: global dalam log-odds; lokal dalam probabilitas.
+% ============================================================================
 
-Meskipun demikian, penekanan utama tetap berada pada peran dokter sebagai pengambil keputusan akhir. Informasi maupun rekomendasi yang diberikan sistem harus dipahami, ditafsirkan, dan dievaluasi kembali oleh dokter untuk memperoleh wawasan klinis yang komprehensif. Dengan demikian, sistem ini dirancang bukan untuk menggantikan fungsi dokter dalam menentukan keputusan medis, tetapi untuk mengurangi beban kognitif dalam proses analisis data sehingga dokter dapat membuat keputusan yang lebih tepat, efisien, dan berbasis informasi.
+\subsection{Perancangan Modul Narasi}
+\label{subsec:rancang-narasi}
+Modul narasi diturunkan dari FR04 yang menuntut narasi bahasa Indonesia yang mudah dipahami, serta dari FR05 dan NFR03 yang menuntut faktualitas tinggi dan pengendalian halusinasi. Karena keluaran menyentuh ranah kesehatan, prioritas rancangannya adalah menekan misinformasi. Untuk itu, dipertimbangkan empat alternatif rancangan sebagaimana dirangkum pada Tabel \ref{tab:alternatif-narasi}.
+
+\begin{table}[H]
+    \centering
+    \caption{Alternatif rancangan modul narasi}
+    \label{tab:alternatif-narasi}
+    \small
+    \begin{tabular}{|p{3cm}|p{4.3cm}|p{4.3cm}|c|}
+        \hline
+        \textbf{Alternatif} & \textbf{Kelebihan} & \textbf{Kekurangan} & \textbf{Pilihan} \\
+        \hline
+        LLM murni (\textit{direct prompting}) & Narasi luwes dan mudah dipahami. & Rawan halusinasi; angka dan arah tidak terkendali. & -- \\
+        \hline
+        RAG/\textit{grounding} ke dokumen medis & Berbasis rujukan eksternal. & Kompleks, memerlukan basis pengetahuan dan biaya tambahan, tetap rawan salah rujuk. & -- \\
+        \hline
+        Deterministik penuh (\textit{template}) & Sangat faktual dan dapat ditelusuri. & Kaku, kurang personal dan luwes. & -- \\
+        \hline
+        Deterministik + LLM (penghalus bahasa) & Angka/arah/fakta terkunci deterministik, bahasa tetap luwes; dilengkapi \textit{fallback}. & Memerlukan perancangan dua lapisan yang cermat. & \checkmark \\
+        \hline
+    \end{tabular}
+\end{table}
+
+Berdasarkan Tabel \ref{tab:alternatif-narasi}, dipilih arsitektur deterministik + LLM. Pendekatan RAG yang sempat dipertimbangkan pada tahap proposal tidak dilanjutkan karena menambah kompleksitas dan biaya tanpa menjamin bebas kesalahan, sementara kebutuhan faktualitas dapat dipenuhi secara lebih ringkas melalui kaidah deterministik. Dalam rancangan ini, seluruh angka, arah pengaruh, pemilihan fakta, dan materi saran ditetapkan secara deterministik dari nilai SHAP dan kondisi klinis pasien, sedangkan LLM (Groq \textit{llama-3.1-8b-instant}) hanya bertugas merangkai ulang materi saran menjadi bahasa yang lebih luwes dan empatik. Penyusunan \textit{prompt} menerapkan \textit{guardrail} berupa penetapan persona, penyisipan fakta terstruktur, dan larangan memfabrikasi angka maupun klaim medis. Apabila layanan LLM tidak tersedia, sistem memakai materi deterministik sebagai \textit{fallback} sehingga keluaran tetap valid. Rancangan dua lapisan ini diilustrasikan pada Gambar \ref{fig:alternatif-narasi}.
+
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{images/alur-modul-narasi.png}
+    \caption{Rancangan arsitektur modul narasi}
+    \label{fig:alternatif-narasi}
+\end{figure}
+
+
+% ============================================================================
+% SPEC GAMBAR 4.5 (Arsitektur narasi dua lapisan):
+%   [Nilai SHAP + kondisi klinis pasien]
+%   -> LAPISAN DETERMINISTIK: menetapkan (a) arah dari tanda SHAP,
+%      (b) besaran = kontribusi lokal, (c) kategori magnitudo, (d) tier keandalan
+%      fitur, (e) pemicu saran dari kondisi klinis -> menghasilkan "materi saran (teks baku)".
+%   -> LAPISAN LLM (Groq llama-3.1-8b-instant): hanya MENGHALUSKAN bahasa materi saran,
+%      dengan guardrail (persona, fakta terstruktur, larangan fabrikasi).
+%   -> [Narasi akhir].
+%   Tambahkan panah putus-putus "FALLBACK: bila LLM tak tersedia -> pakai materi
+%   deterministik apa adanya".
+% ============================================================================
+
+\section{Rancangan Antarmuka Pengguna}
+\label{sec:rancangan-antarmuka}
+Antarmuka dirancang untuk mendukung akuisisi masukan (FR01) dan penyajian tiga luaran, yaitu status risiko (FR02), grafik kontribusi fitur (FR03), dan narasi penjelasan (FR04). Pengguna utama antarmuka ini adalah masyarakat awam yang melakukan skrining mandiri, sedangkan tenaga medis berperan sebagai validator keluaran; karena itu, tampilan diutamakan sederhana dan komunikatif.
+
+Formulir masukan dirancang bertahap dalam tiga langkah agar tidak membebani pengguna, yaitu: (1) demografi dan fisik (usia, jenis kelamin, berat badan, tinggi badan); (2) riwayat medis dan gaya hidup (status merokok, riwayat diabetes, dan riwayat kolesterol tinggi berdasarkan diagnosis tenaga kesehatan); dan (3) kualitas tidur (skor kualitas dan gangguan tidur). Rancangan formulir ditunjukkan pada Gambar \ref{fig:wireframe-form-1}, \ref{fig:wireframe-form-2}, dan \ref{fig:wireframe-form-3}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/prototype/form_input_1.png}
+    \caption{Rancangan antarmuka formulir masukan tahap 1}
+    \label{fig:wireframe-form-1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/prototype/form_input_2.png}
+    \caption{Rancangan antarmuka formulir masukan tahap 2}
+    \label{fig:wireframe-form-2}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/prototype/form_input_3.png}
+    \caption{Rancangan antarmuka formulir masukan tahap 3}
+    \label{fig:wireframe-form-3}
+\end{figure}
+% ============================================================================
+% SPEC GAMBAR 4.6 (Wireframe formulir) — tiga kartu langkah dengan indikator progres:
+%   Langkah 1: usia, jenis kelamin, berat badan, tinggi badan.
+%   Langkah 2: status merokok, riwayat diabetes, riwayat kolesterol tinggi.
+%   Langkah 3: skor kualitas tidur (1-5), skor gangguan tidur (1-5).
+%   Tombol "Lanjut"/"Kembali"/"Analisis". CATATAN: dapat memakai tangkapan layar
+%   purwarupa yang sudah ada: images/prototype/form_input_1.png ... _3.png.
+% ============================================================================
+
+Halaman hasil dirancang menyajikan tiga luaran secara terpadu: status risiko sebagai label ``Risiko Rendah''/``Risiko Tinggi'' beserta pengukur (\textit{meter}) probabilitas berwarna; grafik kontribusi faktor berupa diagram batang horizontal (merah menaikkan, hijau menurunkan risiko); dan narasi penjelasan yang ditutup pernyataan bahwa hasil merupakan informasi pendukung awal dan bukan pengganti diagnosis tenaga kesehatan. Rancangan halaman hasil ditunjukkan pada Gambar \ref{fig:wireframe-hasil}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/hasil_prediksi.png}
+    \caption{Rancangan antarmuka formulir masukan tahap 3}
+    \label{fig:wireframe-hasil}
+\end{figure}
+% ============================================================================
+% SPEC GAMBAR 4.7 (Wireframe halaman hasil) — tiga area vertikal:
+%   (1) Status risiko: label "Risiko Tinggi/Rendah" + meter berwarna (hijau-merah)
+%       menampilkan skor probabilitas.
+%   (2) Grafik kontribusi SHAP: bar horizontal per faktor, merah=menaikkan,
+%       hijau=menurunkan, panjang=kontribusi relatif; sertakan nilai masukan.
+%   (3) Narasi: ringkasan risiko + 3 faktor teratas + paragraf saran +
+%       disclaimer "bukan pengganti diagnosis tenaga kesehatan".
+% ============================================================================
+
+Meskipun sistem mengotomatiskan sebagian proses penalaran risiko, keputusan klinis akhir tetap berada pada tenaga kesehatan. Luaran sistem diposisikan sebagai alat bantu skrining awal dan edukasi bagi masyarakat awam, bukan sebagai pengganti diagnosis medis. Dengan demikian, rancangan ini menekankan deteksi dini dan pemahaman risiko yang transparan, sekaligus tetap menjaga peran tenaga kesehatan sebagai penentu tindakan medis lanjutan.
+
+
+\section{Diagram Tahapan Keseluruhan Penelitian}
+
+Berikut ini merupakan diagram dari tahapan keseluruhan penelitian.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.1\textwidth]{images/Diagram Proses-Tahapan Seluruh Penelitian.drawio (1).png}
+    \caption{Diagram Tahapan Keseluruhan Penelitian}
+    \label{fig:wireframe-hasil}
+\end{figure}

@@ -1,80 +1,450 @@
 % ==========================================
-% BAB VI EVALUASI
+% BAB VI EVALUASI  (versi terisi hasil validasi 7 kasus)
+% Berkas chapter tanpa preamble; disisipkan ke naskah skripsi.
+% Membutuhkan definisi kolom L dan C{..} serta paket booktabs, tabularx,
+% array, enumitem (sudah tersedia pada preamble skripsi Anda).
 % ==========================================
 \cleardoublepage
 \chapter{EVALUASI}
 \label{chap:evaluasi}
-asdfasdf
-\section{Metode Evaluasi}
-asdfasdf
-\section{Hasil Evaluasi}
-asdfasdf
-\section{Pembahasan Hasil Evaluasi}
-\section{Evaluasi Kesalahan Penulisan yang Sering Terjadi}
-\subsection{Penggunaan Kata "di mana" atau "dimana"}
-Banyak yang menuliskan kata "di mana" atau "dimana" sebagai pengganti kata "which" dalam bahasa Inggris. 
-Padahal, penggunaan kata "di mana" atau "dimana" tidak tepat dalam konteks tersebut. Demikian juga untuk kata serupa, misalnya "yang mana".
-Kata "di mana" atau "dimana" ini harus diganti dengan kata lain, seperti "dengan", "tempat", "yang", dan sebagainya tergantung kalimatnya.
-Penjelasan lengkap dapat dilihat pada \autocite{BPBI}.
+Bab ini memaparkan evaluasi terhadap sistem yang dibangun melalui dua sudut
+pandang yang saling melengkapi. Pertama, evaluasi kuantitatif terhadap model
+klasifikasi \emph{Machine Learning} yang menjadi inti prediksi risiko hipertensi,
+yang diukur menggunakan metrik-metrik terstandar. Kedua, evaluasi kualitatif
+terhadap dua komponen sistem yang bersifat interpretatif, yaitu komponen
+\emph{Explainable Artificial Intelligence} (SHAP) dan komponen \emph{Large Language
+Model} (LLM), yang keluarannya tidak dapat sepenuhnya diukur oleh metrik otomatis
+sehingga memerlukan penilaian pakar. Evaluasi kuantitatif merupakan rekapitulasi
+atas hasil pemodelan yang telah dilaksanakan pada Bab~V, sedangkan evaluasi
+kualitatif dilakukan melalui pendekatan \emph{expert validation} oleh seorang
+dokter umum sebagai \emph{domain expert}.
 
-\subsection{Penggunaan Kata "sedangkan" dan "sehingga"}
+\section{Evaluasi Kuantitatif (ML)}
+\label{sec:evaluasi-kuantitatif}
+Bagian ini merekapitulasi hasil evaluasi kuantitatif model \emph{Machine Learning}
+yang telah dilaksanakan secara rinci pada tahap pemodelan di Bab~V. Tujuan
+rekapitulasi ini adalah menegaskan model terbaik yang menjadi mesin prediksi
+sistem beserta kinerjanya, sebelum pembahasan berpindah ke evaluasi kualitatif
+komponen interpretatif. Uraian lengkap mengenai pembagian data, penyetelan
+\emph{hyperparameter}, optimasi ambang keputusan, hingga perbandingan antarmodel
+dapat ditelusuri kembali pada Bab~V.
 
-\begin{table}[t]
-  \begin{tabular}{|c|l|l|}
-  \hline
-  Kata & Salah & Benar \\ \hline
-  sedangkan & \begin{tabular}[c]{@{}c@{}}Sedangkan sistem lama masih\\ digunakan oleh banyak pengguna.\end{tabular} & \begin{tabular}[c]{@{}c@{}}Sistem lama masih digunakan\\ oleh banyak pengguna,\\ sedangkan sistem baru belum siap.\end{tabular} \\ \hline
-  sehingga & \begin{tabular}[c]{@{}c@{}}Sehingga sistem lama masih\\ digunakan oleh banyak pengguna.\end{tabular} & \begin{tabular}[c]{@{}c@{}}Sistem lama masih digunakan\\ oleh banyak pengguna sehingga\\ sistem baru belum siap.\end{tabular} \\ \hline
-  \end{tabular}
-  \caption{Contoh penggunaan kata "sedangkan" dan "sehingga"}
-  \label{tbl:sedangkan_sehingga}
+Pada tahap pemodelan, empat algoritma dibandingkan, yaitu \emph{Logistic
+Regression}, \emph{Random Forest}, \emph{XGBoost}, dan \emph{CatBoost}. Keempatnya
+disetel menggunakan \texttt{GridSearchCV} dengan fungsi objektif ROC-AUC dan
+validasi silang tiga lipatan, kemudian titik operasinya ditentukan melalui
+\emph{Youden Index}. Pemilihan model akhir tidak hanya bertumpu pada satu metrik,
+melainkan pada gabungan pertimbangan kemampuan membedakan kelas (ROC-AUC),
+kemampuan menangkap pasien berisiko (\emph{recall}), kemudahan penafsiran,
+dukungan analisis kontribusi fitur berbasis SHAP, serta kemudahan penerapan pada
+sistem. Berdasarkan pertimbangan tersebut, \textbf{XGBoost} dipilih sebagai model
+akhir karena memiliki kemampuan membedakan kelas yang setara dengan model terbaik,
+\emph{recall} tertinggi pada ambang bawaan, dukungan penjelasan SHAP yang matang,
+dan penerapan yang ringan.
+
+Kinerja model terbaik XGBoost pada data uji dirangkum pada
+Tabel~\ref{tab:rekap-ml}, disajikan pada dua titik operasi, yaitu ambang bawaan
+0,5 dan ambang \emph{Youden} yang menjadi titik operasi final sistem.
+
+\begin{table}[htbp]
+\centering
+\caption{Rekapitulasi kinerja model terbaik (XGBoost) pada data uji}
+\label{tab:rekap-ml}
+\begin{tabular}{@{}lcc@{}}
+\toprule
+\textbf{Metrik} & \textbf{Ambang 0,5} & \textbf{Ambang Youden} \\
+\midrule
+ROC-AUC       & \multicolumn{2}{c}{0,7795} \\
+PR-AUC        & \multicolumn{2}{c}{0,5795} \\
+Recall        & 0,7186 & 0,7062 \\
+Specificity   & 0,7036 & 0,7192 \\
+F1-\emph{score} & 0,5901 & 0,5921 \\
+Akurasi       & 0,7080 & 0,7154 \\
+\bottomrule
+\end{tabular}
 \end{table}
 
-Kata "sedangkan" dan "sehingga" adalah kata hubung atau konjungsi. 
-Konjungsi adalah kata atau ungkapan yang menghubungkan satuan bahasa 
-(kata, frasa, klausa, dan kalimat). 
-Konjungsi dapat dibagi menjadi konjungsi intrakalimat dan antarkalimat.  
-Kata "sedangkan" menghubungkan dua klausa yang bersifat kontrasif, 
-sedangkan "sehingga" menghubungkan dua klausa yang bersifat kausal. 
-Dalam ragam formal, kata hubung “sedangkan” dan “sehingga” hanya dapat digunakan 
-sebagai konjungsi intrakalimat sehingga kedua konjungsi itu \textbf{tidak dapat diletakkan pada awal kalimat}.
-Selain itu, penggunaan kata "sedangkan" harus didahului oleh koma (,), sedangkan kata "sehingga" tidak perlu didahului oleh koma (,).
-Contoh penggunaan yang benar dan salah dapat dilihat pada Tabel \ref{tbl:sedangkan_sehingga}.
+Nilai ROC-AUC dan PR-AUC dihitung dari probabilitas sehingga tidak berubah oleh
+pemilihan ambang. Dengan ROC-AUC sebesar 0,7795 dan \emph{recall} sebesar 0,7186
+pada ambang 0,5 (0,7062 pada ambang Youden), model XGBoost memenuhi kriteria
+keberhasilan yang ditetapkan di awal penelitian, yaitu ROC-AUC minimal 0,75 dan
+\emph{recall} minimal 0,70. Model ini kemudian disimpan bersama nilai ambang
+\emph{Youden} dan urutan nama fitur, lalu digunakan sebagai mesin prediksi yang
+keluarannya menjadi masukan bagi komponen SHAP dan LLM. Kualitas kedua komponen
+interpretatif itulah yang dievaluasi secara kualitatif pada bagian berikut.
 
+\section{Evaluasi Kualitatif (XAI + LLM)}
+\label{sec:evaluasi-kualitatif}
+Berbeda dengan model klasifikasi yang dapat diukur secara kuantitatif, komponen
+SHAP dan LLM menghasilkan keluaran interpretatif yang kualitasnya tidak dapat
+sepenuhnya ditangkap oleh metrik otomatis sehingga memerlukan penilaian pakar.
+Evaluasi kualitatif dilakukan melalui pendekatan \emph{expert validation} oleh
+seorang dokter umum sebagai \emph{domain expert}.
 
-\subsection{Penggunaan Istilah yang Tidak Baku}
-Ada beberapa istilah yang sering digunakan dalam pembicaraan sehari-hari, tetapi tidak baku dalam penulisan ilmiah.
-Beberapa istilah tersebut antara lain:
-\begin{enumerate}
-  \item analisa $\rightarrow$ analisis
-  \item eksisting atau existing $\rightarrow$ yang ada atau saat ini
-  \item bisnis proses $\rightarrow$ proses bisnis
-  \item user $\rightarrow$ pengguna
-  \item system $\rightarrow$ sistem
-  \item database $\rightarrow$ basis data
-  \item aktifitas $\rightarrow$ aktivitas
-  \item efektifitas $\rightarrow$ efektivitas
-  \item sosial media $\rightarrow$ media sosial
+\subsection{Metode Evaluasi}
+\label{sec:metode-evaluasi}
+
+\subsubsection{Strategi Evaluasi}
+Strategi evaluasi yang digunakan adalah validasi ahli (\emph{expert validation})
+oleh satu orang dokter umum yang berperan sebagai \emph{domain expert}. Pendekatan
+ini dipilih, dan bukan pengukuran kesepakatan antar-penilai (\emph{inter-rater
+agreement}), karena penelitian melibatkan satu penilai tunggal. Metrik kesepakatan
+antar-penilai seperti Cohen's Kappa atau Aiken's V mensyaratkan minimal dua penilai
+dan tidak dapat dihitung secara sahih untuk penilai tunggal; oleh sebab itu fokus
+evaluasi diarahkan pada validasi kualitas keluaran sistem oleh ahli, dengan analisis
+deskriptif dan tematik terhadap hasil penilaian.
+
+Objek evaluasi terdiri atas dua hal yang dinilai secara terpisah menggunakan dua
+instrumen yang berbeda: (1) penjelasan kontribusi fitur yang dihasilkan SHAP terhadap
+prediksi risiko hipertensi, dan (2) narasi personal edukatif yang dihasilkan LLM
+berdasarkan hasil SHAP. Pemisahan instrumen dilakukan karena kedua komponen memiliki
+objek penilaian yang berbeda: SHAP dinilai sebagai penjelasan interpretatif model,
+sedangkan LLM dinilai sebagai teks komunikatif untuk pasien.
+
+\subsubsection{Dasar Pemilihan Instrumen}
+\label{sec:dasar-instrumen}
+Seluruh aspek penilaian pada kedua instrumen diturunkan dari literatur bereputasi
+agar tidak ada aspek yang ditentukan secara subjektif. Aspek untuk komponen SHAP
+diadaptasi dari Salih dkk. (2024) yang terbit di \emph{Artificial Intelligence Review}
+(jurnal Q1), sebuah tinjauan sistematis atas pendekatan evaluasi XAI pada aplikasi
+klinis kardiovaskular. Tinjauan tersebut mengkategorikan evaluasi XAI menjadi lima
+jalur (\emph{human-grounded}, \emph{application-grounded}/pakar domain,
+\emph{proxy-grounded}, \emph{literature-grounded}, dan \emph{guideline-grounded}),
+serta mendefinisikan kriteria kualitas penjelasan klinis seperti relevansi klinis,
+\emph{plausibility}, \emph{complexity}/keterpahaman, dan kepercayaan sebagai tujuan
+akhir evaluasi pakar.
+
+Aspek untuk komponen LLM diadaptasi dari Tam dkk. (2024) yang terbit di
+\emph{npj Digital Medicine} (jurnal Q1), yang mengusulkan kerangka QUEST untuk
+evaluasi LLM di bidang kesehatan berdasarkan tinjauan atas 142 studi. QUEST terdiri
+atas lima prinsip beserta dimensinya: \emph{Quality of Information} (antara lain
+\emph{accuracy}, \emph{agreement}, \emph{consistency}, \emph{relevance},
+\emph{usefulness}), \emph{Understanding and Reasoning}, \emph{Expression Style and
+Persona} (\emph{clarity}, \emph{empathy}), \emph{Safety and Harm} (\emph{bias},
+\emph{harm}, \emph{fabrication/falsification}), dan \emph{Trust and Confidence}.
+Kerangka ini juga menegaskan penggunaan skala Likert 1--5 dengan definisi tiap skor
+sebagai format penilaian yang lazim, sehingga menjadi dasar desain skala pada kedua
+instrumen penelitian ini.
+
+Tabel~\ref{tab:penelusuran-shap} dan Tabel~\ref{tab:penelusuran-llm} menunjukkan
+penelusuran setiap aspek instrumen ke dimensi asalnya pada literatur.
+
+\begin{table}[htbp]
+\centering
+\caption{Penelusuran aspek instrumen SHAP ke Salih dkk. (2024)}
+\label{tab:penelusuran-shap}
+\begin{tabularx}{\textwidth}{@{}p{0.28\textwidth} L@{}}
+\toprule
+\textbf{Aspek instrumen} & \textbf{Dimensi/kriteria pada Salih dkk. (2024)} \\
+\midrule
+Relevansi fitur        & \emph{Clinical relevance} --- penjelasan selaras dengan opini dokter dan mendukung penalaran klinis; dikuantifikasi melalui persentase tumpang tindih fitur XAI dengan pilihan dokter. \\
+Arah kontribusi fitur  & Pembahasan kolinearitas --- prediktor yang saling berkorelasi (mis. tekanan darah, merokok, diabetes) dapat membuat XAI menghasilkan penjelasan tidak realistis/bias, sehingga arah kontribusi perlu diverifikasi ahli. \\
+Kesesuaian medis       & \emph{Plausibility} dan jalur \emph{literature-grounded} --- penjelasan sejalan dengan ekspektasi pakar dan pengetahuan medis mapan. \\
+Kemudahan dipahami     & \emph{Complexity}/\emph{understandability} --- kompleksitas dan waktu yang dibutuhkan untuk memahami penjelasan. \\
+Kepercayaan            & \emph{Trust} --- keterlibatan pakar bertujuan menilai apakah penjelasan layak dipercaya, digeneralisasi, dan diterapkan. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Penelusuran aspek instrumen LLM ke kerangka QUEST, Tam dkk. (2024)}
+\label{tab:penelusuran-llm}
+\begin{tabularx}{\textwidth}{@{}p{0.30\textwidth} L@{}}
+\toprule
+\textbf{Aspek instrumen} & \textbf{Prinsip/dimensi pada QUEST (Tam dkk., 2024)} \\
+\midrule
+Faktualitas medis          & \emph{Quality of Information}: \emph{accuracy} + \emph{agreement}. \\
+Konsistensi terhadap SHAP  & \emph{Quality of Information}: \emph{consistency} (kesesuaian isi narasi dengan bukti SHAP sebagai rujukan). \\
+Koherensi \& kejelasan     & \emph{Expression Style and Persona}: \emph{clarity}; koherensi naratif sebagai aspek kunci evaluasi. \\
+Kualitas edukasi           & \emph{Quality of Information}: \emph{usefulness} + \emph{relevance}; edukasi pasien merupakan kategori aplikasi utama. \\
+Bebas halusinasi           & \emph{Safety and Harm}: \emph{fabrication/falsification}. \\
+Keamanan (potensi bahaya)  & \emph{Safety and Harm}: \emph{harm}. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsubsection{Objek dan Prosedur Validasi}
+\label{sec:prosedur}
+Validasi dilakukan oleh dr. Roos Meri Silaen (Puskesmas Mulyamekar, Dinas Kesehatan
+Kabupaten Purwakarta) pada tanggal 8 Juli 2026 atas tujuh kasus representatif yang
+dipilih dari data uji. Pemilihan kasus mempertimbangkan keterwakilan kelas dan hasil
+prediksi, yaitu mencakup kasus berisiko rendah hingga berisiko tinggi serta kombinasi
+faktor risiko yang beragam, agar dokter menilai perilaku sistem pada beragam kondisi,
+bukan hanya pada kasus yang mudah. Profil ketujuh kasus disajikan pada
+Tabel~\ref{tab:profil-kasus}. Untuk setiap kasus, dokter disajikan: (a) ringkasan data
+pasien; (b) hasil prediksi model beserta probabilitasnya; (c) visualisasi kontribusi
+fitur SHAP; dan (d) narasi personal yang dihasilkan LLM.
+
+\begin{table}[htbp]
+\centering
+\caption{Profil tujuh kasus yang divalidasi}
+\label{tab:profil-kasus}
+\small
+\begin{tabularx}{\textwidth}{@{}c p{0.18\textwidth} c c L@{}}
+\toprule
+\textbf{Kasus} & \textbf{Profil} & \textbf{Jenis kelamin} & \textbf{Usia} & \textbf{Faktor risiko menonjol} \\
+\midrule
+1 & Atlet amatir           & Laki-laki  & 21 & Tanpa faktor risiko; kualitas tidur sangat baik \\
+2 & Mahasiswa tingkat akhir & Perempuan & 22 & Kualitas tidur buruk; gangguan tidur sering \\
+3 & Pekerja korporat       & Laki-laki  & 34 & Merokok; kolesterol tinggi \\
+4 & Ibu rumah tangga       & Perempuan  & 48 & Diabetes; gangguan tidur sering \\
+5 & Supir truk             & Laki-laki  & 45 & Merokok; kolesterol tinggi; kualitas tidur sangat buruk \\
+6 & Pensiunan aktif        & Perempuan  & 65 & Tanpa komorbid; usia lanjut \\
+7 & Komorbid lengkap       & Laki-laki  & 52 & Merokok; diabetes; kolesterol tinggi; IMT tinggi \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Prosedur validasi ditempuh dalam langkah berikut:
+\begin{enumerate}[leftmargin=1.4em,itemsep=2pt,topsep=2pt]
+    \item Dokter menerima penjelasan mengenai tujuan penelitian, komponen sistem, dan
+    petunjuk pengisian kedua lembar validasi.
+    \item Untuk setiap kasus, dokter meninjau keluaran SHAP dan mengisi Lembar Validasi
+    SHAP pada kelima aspeknya.
+    \item Untuk kasus yang sama, dokter meninjau narasi LLM dan mengisi Lembar Validasi
+    LLM pada keenam aspeknya.
+    \item Dokter mengisi kolom komentar untuk memberikan justifikasi kualitatif atas
+    skor yang diberikan dan mencatat temuan spesifik.
+    \item Skor pada seluruh kasus direkap untuk dianalisis.
 \end{enumerate}
 
-\subsection{Pemisah Desimal dan Ribuan}
-Tanda pemisah desimal dalam bahasa Indonesia adalah tanda koma, contoh:
-\begin{enumerate}
-  \item (Salah) Akurasi naik menjadi 50.6\% 
-  \item (Benar) Akurasi naik menjadi 50,6\% 
-\end{enumerate}
+Kedua instrumen menggunakan skala Likert 1--5 dengan orientasi seragam ``semakin
+tinggi semakin baik''. Untuk aspek yang secara alami bermuatan negatif (halusinasi
+dan potensi bahaya), konstruk yang dinilai dirumuskan secara positif (``bebas
+halusinasi'' dan ``keamanan/bebas potensi bahaya'') sehingga skor 5 selalu menandakan
+kualitas terbaik. Perumusan ini menjaga agar rerata antaraspek dapat diinterpretasikan
+secara konsisten tanpa \emph{reverse coding}.
 
-\subsection{Daftar atau \textit{List}}
-Ada beberapa aturan penulisan daftar atau \textit{list} yang perlu diperhatikan, antara lain:
-\begin{enumerate}[a)]
-\item Jika memungkinkan, hindari penggunaan “bullet points” atau sejenisnya. Sebaiknya, gunakan angka (1, 2, 3, ...) atau huruf (a, b, c, …). Dengan demikian, pembaca dapat dengan mudah melihat jumlah \textit{item} atau \textit{list}. 
-\item Jika dalam daftar hanya ada satu item, tidak perlu menggunakan nomor urut.
-\item Penjelasan atau deskripsi suatu item sebaiknya menyatu dengan judul item tersebut, tidak berbeda halaman. Contoh yang salah: judul item ada di halaman 10, namun deskripsinya di halaman 11. Sebaiknya pindahkan judul tersebut ke halaman 11.
-\item Jika penjelasan atau deskripsi suatu item cukup panjang, misalnya lebih dari 1 halaman atau terdiri atas beberapa paragraf, sebaiknya setiap item tersebut dijadikan judul subbab, kecuali jika level subbab sudah mencapai level 4. 
-\end{enumerate}
+\subsubsection{Metode Analisis Hasil Evaluasi}
+\label{sec:analisis}
+Pada penelitian ini, analisis dilakukan secara deskriptif dan tematik. Untuk analisis deskriptif, setiap aspek dihitung rerata skor Likert
+lintas kasus beserta ukuran sebarannya (median dan modus). Rerata tiap aspek kemudian
+diinterpretasikan menggunakan skala interval lima kategori sebagaimana pada
+Tabel~\ref{tab:interpretasi}. Rerata keseluruhan per komponen (SHAP dan LLM) juga
+dihitung sebagai indikator ringkas kualitas komponen.
 
-\subsection{Penggunaan Kata "masing-masing" dan "setiap"}
-Kata “masing-masing” digunakan di belakang kata yang diterangkan, misalnya 
-"Setiap proses menggunakan algoritma masing-masing". Kata “tiap-tiap” atau “setiap”
-ditempatkan di depan kata yang diterangkan, misalnya
-"Setiap proses menggunakan algoritma tertentu".
+\begin{table}[htbp]
+\centering
+\caption{Skala interpretasi rerata skor Likert}
+\label{tab:interpretasi}
+\begin{tabular}{@{}C{3.2cm}C{3.6cm}C{3.6cm}@{}}
+\toprule
+\textbf{Rentang rerata} & \textbf{Kategori} & \textbf{Interpretasi validitas} \\
+\midrule
+1{,}00 -- 1{,}80 & Sangat kurang & Tidak valid \\
+1{,}81 -- 2{,}60 & Kurang        & Kurang valid \\
+2{,}61 -- 3{,}40 & Cukup         & Cukup valid \\
+3{,}41 -- 4{,}20 & Baik          & Valid \\
+4{,}21 -- 5{,}00 & Sangat baik   & Sangat valid \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Tahap selanjutnya adalah pada analisis tematik. Komentar dokter dianalisis secara kualitatif untuk
+mengidentifikasi pola temuan, misalnya jenis ketidaksesuaian fitur, arah kontribusi
+yang meragukan, atau bentuk halusinasi pada narasi. Analisis tematik ini melengkapi
+angka Likert dengan konteks klinis dan menjadi dasar rekomendasi perbaikan sistem.
+
+\subsection{Hasil Evaluasi}
+\label{sec:hasil-evaluasi}
+Validasi dilaksanakan atas tujuh kasus dan menghasilkan 35 penilaian untuk komponen
+SHAP (tujuh kasus dikali lima aspek) serta 42 penilaian untuk komponen LLM (tujuh kasus
+dikali enam aspek). Skor rinci per kasus disajikan pada Tabel~\ref{tab:perkasus-shap}
+dan Tabel~\ref{tab:perkasus-llm}, sedangkan ringkasan rerata, median, modus, dan
+kategori setiap aspek disajikan pada Tabel~\ref{tab:hasil-shap} dan
+Tabel~\ref{tab:hasil-llm}.
+
+\begin{table}[htbp]
+\centering
+\caption{Skor validasi komponen SHAP per kasus}
+\label{tab:perkasus-shap}
+\small
+\begin{tabular}{@{}clcccccccc@{}}
+\toprule
+\textbf{No} & \textbf{Aspek} & \textbf{K1} & \textbf{K2} & \textbf{K3} & \textbf{K4} & \textbf{K5} & \textbf{K6} & \textbf{K7} & \textbf{Rerata} \\
+\midrule
+1 & Relevansi fitur        & 5 & 5 & 4 & 5 & 4 & 4 & 3 & 4,29 \\
+2 & Arah kontribusi fitur  & 2 & 3 & 4 & 3 & 3 & 2 & 3 & 2,86 \\
+3 & Kesesuaian medis       & 3 & 3 & 4 & 3 & 4 & 2 & 3 & 3,14 \\
+4 & Kemudahan dipahami     & 4 & 4 & 5 & 4 & 4 & 5 & 5 & 4,43 \\
+5 & Kepercayaan            & 4 & 4 & 4 & 3 & 3 & 2 & 3 & 3,29 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Skor validasi komponen LLM per kasus}
+\label{tab:perkasus-llm}
+\small
+\begin{tabular}{@{}clcccccccc@{}}
+\toprule
+\textbf{No} & \textbf{Aspek} & \textbf{K1} & \textbf{K2} & \textbf{K3} & \textbf{K4} & \textbf{K5} & \textbf{K6} & \textbf{K7} & \textbf{Rerata} \\
+\midrule
+1 & Faktualitas medis          & 3 & 5 & 5 & 4 & 4 & 2 & 3 & 3,71 \\
+2 & Konsistensi terhadap SHAP  & 3 & 4 & 4 & 4 & 3 & 3 & 4 & 3,57 \\
+3 & Koherensi \& kejelasan     & 5 & 5 & 5 & 4 & 3 & 3 & 4 & 4,14 \\
+4 & Kualitas edukasi           & 3 & 4 & 4 & 5 & 4 & 2 & 3 & 3,57 \\
+5 & Bebas halusinasi           & 3 & 4 & 5 & 4 & 5 & 3 & 4 & 4,00 \\
+6 & Keamanan (potensi bahaya)  & 5 & 5 & 5 & 5 & 5 & 4 & 3 & 4,57 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Hasil validasi komponen SHAP}
+\label{tab:hasil-shap}
+\begin{tabular}{@{}clcccc@{}}
+\toprule
+\textbf{No} & \textbf{Aspek} & \textbf{Rerata} & \textbf{Median} & \textbf{Modus} & \textbf{Kategori} \\
+\midrule
+1 & Relevansi fitur       & 4,29 & 4 & 4; 5 & Sangat baik \\
+2 & Arah kontribusi fitur & 2,86 & 3 & 3    & Cukup \\
+3 & Kesesuaian medis      & 3,14 & 3 & 3    & Cukup \\
+4 & Kemudahan dipahami    & 4,43 & 4 & 4    & Sangat baik \\
+5 & Kepercayaan           & 3,29 & 3 & 3; 4 & Cukup \\
+\midrule
+\multicolumn{2}{@{}l}{\textbf{Rerata keseluruhan}} & 3,60 & & & Baik \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Hasil validasi komponen LLM}
+\label{tab:hasil-llm}
+\begin{tabular}{@{}clcccc@{}}
+\toprule
+\textbf{No} & \textbf{Aspek} & \textbf{Rerata} & \textbf{Median} & \textbf{Modus} & \textbf{Kategori} \\
+\midrule
+1 & Faktualitas medis          & 3,71 & 4 & 3; 4; 5 & Baik \\
+2 & Konsistensi terhadap SHAP  & 3,57 & 4 & 4       & Baik \\
+3 & Koherensi \& kejelasan     & 4,14 & 4 & 5       & Baik \\
+4 & Kualitas edukasi           & 3,57 & 4 & 4       & Baik \\
+5 & Bebas halusinasi           & 4,00 & 4 & 4       & Baik \\
+6 & Keamanan (potensi bahaya)  & 4,57 & 5 & 5       & Sangat baik \\
+\midrule
+\multicolumn{2}{@{}l}{\textbf{Rerata keseluruhan}} & 3,93 & & & Baik \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Selain skor, komentar dokter memberikan konteks kualitatif atas penilaian. Pada
+komponen SHAP, temuan yang paling menonjol adalah ketidaksesuaian arah kontribusi pada
+beberapa fitur berdampak kecil, khususnya merokok, status tidak
+merokok, dan jenis kelamin, yang pada seluruh kasus dinilai masih dapat diterima karena
+magnitudonya berada di bawah 3\%. Pada komponen LLM, temuan yang menonjol mencakup
+saran yang tidak sesuai dengan kondisi pasien (Kasus 1), kesalahan logika kausal
+terkait indeks massa tubuh (Kasus 4), ketidakkonsistenan saran berhenti merokok
+terhadap arah kontribusi SHAP (Kasus 5), serta penilaian bobot diabetes yang dianggap
+terlalu kecil (Kasus 7). Catatan lintas kasus yang menonjol adalah keterkaitan antara
+galat arah pada SHAP dan ketidakkonsistenan narasi LLM, yang diuraikan lebih lanjut
+pada Subbab~\ref{sec:pembahasan-evaluasi}.
+
+\subsection{Pembahasan Hasil Evaluasi}
+\label{sec:pembahasan-evaluasi}
+Pembahasan menghubungkan hasil penilaian dokter dengan kualitas komponen XAI dan
+narasi LLM, serta implikasinya bagi kelayakan sistem.
+
+\subsubsection{Interpretasi Kualitas Komponen SHAP}
+Hasil validasi SHAP pada Tabel~\ref{tab:hasil-shap} menunjukkan rerata keseluruhan
+3,60 yang tergolong valid. Dua aspek memperoleh kategori sangat baik, yaitu relevansi
+fitur (4,29) dan kemudahan dipahami (4,43). Nilai tersebut menunjukkan bahwa fitur yang
+ditandai SHAP sebagai paling berkontribusi umumnya memang relevan secara klinis menurut
+penilaian dokter, dan bahwa penyajian kontribusi fitur mudah dipahami tanpa keahlian
+teknis tambahan. Temuan ini selaras dengan kriteria \emph{clinical relevance} dan
+\emph{understandability} pada Salih dkk. (2024).
+
+Tiga aspek lain memperoleh kategori cukup, yaitu arah kontribusi fitur (2,86),
+kesesuaian medis (3,14), dan kepercayaan (3,29). Aspek arah kontribusi fitur menjadi
+titik terlemah komponen SHAP. Komentar dokter secara konsisten menandai adanya fitur
+yang arah kontribusinya tidak sesuai dengan hubungan yang dikenal secara medis. Pada
+beberapa kasus, fitur gangguan tidur dan merokok yang seharusnya menaikkan risiko
+justru ditampilkan sebagai penurun risiko, dan pada Kasus 6 status tidak merokok yang
+seharusnya menurunkan risiko malah ditampilkan menambah risiko sebesar 1,3\%.
+Ketidaksesuaian arah tersebut konsisten dengan pembahasan Salih dkk. (2024) mengenai
+pengaruh kolinearitas antarprediktor kardiovaskular yang dapat membuat metode XAI
+menghasilkan penjelasan yang tidak realistis.
+
+Meskipun demikian, dokter menilai ketidaksesuaian itu masih dapat diterima karena
+magnitudo kontribusinya sangat kecil, yaitu umumnya di bawah 3\%, sehingga tidak
+menggeser kesimpulan tingkat risiko. Penilaian bersyarat ini penting untuk dicatat:
+validitas arah kontribusi SHAP tergolong baik pada fitur berdampak besar, tetapi
+mengandung galat arah yang sistematis pada fitur berdampak kecil. Galat itulah yang
+menyeret turun skor kesesuaian medis dan kepercayaan, dan tampak paling jelas pada
+Kasus 6 yang memuat beberapa galat arah sekaligus serta memperoleh skor kepercayaan
+terendah, yaitu 2.
+
+\subsubsection{Interpretasi Kualitas Narasi LLM}
+Komponen LLM memperoleh rerata keseluruhan 3,93 yang tergolong valid, lebih tinggi
+daripada komponen SHAP. Aspek keamanan memperoleh nilai tertinggi (4,57; sangat baik),
+diikuti koherensi dan kejelasan (4,14). Hal ini menunjukkan bahwa narasi yang
+dihasilkan aman untuk disampaikan kepada pasien serta tersusun runtut dan mudah
+dipahami. Aspek faktualitas medis (3,71) dan bebas halusinasi (4,00) juga tergolong
+valid, yang menandakan narasi umumnya benar secara medis dan jarang memuat informasi
+yang dibuat-buat.
+
+Dua aspek dengan nilai terendah adalah konsistensi terhadap SHAP (3,57) dan kualitas
+edukasi (3,57). Komentar dokter memperlihatkan penyebab yang spesifik dan berulang.
+Pada Kasus 1, narasi menyarankan pasien memperbaiki kualitas tidur padahal data pasien
+menunjukkan kualitas tidur sudah sangat baik. Pada Kasus 4 terdapat kesalahan logika
+kausal, yaitu narasi menyatakan bahwa perbaikan kualitas tidur ``dapat meningkatkan
+indeks massa tubuh'', padahal maksud yang benar adalah menurunkannya. Pada Kasus 6,
+keterkaitan antara interpretasi kontribusi indeks massa tubuh dan saran yang diberikan
+dinilai kurang padu sehingga aspek faktualitas hanya memperoleh skor 2. Pada Kasus 7,
+kontribusi diabetes dinilai terlalu kecil, padahal secara klinis resistensi insulin
+pada diabetes meningkatkan aktivitas saraf simpatis dan menyempitkan pembuluh darah
+sehingga tergolong faktor moderat. Sebagian ketidaksesuaian ini berkaitan dengan
+strategi \emph{prompt engineering} yang belum sepenuhnya memaksa narasi mempertahankan
+makna dan proporsi kontribusi dari hasil SHAP.
+
+\subsubsection{Keterkaitan Antarkomponen dan Implikasi Sistem}
+Hasil kedua komponen saling berkaitan pada alur XAI$\rightarrow$LLM. Kasus 5
+memperlihatkan keterkaitan ini dengan jelas: hasil SHAP menandai merokok sebagai
+penurun risiko, yaitu arah yang keliru secara medis, sementara narasi LLM menyarankan
+pasien berhenti merokok. Saran tersebut benar secara medis, tetapi tidak konsisten
+dengan arah kontribusi yang ditampilkan SHAP, sehingga menimbulkan ketegangan antara
+kesetiaan terhadap sumber (\emph{faithfulness}) dan kebenaran medis. Pola ini
+menunjukkan bahwa sebagian persoalan konsistensi pada komponen LLM berakar pada galat
+arah di komponen SHAP. Perbaikan pada komponen SHAP di hulu, dengan demikian,
+berpotensi langsung meningkatkan konsistensi narasi di hilir.
+
+Secara keseluruhan, kedua komponen memperoleh kategori valid, yaitu SHAP 3,60 dan
+LLM 3,93. Temuan ini menunjukkan bahwa rangkaian interpretasi SHAP dan narasi LLM layak
+digunakan sebagai pendukung komunikasi risiko hipertensi kepada pasien, namun belum
+memadai untuk berdiri sendiri sebagai alat pengambilan keputusan klinis. Galat arah
+pada fitur berdampak kecil dan sejumlah ketidakkonsistenan narasi perlu diperbaiki
+sebelum sistem diterapkan pada konteks yang lebih luas.
+
+\subsubsection{Keterbatasan}
+Evaluasi ini memiliki sejumlah keterbatasan. Pertama, penilaian dilakukan oleh satu
+orang dokter umum sehingga hasilnya tidak dapat digeneralisasi secara luas dan tidak
+memungkinkan pengukuran kesepakatan antar-penilai. Kedua, jumlah kasus yang dievaluasi
+terbatas pada tujuh profil. Ketiga, penilaian ahli bersifat subjektif; pada Kasus 1
+dokter mencatat bahwa profil tersebut merupakan profil pertama yang dinilai sehingga
+terdapat kemungkinan efek urutan pada awal penilaian. Keempat, sebagian penilaian aspek
+arah kontribusi bersifat bersyarat, yaitu ketidaksesuaian arah dinilai dapat diterima
+sepanjang magnitudonya kecil, sehingga validitas aspek tersebut perlu dimaknai dengan
+mempertimbangkan syarat ini.
+
+\subsubsection{Rekomendasi Perbaikan Sistem}
+Berdasarkan temuan di atas, terdapat beberapa rekomendasi perbaikan. Pertama, galat
+arah pada fitur berdampak kecil dapat ditangani dengan penyaringan atau penggabungan
+kontribusi di bawah ambang tertentu agar tidak ditampilkan sebagai arah yang
+menyesatkan. Kedua, strategi \emph{prompt engineering} pada komponen LLM perlu
+diperkuat agar narasi mempertahankan arah dan proporsi kontribusi dari hasil SHAP serta
+menghindari kesalahan logika kausal seperti pada Kasus 4. Ketiga, penelitian lanjutan
+disarankan menambah jumlah penilai untuk memungkinkan pengukuran kesepakatan
+antar-penilai serta memperluas cakupan kasus yang dievaluasi.
+
+% ==========================================
+% Catatan panduan penulisan (dari template) tetap dipertahankan sebagai komentar.
+% ==========================================
+% \section{Evaluasi Kesalahan Penulisan yang Sering Terjadi}
+% \subsection{Penggunaan Kata "di mana" atau "dimana"}
+% Banyak yang menuliskan kata "di mana" atau "dimana" sebagai pengganti kata "which" dalam bahasa Inggris.
+% Padahal, penggunaan kata "di mana" atau "dimana" tidak tepat dalam konteks tersebut. Demikian juga untuk kata serupa, misalnya "yang mana".
+% Kata "di mana" atau "dimana" ini harus diganti dengan kata lain, seperti "dengan", "tempat", "yang", dan sebagainya tergantung kalimatnya.
+% Penjelasan lengkap dapat dilihat pada \autocite{BPBI}.

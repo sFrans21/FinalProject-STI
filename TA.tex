@@ -103,6 +103,12 @@
 \usepackage{xcolor} % for color definitions
 \usepackage[title,titletoc]{appendix} % for appendix management
 \usepackage{csquotes} % for context-sensitive quotation facilities
+\usepackage{multirow}
+
+% --- Kolom tabularx rata kiri yang melar (dipakai di Bab VI) ---
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+% --- Kolom lebar-tetap rata tengah, mis. C{3.2cm} (dipakai di Bab VI) ---
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
 
 \setmainfont{Times New Roman} % set main font to Times New Roman
 \onehalfspacing % spasi 1.5
@@ -348,7 +354,7 @@
 \input{8 Daftar Gambar.tex}
 \input{9 Daftar Tabel.tex}
 \input{10 Daftar Algoritma.tex}
-\input{11 Daftar Listing.tex}
+% \input{11 Daftar Listing.tex} % dinonaktifkan: tidak ada listing kode dalam dokumen (kode sumber via tautan GitHub pada Lampiran A)
 \input{12 Daftar Singkatan.tex}
 \input{13 Daftar Simbol.tex}
 
@@ -397,6 +403,8 @@
   %\makeatother
 \input{Lampiran-A.tex}
 \input{Lampiran-B.tex}
+\input{Lampiran-C.tex}
+\input{Lampiran-D.tex}
 \end{appendices}
 \backmatter
 
