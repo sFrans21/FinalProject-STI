@@ -981,24 +981,9 @@ Setelah XGBoost terpilih sebagai model akhir, dilakukan interpretasi model mengg
 
 Penyajian nilai SHAP menggunakan pendekatan gabungan, yaitu analisis global dalam satuan \emph{log-odds} yang merupakan keluaran mentah model, dan analisis lokal dalam satuan probabilitas agar lebih mudah dipahami pengguna. Perlu dicatat bahwa model XGBoost dilatih dengan pembobotan kelas positif untuk menangani ketidakseimbangan data, sehingga rata-rata keluaran probabilistik model berada di sekitar 0,45, lebih tinggi dibandingkan prevalensi hipertensi pada data pemodelan yang sebesar 29,26\%.
 
-\subsubsection{Pemilihan Explainer}
+\subsubsection{Penetapan Explainer TreeSHAP}
 
-SHAP menyediakan dua explainer yang relevan, yaitu \emph{KernelExplainer} yang bersifat \emph{model-agnostic} namun berbeban komputasi tinggi, dan \emph{TreeExplainer} yang dirancang khusus untuk model berbasis pohon seperti XGBoost sehingga dapat menghitung kontribusi fitur secara eksak dan efisien. Keduanya dibandingkan untuk memastikan pilihan yang tepat, dan hasilnya disajikan pada Tabel~\ref{tab:shap-explainer}. Nilai kontribusi yang dihasilkan kedua metode nyaris identik, dengan rata-rata selisih hanya 0,0014 dan perbedaan kontribusi sebesar 0,44\%. Namun, TreeExplainer jauh lebih cepat, yaitu 0,139 detik dibandingkan 2,438 detik, sehingga TreeExplainer dipilih sebagai metode interpretasi utama.
-
-\begin{table}[htbp]
-    \centering
-    \caption{Perbandingan KernelExplainer dan TreeExplainer pada 50 Sampel Uji}
-    \label{tab:shap-explainer}
-    \begin{tabular}{@{}lrr@{}}
-        \toprule
-        \textbf{Metrik} & \textbf{KernelExplainer} & \textbf{TreeExplainer} \\
-        \midrule
-        Waktu komputasi (detik) & 2,4382 & 0,1390 \\
-        Rata-rata selisih nilai SHAP & \multicolumn{2}{c}{0,0014} \\
-        Rata-rata perbedaan kontribusi & \multicolumn{2}{c}{0,44\%} \\
-        \bottomrule
-    \end{tabular}
-\end{table}
+Sesuai landasan teori yang telah diuraikan pada Subbab~\ref{subsec:landasan-shap}, metode interpretasi yang digunakan pada penelitian ini adalah TreeSHAP (\emph{TreeExplainer}). Penetapan ini mengikuti karakteristik model prediksi akhir, yaitu XGBoost yang tergolong \emph{tree ensemble}. Sebagaimana dikembangkan oleh \textcite{Lundberg2020TreeSHAP}, TreeSHAP dirancang khusus untuk model berbasis pohon sehingga mampu menghitung nilai Shapley secara eksak (\emph{exact Shapley values}) dalam waktu polinomial dengan memanfaatkan struktur pohon keputusan, alih-alih melalui aproksimasi berbeban komputasi tinggi seperti pada pendekatan SHAP yang bersifat \emph{model-agnostic}. Dengan demikian, atribusi fitur yang dihasilkan bersifat tepat dan konsisten dengan aksioma nilai Shapley \autocite{Lundberg2017Unified}, sekaligus efisien untuk dijalankan pada sistem. Implementasi TreeSHAP pada penelitian ini dilakukan melalui pustaka \texttt{shap} dengan memanggil \emph{TreeExplainer} atas objek model XGBoost terlatih, sehingga terdapat keterkaitan yang konsisten antara landasan teori, perancangan, dan implementasi modul interpretasi.
 
 \subsubsection{Analisis Global}
 

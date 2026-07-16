@@ -1,35 +1,87 @@
 [0] Config.pm:328> INFO - This is Biber 2.21
-[1] Config.pm:331> INFO - Logfile is 'TA.blg'
-[140] biber-MSWIN64:342> INFO - === 
-[186] Biber.pm:421> INFO - Reading 'TA.bcf'
-[428] Biber.pm:1002> INFO - Found 87 citekeys in bib section 0
-[444] Biber.pm:4487> INFO - Processing section 0
-[456] Biber.pm:4678> INFO - Looking for bibtex file 'daftar-pustaka.bib' for section 0
-[525] bibtex.pm:1713> INFO - LaTeX decoding ...
-[668] bibtex.pm:1519> INFO - Found BibTeX data source 'daftar-pustaka.bib'
-[1446] UCollate.pm:68> INFO - Overriding locale 'indonesian' defaults 'level = 4' with 'level = 2'
-[1446] UCollate.pm:68> INFO - Overriding locale 'indonesian' defaults 'variable = shifted' with 'variable = non-ignorable'
-[1447] UCollate.pm:68> INFO - Overriding locale 'indonesian' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[1447] Biber.pm:4307> INFO - Sorting list 'cms/global//global/global/global' of type 'entry' with template 'cms' and locale 'indonesian'
-[1447] Biber.pm:4313> INFO - No sort tailoring available for locale 'indonesian'
-[1575] bbl.pm:676> INFO - Writing 'TA.bbl' with encoding 'UTF-8'
-[1654] bbl.pm:779> INFO - Output to TA.bbl
-[1655] Biber.pm:132> WARN - legacy month field 'October' in entry 'manongga2024gambaran' is not an integer - this will probably not sort properly.
-[1655] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_nuSL\41ffe2d8d9a3f06b4c5a0f7a04e3d585_49892.utf8, line 41, warning: possible runaway string started at line 39
-[1655] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_nuSL\41ffe2d8d9a3f06b4c5a0f7a04e3d585_49892.utf8, line 64, warning: possible runaway string started at line 62
-[1655] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_nuSL\41ffe2d8d9a3f06b4c5a0f7a04e3d585_49892.utf8, line 83, warning: possible runaway string started at line 81
-[1655] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_nuSL\41ffe2d8d9a3f06b4c5a0f7a04e3d585_49892.utf8, line 103, warning: possible runaway string started at line 101
-[1656] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_nuSL\41ffe2d8d9a3f06b4c5a0f7a04e3d585_49892.utf8, line 299, warning: possible runaway string started at line 297
-[1656] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_nuSL\41ffe2d8d9a3f06b4c5a0f7a04e3d585_49892.utf8, line 358, warning: possible runaway string started at line 356
-[1656] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_nuSL\41ffe2d8d9a3f06b4c5a0f7a04e3d585_49892.utf8, line 439, warning: possible runaway string started at line 437
-[1656] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_nuSL\41ffe2d8d9a3f06b4c5a0f7a04e3d585_49892.utf8, line 476, warning: possible runaway string started at line 474
-[1656] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_nuSL\41ffe2d8d9a3f06b4c5a0f7a04e3d585_49892.utf8, line 489, warning: possible runaway string started at line 487
-[1656] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_nuSL\41ffe2d8d9a3f06b4c5a0f7a04e3d585_49892.utf8, line 498, warning: possible runaway string started at line 496
-[1656] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_nuSL\41ffe2d8d9a3f06b4c5a0f7a04e3d585_49892.utf8, line 508, warning: possible runaway string started at line 506
-[1656] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_nuSL\41ffe2d8d9a3f06b4c5a0f7a04e3d585_49892.utf8, line 597, warning: possible runaway string started at line 595
-[1657] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_nuSL\41ffe2d8d9a3f06b4c5a0f7a04e3d585_49892.utf8, line 616, warning: possible runaway string started at line 614
-[1657] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_nuSL\41ffe2d8d9a3f06b4c5a0f7a04e3d585_49892.utf8, line 636, warning: possible runaway string started at line 634
-[1657] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_nuSL\41ffe2d8d9a3f06b4c5a0f7a04e3d585_49892.utf8, line 646, warning: possible runaway string started at line 644
-[1657] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_nuSL\41ffe2d8d9a3f06b4c5a0f7a04e3d585_49892.utf8, line 711, warning: possible runaway string started at line 709
-[1657] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_nuSL\41ffe2d8d9a3f06b4c5a0f7a04e3d585_49892.utf8, line 783, warning: possible runaway string started at line 781
-[1657] Biber.pm:134> INFO - WARNINGS: 18
+[0] Config.pm:331> INFO - Logfile is 'TA.blg'
+[116] biber-MSWIN64:342> INFO - === 
+[162] Biber.pm:421> INFO - Reading 'TA.bcf'
+[376] Biber.pm:1002> INFO - Found 77 citekeys in bib section 0
+[391] Biber.pm:4487> INFO - Processing section 0
+[405] Biber.pm:4678> INFO - Looking for bibtex file 'daftar-pustaka.bib' for section 0
+[486] bibtex.pm:1713> INFO - LaTeX decoding ...
+[580] bibtex.pm:1519> INFO - Found BibTeX data source 'daftar-pustaka.bib'
+[1231] UCollate.pm:68> INFO - Overriding locale 'indonesian' defaults 'variable = shifted' with 'variable = non-ignorable'
+[1232] UCollate.pm:68> INFO - Overriding locale 'indonesian' defaults 'level = 4' with 'level = 2'
+[1232] UCollate.pm:68> INFO - Overriding locale 'indonesian' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[1241] Biber.pm:4307> INFO - Sorting list 'cms/global//global/global/global' of type 'entry' with template 'cms' and locale 'indonesian'
+[1241] Biber.pm:4313> INFO - No sort tailoring available for locale 'indonesian'
+[1354] bbl.pm:676> INFO - Writing 'TA.bbl' with encoding 'UTF-8'
+[1433] bbl.pm:779> INFO - Output to TA.bbl
+[1434] Biber.pm:132> WARN - legacy month field 'October' in entry 'manongga2024gambaran' is not an integer - this will probably not sort properly.
+[1434] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 12, warning: possible runaway string started at line 10
+[1434] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 25, warning: possible runaway string started at line 23
+[1434] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 45, warning: possible runaway string started at line 43
+[1434] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 58, warning: possible runaway string started at line 56
+[1434] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 70, warning: possible runaway string started at line 68
+[1434] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 89, warning: possible runaway string started at line 87
+[1434] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 109, warning: possible runaway string started at line 107
+[1434] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 143, warning: possible runaway string started at line 141
+[1434] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 154, warning: possible runaway string started at line 152
+[1434] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 177, warning: possible runaway string started at line 175
+[1434] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 203, warning: possible runaway string started at line 201
+[1434] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 238, warning: possible runaway string started at line 236
+[1435] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 252, warning: possible runaway string started at line 250
+[1435] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 265, warning: possible runaway string started at line 263
+[1435] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 276, warning: possible runaway string started at line 274
+[1435] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 311, warning: possible runaway string started at line 309
+[1435] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 323, warning: possible runaway string started at line 321
+[1435] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 360, warning: possible runaway string started at line 358
+[1435] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 374, warning: possible runaway string started at line 372
+[1435] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 386, warning: possible runaway string started at line 384
+[1435] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 395, warning: possible runaway string started at line 393
+[1435] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 425, warning: possible runaway string started at line 423
+[1435] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 437, warning: possible runaway string started at line 435
+[1435] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 459, warning: possible runaway string started at line 457
+[1435] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 475, warning: possible runaway string started at line 473
+[1435] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 512, warning: possible runaway string started at line 510
+[1435] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 525, warning: possible runaway string started at line 523
+[1435] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 534, warning: possible runaway string started at line 532
+[1435] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 544, warning: possible runaway string started at line 542
+[1435] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 591, warning: possible runaway string started at line 589
+[1435] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 610, warning: possible runaway string started at line 608
+[1436] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 630, warning: possible runaway string started at line 628
+[1436] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 639, warning: possible runaway string started at line 637
+[1436] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 647, warning: possible runaway string started at line 645
+[1436] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 660, warning: possible runaway string started at line 658
+[1436] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 680, warning: possible runaway string started at line 678
+[1436] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 690, warning: possible runaway string started at line 688
+[1436] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 704, warning: possible runaway string started at line 702
+[1436] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 716, warning: possible runaway string started at line 714
+[1436] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 759, warning: possible runaway string started at line 757
+[1436] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 772, warning: possible runaway string started at line 770
+[1436] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 782, warning: possible runaway string started at line 780
+[1436] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 792, warning: possible runaway string started at line 790
+[1436] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 826, warning: possible runaway string started at line 824
+[1436] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 839, warning: possible runaway string started at line 837
+[1436] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 859, warning: possible runaway string started at line 857
+[1436] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 871, warning: possible runaway string started at line 869
+[1436] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 884, warning: possible runaway string started at line 882
+[1436] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 906, warning: possible runaway string started at line 904
+[1437] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 917, warning: possible runaway string started at line 915
+[1437] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 929, warning: possible runaway string started at line 927
+[1437] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 941, warning: possible runaway string started at line 939
+[1437] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 953, warning: possible runaway string started at line 951
+[1437] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 965, warning: possible runaway string started at line 963
+[1437] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 977, warning: possible runaway string started at line 975
+[1437] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 998, warning: possible runaway string started at line 996
+[1437] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 1009, warning: possible runaway string started at line 1007
+[1437] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 1029, warning: possible runaway string started at line 1027
+[1437] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 1042, warning: possible runaway string started at line 1040
+[1437] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 1055, warning: possible runaway string started at line 1053
+[1437] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 1066, warning: possible runaway string started at line 1064
+[1437] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 1081, warning: possible runaway string started at line 1079
+[1437] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 1117, warning: possible runaway string started at line 1115
+[1437] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 1191, warning: possible runaway string started at line 1189
+[1437] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 1345, warning: possible runaway string started at line 1343
+[1437] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 1357, warning: possible runaway string started at line 1355
+[1437] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 1370, warning: possible runaway string started at line 1368
+[1437] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 1394, warning: possible runaway string started at line 1392
+[1437] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\Samuel\AppData\Local\Temp\biber_tmp_IEfC\41ffe2d8d9a3f06b4c5a0f7a04e3d585_26636.utf8, line 1744, warning: possible runaway string started at line 1742
+[1437] Biber.pm:134> INFO - WARNINGS: 70
